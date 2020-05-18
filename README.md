@@ -89,7 +89,7 @@ and their description:
 | hu\<n\> | relative humidity (old #\<n\>) | % | float | |
 | hw |  | 1 | int | |
 | id | sond ID | 1 | int | |
-| lat | latitude | degree | sign(lat)*(floor(abs(lat)/1e6) + (abs(lat)/1e6 % 1.)*1e2/60.) |
+| lat | latitude | degree | int | sign(lat)*(floor(abs(lat)/1e6) + (abs(lat)/1e6 % 1.)*1e2/60.) |
 | latd | latitude | decimal part of minute | int | latd/1e4 |
 | latm | latitude | minute | int | latm/1e4 |
 | lon | longitude | degree | int | sign(lon)*(floor(abs(lon)/1e6) + (abs(lon)/1e6 % 1.)*1e2/60.) |
