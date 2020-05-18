@@ -82,7 +82,7 @@ and their description:
 | cutpr2 | | | | |
 | datetime | seconds since file-start
 | fwver | firmware version | 1 | int | fwver/100.0 |
-| galt | altitude (spotty) | m | int | |
+| galt | altitude | m | int | |
 | gpa | ground pressure | Pa | int | |
 | hdop | GPS horizontal dilution of precision (HDOP) |  | float | |
 | hu | relative humidity | % | float | |
@@ -117,7 +117,7 @@ and their description:
 | syn | | 1 | int | |
 | te | temperature | ℃ | float | |
 | te\<n\> | temperature (old #\<n\>) | ℃ | float | |
-| tei | internal Temperature | ℃ | float | |
+| tei | internal temperature | ℃ | float | |
 | ucnt | | 1 | int | |
 
 ## License
