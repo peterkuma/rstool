@@ -12,6 +12,7 @@ Supported instruments:
 - [Windsond](http://windsond.com/) [in development]
 
 Support for other instruments can be added by writing a Python module
+in `rstool_package/drivers`
 to read the data files produced by the radiosonde.
 
 Usage
@@ -32,6 +33,29 @@ Types:
 - `imet` - InterMet Systems iMet-1-ABxn. Expected `input`: directory generated
     by the iMetOS-II software.
 
+Installation
+------------
+
+Recommended operating system to run rstool is Linux with Python 2.7.
+Install with:
+
+```sh
+python setup.py install
+```
+
+or
+
+```sh
+python setup.py install --user
+```
+
+to install in user's home directory (make sure the directory `~/.local/bin`
+is in the environmental variable `PATH`). Run with:
+
+`rstool`
+
+on the command line.
+
 ## Native format description
 
 ### Windsond (in development)
@@ -49,7 +73,7 @@ and their description:
 | afc1 | automatic frequency control | Hz | int | |
 | alt | GPS altitude | m | int | |
 | ang | wind direction | degree | float | |
-| ang<n> | wind direction (old #<n>) | degree | float | |
+| ang\<n\> | wind direction (old #\<n\>) | degree | float | |
 | behlan | behavior after landing | 1 | int | 0: Power-save, 1: Beacon at once |
 | burn | burn string | 1 | int | 0: at cut down
 | clk | | | | |
@@ -62,7 +86,7 @@ and their description:
 | gpa | ground pressure | Pa | int | |
 | hdop | GPS horizontal dilution of precision (HDOP) |  | float | |
 | hu | relative humidity | % | float | |
-| hu<n> | relative humidity (old #<n>) | % | float | |
+| hu\<n\> | relative humidity (old #\<n\>) | % | float | |
 | hw |  | 1 | int | |
 | id | sond ID | 1 | int | |
 | lat | latitude | degree | lat/1e6 |
@@ -88,10 +112,14 @@ and their description:
 | seq | sequence number | 1 | int | |
 | sid | session ID | 1 | int | |
 | spd | wind speed | m.s<sup>-1</sup> | float | |
-| spd<n> | wind speed (old #<n>) | m.s<sup>-1</sup> | float | |
+| spd\<n\> | wind speed (old #\<n\>) | m.s<sup>-1</sup> | float | |
 | su | power supply | V | float | |
 | syn | | 1 | int | |
 | te | temperature | ℃ | float | |
-| te<n> | temperature (old #<n>) | ℃ | float | |
+| te\<n\> | temperature (old #\<n\>) | ℃ | float | |
 | tei | internal Temperature | ℃ | float | |
 | ucnt | | 1 | int | |
+
+## License
+
+MIT license (see [LICENSE.md](LICENSE.md))
