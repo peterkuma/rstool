@@ -74,7 +74,7 @@ and their description:
 | alt | GPS altitude | m | int | |
 | ang | wind direction | degree | float | |
 | ang\<n\> | wind direction (old #\<n\>) | degree | float | |
-| behlan | behavior after landing | 1 | int | 0: Power-save, 1: Beacon at once |
+| behlan | behavior after landing | 1 | int | 0: power-save, 1: beacon at once |
 | burn | burn string | 1 | int | 0: at cut down
 | clk | | | | |
 | crc | cyclic redundancy check (CRC) | 1 | int | |
@@ -89,17 +89,17 @@ and their description:
 | hu\<n\> | relative humidity (old #\<n\>) | % | float | |
 | hw |  | 1 | int | |
 | id | sond ID | 1 | int | |
-| lat | latitude | degree | lat/1e6 |
-| latd | latitude | decimal part of minute | int | |
+| lat | latitude | degree | sign(lat)*(floor(abs(lat)/1e6) + (abs(lat)/1e6 % 1.)*1e2/60.) |
+| latd | latitude | decimal part of minute | int | latd/1e4 |
 | latm | latitude | minute | int | latm/1e4 |
-| lon | longitude | degree | int | lon/1e6 |
-| lond | longitude | decimal part of minute | int |  |
+| lon | longitude | degree | int | sign(lon)*(floor(abs(lon)/1e6) + (abs(lon)/1e6 % 1.)*1e2/60.) |
+| lond | longitude | decimal part of minute | int | lond/1e4 |
 | lonm | longitude | minute | int | lonm/1e4 |
 | lux | light | lux | int | |
 | mcnt | message counter | 1 | int | |
-| md | mode | 1 | int | 0: Init, 1: Ready for launch, 2: Rising, 3: Falling, 4: On ground, silent, 5: On ground, beeping, 6: On ground, sometimes beeping, 7: Cutting down |
+| md | mode | 1 | int | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
 | new | GPS validity | 1 | int | 0: GPS is old |
-| pa | air Pressure | Pa | int | |
+| pa | air pressure | Pa | int | |
 | pwr | power | mW | int | 0: 1.3, 1: 1.5, 2: 3, 3: 6, 4: 13, 5: 25, 6: 50, 7: 100 |
 | q0 | quality | % | hex | max(0.01, max(q0, q1)/256.0 - 0.02*rec) if rec else max(q0, q1)/256.0 |
 | q1 | quality | % | hex | |
