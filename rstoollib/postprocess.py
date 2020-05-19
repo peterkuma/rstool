@@ -29,16 +29,16 @@ def calc_vars(d):
 		d['hur'] = 100.*d['hus']/qs
 	if 'hur' in d:
 		d['e'] = d['hur']/100.*d['es']
-		d['lclp'] = calc_lclp(d['p'][0], d['e'][0], d['ta'][0])
-		d['lcl'] = np.interp(d['lclp'], d['p'][::-1], d['zg'][::-1])
-		d['clp'] = calc_clp(d['p'], d['e'], d['ta'])
-		d['cl'] = np.interp(d['clp'], d['p'][::-1], d['zg'][::-1])
+		d['p_lcl'] = calc_lclp(d['p'][0], d['e'][0], d['ta'][0])
+		d['zg_lcl'] = np.interp(d['p_lcl'], d['p'][::-1], d['zg'][::-1])
+		#d['clp'] = calc_clp(d['p'], d['e'], d['ta'])
+		#d['cl'] = np.interp(d['clp'], d['p'][::-1], d['zg'][::-1])
 		d['ta_par_s'] = calc_ta_par_s(d['p'], d['ta'][0], d['e'][0])
 	if 'ts' in d:
 		d['ta_surf_par'] = calc_ta_par(d['p'], d['ts'])
 		d['ta_surf_par_s'] = calc_ta_par_s(d['p'], d['ts'], d['e'][0])
-		d['ta_surf_par_x'] = calc_ta_par(d['p'], d['ts'] + 0.5)
-		d['ta_surf_par_s_x'] = calc_ta_par_s(d['p'], d['ts'] + 0.5, d['e'][0])
+		#d['ta_surf_par_x'] = calc_ta_par(d['p'], d['ts'] + 0.5)
+		#d['ta_surf_par_s_x'] = calc_ta_par_s(d['p'], d['ts'] + 0.5, d['e'][0])
 
 def postprocess(d):
 	remove_descending(d)

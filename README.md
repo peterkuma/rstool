@@ -126,7 +126,7 @@ The naming of variables follows CMIP5 standard names.
 | wds | wind speed | m.s<sup>-1</sup> | float64 |
 | wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | z | height above reference ellipsoid | m | float64 |
-| z_lcl | lifting condensation level | m | float64 |
+| z_lcl | lifting condensation level geopotential height | m | float64 |
 | zg | geopotential height | m | float64 |
 
 ### Windsond raw (raw:ws)

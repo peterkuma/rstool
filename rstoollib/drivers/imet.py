@@ -122,8 +122,8 @@ def read_info(filename):
 
 def read_prof(dirname):
 	d = read_tspotint(find(dirname, '*_TSPOTINT.txt'))
-	summary = read_summary(find(dirname, '*_SUMMARY.txt'))
-	d.update(summary)
+	#summary = read_summary(find(dirname, '*_SUMMARY.txt'))
+	#d.update(summary)
 	info_filename = os.path.join(dirname, 'info.json')
 	if os.path.exists(info_filename):
 		info = read_info(info_filename)

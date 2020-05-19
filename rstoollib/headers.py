@@ -89,19 +89,19 @@ HEADER_PROF = {
 		'long_name': 'saturated_surface_parcel_temperature',
 		'units': 'K',
 	},
-	'ta_surf_par_x': {
-		'.dims': ['p'],
-		'long_name': 'dry_surface_parcel_temperature',
-		'units': 'K',
-	},
-	'ta_surf_par_s_x': {
-		'.dims': ['p'],
-		'long_name': 'saturated_surface_parcel_temperature',
-		'units': 'K',
-	},
-	'lclp': {
+	#'ta_surf_par_x': {
+	#	'.dims': ['p'],
+	#	'long_name': 'dry_surface_parcel_temperature',
+	#	'units': 'K',
+	#},
+	#'ta_surf_par_s_x': {
+	#	'.dims': ['p'],
+	#	'long_name': 'saturated_surface_parcel_temperature',
+	#	'units': 'K',
+	#},
+	'p_lcl': {
 		'.dims': [],
-		'long_name': 'atmosphere_lifting_condensation_level_pressure',
+		'long_name': 'lifting_condensation_level_pressure',
 		'units': 'Pa',
 	},
 	'ts': {
@@ -114,41 +114,41 @@ HEADER_PROF = {
 		'long_name': 'atmosphere_lifting_level_pressure',
 		'units': 'Pa',
 	},
-	'lcl': {
+	'zg_lcl': {
 		'.dims': [],
-		'long_name': 'atmosphere_lifting_condensation_level',
+		'long_name': 'lifting_condensation_level_geopotential_height',
 		'units': 'm',
 	},
-	'clp': {
-		'.dims': [],
-		'long_name': 'atmosphere_condensation_level_pressure',
-		'units': 'Pa',
-	},
-	'cl': {
-		'.dims': [],
-		'long_name': 'atmosphere_condensation_level',
-		'units': 'm',
-	},
-	'platform_altitude': {
-		'.dims': [],
-		'long_name': 'platform_altitude',
-		'units': 'm',
-	},
-	'launch_lon': {
-		'.dims': [],
-		'long_name': 'launch_lon',
-		'units': 'degrees_east',
-	},
-	'launch_lat': {
-		'.dims': [],
-		'long_name': 'launch_lat',
-		'units': 'degrees_north',
-	},
-	'launch_time': {
-		'.dims': [],
-		'long_name': 'launch_time',
-		'units': 'days since -4712-01-01 12:00:00',
-	},
+	#'clp': {
+	#	'.dims': [],
+	#	'long_name': 'atmosphere_condensation_level_pressure',
+	#	'units': 'Pa',
+	#},
+	#'cl': {
+	#	'.dims': [],
+	#	'long_name': 'atmosphere_condensation_level',
+	#	'units': 'm',
+	#},
+	#'platform_altitude': {
+	#	'.dims': [],
+	#	'long_name': 'platform_altitude',
+	#	'units': 'm',
+	#},
+	#'launch_lon': {
+	#	'.dims': [],
+	#	'long_name': 'launch_lon',
+	#	'units': 'degrees_east',
+	#},
+	#'launch_lat': {
+	#	'.dims': [],
+	#	'long_name': 'launch_lat',
+	#	'units': 'degrees_north',
+	#},
+	#'launch_time': {
+	#	'.dims': [],
+	#	'long_name': 'launch_time',
+	#	'units': 'days since -4712-01-01 12:00:00',
+	#},
 	'time': {
 		'.dims': ['p'],
 		'long_name': 'time',
