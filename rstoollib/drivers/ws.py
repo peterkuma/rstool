@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-import sys
 import re
 import numpy as np
 import ds_format as ds
