@@ -90,14 +90,14 @@ Time is expressed as Julian days
 
 ### Points (pts)
 
-| Parameter | Description | Units | Type |
+| Variable | Description | Units | Type |
 | --- | --- | --- | --- |
 
 ### Profile (prof)
 
-| Parameter | Description | Units | Type |
+| Variable | Description | Units | Type |
 | --- | --- | --- | --- |
-| bvf | brunt vaisala frequency in air | s<sup>-1</sup> | float64 |
+| bvf | Brunt–Väisälä frequency in air | s<sup>-1</sup> | float64 |
 | e | water vapor pressure | Pa | float64 |
 | es | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
@@ -124,14 +124,13 @@ Time is expressed as Julian days
 | wds | wind speed | m.s<sup>-1</sup> | float64 |
 | wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | z | height above reference ellipsoid | m | float64 |
-| zg_lcl | lifting condensation level geopotential height | m | float64 |
 | zg | geopotential height | m | float64 |
+| zg_lcl | lifting condensation level geopotential height | m | float64 |
 
 ### Windsond raw (raw:ws)
 
-| Parameter | Description | Units | Type | Comment |
+| Variable | Description | Units | Type | Comment |
 | --- | --- | --- | --- | --- |
-| relAP | release altitude | m | int64 |
 | afc | automatic frequency control | Hz | int64 |
 | afc1 | automatic frequency control 1 | Hz | int64 |
 | afc2 | automatic frequency control 2 | Hz | int64 |
@@ -151,6 +150,7 @@ Time is expressed as Julian days
 | hu\<n\> | relative humidity (old) | % | float64 |
 | hw | hw | 1 | int64 |
 | id | sond ID | 1 | int64 |
+| install | install | | string |
 | label | label | | string |
 | lat | latitude | degrees | float64 |
 | lon | longitude | degrees | float64 |
@@ -158,25 +158,23 @@ Time is expressed as Julian days
 | mcnt | message counter | 1 | int64 |
 | md | mode | 1 | int64 | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
 | new | GPS validity | 1 | int64 | 0: GPS is old |
-| offset | time start | seconds since 1970-01-01T00:00 | float64 |
-| timezone | timezone | 1 | int64 |
-| version | version | 1 | int64 |
-| install | install | | string |
-| software | software version | | string |
 | node_id | node ID | 1 | int64 |
+| offset | time start | seconds since 1970-01-01T00:00 | float64 |
 | pa | air pressure | Pa | int64 |
 | pwr | power | W | float64 |
+| q | quality | 1 | int64 |
 | q0 | quality | 1 | int64 |
 | q1 | quality | 1 | int64 |
-| r | quality | 1 | int64 |
-| q | quality | 1 | int64 |
 | qu | quality | % | float64 |
+| r | quality | 1 | int64 |
 | rec | correction | 1 | int64 |
 | rec<n> | correction (old) | 1 | int64 |
+| relAP | release altitude | m | int64 |
 | role | role | 1 | int64 |
 | sats | number of GPS satellites | 1 | int64 |
 | seq | sequence number | 1 | int64 |
 | sid | session ID | 1 | int64 |
+| software | software version | | string |
 | spd | wind speed | m.s<sup>-1</sup> | float64 |
 | spd\<n\> | wind speed (old) | m.s<sup>-1</sup> | float64 |
 | su | power supply | V | float64 |
@@ -184,7 +182,9 @@ Time is expressed as Julian days
 | te | temperature | K | float64 |
 | te\<n\> | temperature (old) | K | float64 |
 | tei | internal temperature | K | float64 |
+| timezone | timezone | 1 | int64 |
 | ucnt | ucnt | 1 | int64 |
+| version | version | 1 | int64 |
 
 ## License
 
