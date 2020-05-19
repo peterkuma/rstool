@@ -134,59 +134,62 @@ The naming of variables follows CMIP5 standard names.
 List of native parameters in the `.sounding` and `.csv` files
 and their description:
 
-| Parameter | Description | Units | Type | Coding |
+| Parameter | Description | Units | Type | Comment |
 | --- | --- | --- | --- | --- |
-| relAP | release altitude | m | |
-| afc0 | automatic frequency control | Hz | int | |
-| afc1 | automatic frequency control | Hz | int | |
-| alt | GPS altitude | m | int | |
-| ang | wind direction | degree | float | |
-| ang\<n\> | wind direction (old #\<n\>) | degree | float | |
-| behlan | behavior after landing | 1 | int | 0: power-save, 1: beacon at once |
-| burn | burn string | 1 | int | 0: at cut down
-| clk | | | | |
-| crc | cyclic redundancy check (CRC) | 1 | int | |
-| cutalt | cut dow altitude | m | int |
-| cutpr2 | | | | |
-| datetime | seconds since file-start
-| fwver | firmware version | 1 | int | fwver/100.0 |
-| galt | altitude | m | int | |
-| gpa | ground pressure | Pa | int | |
-| hdop | GPS horizontal dilution of precision (HDOP) |  | float | |
-| hu | relative humidity | % | float | |
-| hu\<n\> | relative humidity (old #\<n\>) | % | float | |
-| hw |  | 1 | int | |
-| id | sond ID | 1 | int | |
-| lat | latitude | degree | int | sign(lat)*(floor(abs(lat)/1e6) + (abs(lat)/1e6 % 1.)*1e2/60.) |
-| latd | latitude | decimal part of minute | int | latd/1e4 |
-| latm | latitude | minute | int | latm/1e4 |
-| lon | longitude | degree | int | sign(lon)*(floor(abs(lon)/1e6) + (abs(lon)/1e6 % 1.)*1e2/60.) |
-| lond | longitude | decimal part of minute | int | lond/1e4 |
-| lonm | longitude | minute | int | lonm/1e4 |
-| lux | light | lux | int | |
-| mcnt | message counter | 1 | int | |
-| md | mode | 1 | int | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
-| new | GPS validity | 1 | int | 0: GPS is old |
-| pa | air pressure | Pa | int | |
-| pwr | power | mW | int | 0: 1.3, 1: 1.5, 2: 3, 3: 6, 4: 13, 5: 25, 6: 50, 7: 100 |
-| q0 | quality | % | hex | max(0.01, max(q0, q1)/256.0 - 0.02*rec) if rec else max(q0, q1)/256.0 |
-| q1 | quality | % | hex | |
-| r | quality | % | int | quality = max(0.01, r/256.0 - 0.02*rec) if rec else r/256.0 |
-| rec | correction | 1 | int | |
-| rec0 | correction | 1 | int | |
-| rec1 | correction | 1 | int | |
-| role | | 1 | int | |
-| sats | number of GPS satellites | 1 | int | |
-| seq | sequence number | 1 | int | |
-| sid | session ID | 1 | int | |
-| spd | wind speed | m.s<sup>-1</sup> | float | |
-| spd\<n\> | wind speed (old #\<n\>) | m.s<sup>-1</sup> | float | |
-| su | power supply | V | float | |
-| syn | | 1 | int | |
-| te | temperature | ℃ | float | |
-| te\<n\> | temperature (old #\<n\>) | ℃ | float | |
-| tei | internal temperature | ℃ | float | |
-| ucnt | | 1 | int | |
+| relAP | release altitude | m | int64 |
+| afc | automatic frequency control | Hz | int64 |
+| afc1 | automatic frequency control 1 | Hz | int64 |
+| afc2 | automatic frequency control 2 | Hz | int64 |
+| alt | GPS altitude | m | int64 |
+| ang | wind direction | degrees | float64 |
+| ang\<n\> | wind direction (old) | degrees | float64 |
+| behlan | behavior after landing | 1 | int64 | 0: power-save, 1: beacon at once |
+| burn | burn string | 1 | int64 | 0: at cut down
+| crc | cyclic redundancy check (CRC) | 1 | int64 |
+| cutalt | cut dow altitude | m | int64 |
+| extra | extra information | | string |
+| fwver | firmware version | 1 | float64 |
+| galt | altitude | m | int64 | |
+| gpa | ground pressure | Pa | int |
+| hdop | GPS horizontal dilution of precision (HDOP) |  | float64 |
+| hu | relative humidity | % | float64 |
+| hu\<n\> | relative humidity (old) | % | float64 |
+| hw | hw | 1 | int64 |
+| id | sond ID | 1 | int64 |
+| label | label | | string |
+| lat | latitude | degrees | float64 |
+| lon | longitude | degrees | float64 |
+| lux | light | lux | int64 |
+| mcnt | message counter | 1 | int64 |
+| md | mode | 1 | int64 | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
+| new | GPS validity | 1 | int64 | 0: GPS is old |
+| offset | time start | seconds since 1970-01-01T00:00 | float64 |
+| timezone | timezone | 1 | int64 |
+| version | version | 1 | int64 |
+| install | install | | string |
+| software | software version | | string |
+| node_id | node ID | 1 | int64 |
+| pa | air pressure | Pa | int64 |
+| pwr | power | W | float64 |
+| q0 | quality | 1 | int64 |
+| q1 | quality | 1 | int64 |
+| r | quality | 1 | int64 |
+| q | quality | 1 | int64 |
+| qu | quality | % | float64 |
+| rec | correction | 1 | int64 |
+| rec<n> | correction (old) | 1 | int64 |
+| role | role | 1 | int64 |
+| sats | number of GPS satellites | 1 | int64 |
+| seq | sequence number | 1 | int64 |
+| sid | session ID | 1 | int64 |
+| spd | wind speed | m.s<sup>-1</sup> | float64 |
+| spd\<n\> | wind speed (old) | m.s<sup>-1</sup> | float64 |
+| su | power supply | V | float64 |
+| syn | | 1 | int64 |
+| te | temperature | K | float64 |
+| te\<n\> | temperature (old) | K | float64 |
+| tei | internal temperature | K | float64 |
+| ucnt | ucnt | 1 | int64 |
 
 ## License
 
