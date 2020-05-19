@@ -1,29 +1,4 @@
-#!/usr/bin/env python
-"""
-Process radiosonde data.
-
-Usage: rstool <type> <input> <output>
-
-Arguments:
-
-- type: See Types below.
-- input: Input file.
-- output: Output file.
-
-Types:
-
-- default
-- imet: InterMet
-- nbp1704: NBP1704 voyage
-"""
-
-import sys
-import ds_format as ds
-
-from rstool_package.drivers import DRIVERS
-from rstool_package.postprocess import postprocess
-
-HEADER = {
+HEADER_PROF = {
 	'zg': {
 		'.dims': ['p'],
 		'long_name': 'geopotential_height',
@@ -62,7 +37,7 @@ HEADER = {
 	'wdd': {
 		'.dims': ['p'],
 		'long_name': 'wind_from_direction',
-		'units': 'degree',
+		'units': 'degrees',
 	},
 	'ua': {
 		'.dims': ['p'],
@@ -212,29 +187,10 @@ HEADER = {
 	'wdds': {
 		'.dims': [],
 		'long_name': 'wind_from_direction',
-		'units': 'degree',
+		'units': 'degrees',
 	},
 }
 
-def write(d, filename):
-	ds.to_netcdf(filename, d)
+HEADER_PTS = {
 
-if __name__ == '__main__':
-	if len(sys.argv) != 4:
-		sys.stderr.write(sys.modules[__name__].__doc__)
-		sys.exit(1)
-
-	type_ = sys.argv[1]
-	input_filename = sys.argv[2]
-	output_filename = sys.argv[3]
-
-	driver = DRIVERS[type_]
-
-	d = driver.read(input_filename)
-
-	d['.'] = d.get('.', {})
-	d['.'].update(HEADER)
-
-	postprocess(d)
-
-	write(d, output_filename)
+}

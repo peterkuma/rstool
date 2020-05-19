@@ -272,6 +272,3 @@ def read(filename):
 		d0['.'][ku] = META[p[0]]
 		d0['.'][ku]['.dims'] = []
 	return d0
-
-d = read(sys.argv[1])
-ds.write(sys.argv[2], d)

@@ -1,9 +1,9 @@
 from . import default
 from . import imet
-#from . import nbp1704
+from . import ws
 
 DRIVERS = {
 	'default': default,
 	'imet': imet,
-#	'nbp1704': nbp1704,
+	'ws': ws,
 }

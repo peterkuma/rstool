@@ -1,7 +1,7 @@
 import numpy as np
 import ds_format as ds
 
-from rstool_package.algorithms import *
+from rstoollib.algorithms import *
 
 def remove_descending(d):
 	n = len(d['p'])

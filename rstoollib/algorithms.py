@@ -1,6 +1,6 @@
 import numpy as np
 import scipy.constants
-from rstool_package.const import *
+from rstoollib.const import *
 from scipy.optimize import fmin
 from scipy.integrate import quad
 
