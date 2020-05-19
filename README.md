@@ -99,7 +99,7 @@ The naming of variables follows CMIP5 standard names.
 
 | Parameter | Description | Units | Type |
 | --- | --- | --- | --- |
-| bvf | brunt vaisala frequency in air | s-1 | float64 |
+| bvf | brunt vaisala frequency in air | s<sup>-1</sup> | float64 |
 | e | water vapor pressure | Pa | float64 |
 | es | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
@@ -117,14 +117,14 @@ The naming of variables follows CMIP5 standard names.
 | ta_surf_par_s | saturated surface parcel temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | theta | air potential temperature | K | float64 |
-| time | time | days since -4712-01-01T12:00:00 | float64 |
+| time | time | days since -4712-01-01T12:00:00 UTC | float64 |
 | ts | surface temperature | K | float64 |
-| ua | x wind | m s-1 | float64 |
-| va | y wind | m s-1 | float64 |
+| ua | x wind | m.s<sup>-1</sup> | float64 |
+| va | y wind | m.s<sup>-1</sup> | float64 |
 | wdd | wind from direction | degrees | float64 |
 | wdds | near-surface wind from direction | degrees | float64 |
-| wds | wind speed | m s-1 | float64 |
-| wdss | near-surface wind speed | m s-1 | float64 |
+| wds | wind speed | m.s<sup>-1</sup> | float64 |
+| wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | z | height above reference ellipsoid | m | float64 |
 | z_lcl | lifting condensation level | m | float64 |
 | zg | geopotential height | m | float64 |
