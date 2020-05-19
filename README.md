@@ -95,8 +95,6 @@ Time is expressed as Julian days
 
 ### Profile (prof)
 
-The naming of variables follows CMIP5 standard names.
-
 | Parameter | Description | Units | Type |
 | --- | --- | --- | --- |
 | bvf | brunt vaisala frequency in air | s<sup>-1</sup> | float64 |
@@ -130,9 +128,6 @@ The naming of variables follows CMIP5 standard names.
 | zg | geopotential height | m | float64 |
 
 ### Windsond raw (raw:ws)
-
-List of native parameters in the `.sounding` and `.csv` files
-and their description:
 
 | Parameter | Description | Units | Type | Comment |
 | --- | --- | --- | --- | --- |
