@@ -9,11 +9,12 @@ data to NetCDF and calculation of derived physical quantities.
 Supported instruments:
 
 - [InterMet Systems](https://www.intermetsystems.com) (iMet) radiosondes such as iMet-1-ABxn
-- [Windsond](http://windsond.com/) [in development]
+- [Windsond](http://windsond.com/)
 
 Support for other instruments can be added by writing a Python module
-in `rstool_package/drivers`
-to read the data files produced by the radiosonde.
+in `rstoollib/drivers`
+to read the data files produced by the radiosonde (see the template
+in `template.py`).
 
 Usage
 -----
@@ -50,8 +51,8 @@ Output types:
 Currently supported input and output type combinations (other combinations are
 in development):
 
-- `ws raw`
-- `imet prof`
+- `rstool ws raw <input> <output>`
+- `rstool imet prof <input> <output>`
 
 Installation
 ------------
@@ -98,7 +99,6 @@ The naming of variables follows CMIP5 standard names.
 
 | Parameter | Description | Units | Type |
 | --- | --- | --- | --- |
-
 | bvf | brunt vaisala frequency in air | s-1 | float64 |
 | e | water vapor pressure | Pa | float64 |
 | es | saturation vapor pressure | Pa | float64 |
@@ -128,8 +128,6 @@ The naming of variables follows CMIP5 standard names.
 | z | height above reference ellipsoid | m | float64 |
 | z_lcl | lifting condensation level | m | float64 |
 | zg | geopotential height | m | float64 |
-
-### iMet raw (raw:imet)
 
 ### Windsond raw (raw:ws)
 
