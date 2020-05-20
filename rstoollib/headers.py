@@ -242,4 +242,9 @@ HEADER_PTS = {
 		'long_name': 'height_above_reference_ellipsoid',
 		'units': 'm',
 	},
+	'time': {
+		'.dims': ['seq'],
+		'long_name': 'time',
+		'units': 'days since -4712-01-01 12:00:00',
+	},
 }

@@ -14,7 +14,10 @@ def remove_descending(d):
 	ds.select(d, {'p': mask})
 
 def calc_vars(d):
-	d['zg'] = calc_zg(d['z'], d['lat'])
+	if 'zg' not in d and 'z' in d and 'lat' in d:
+		d['zg'] = calc_zg(d['z'], d['lat'])
+	if 'z' not in d and 'zg' in d and 'lat' in d:
+		d['z'] = calc_z(d['zg'], d['lat'])
 	d['theta'] = calc_theta(d['p'], d['ta'])
 	d['p2'], d['bvf'] = calc_bvf(d['theta'], d['zg'], d['p'])
 	d['es'] = calc_es(d['ta'])

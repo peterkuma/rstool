@@ -52,18 +52,20 @@ def get_driver(name):
 	return drv
 	
 def main(input_type, output_type, input_, output):
-
 	d_raw = None
 	d_pts = None
 	d_prof = None
 
+	not_supported_msg = 'input or output type not supported'
+
 	if input_type.startswith('raw:'):
-		name = input_type[input_type.index(':'):]
+		name = input_type[(input_type.index(':')+1):]
 		drv = get_driver(name)
-		if hasattr(drv, 'read'):
-			d_raw = drv.read(input_)
+		d_raw = ds.read(input_)
 	elif input_type == 'pts':
 		d_pts = ds.read(input_)
+	elif input_type == 'prof':
+		d_prof = ds.read(input_)
 	else:
 		drv = get_driver(input_type)
 		if output_type == 'prof' and hasattr(drv, 'read_prof'):
@@ -79,8 +81,6 @@ def main(input_type, output_type, input_, output):
 
 	if d_prof is not None:
 		postprocess(d_prof)
-
-	not_supported_msg = 'input or output type not supported'
 
 	if output_type == 'prof':
 		if d_prof is None:

@@ -52,7 +52,10 @@ Currently supported input and output type combinations (other combinations are
 in development):
 
 - `rstool ws raw <input> <output>`
+- `rstool ws pts <input> <output>`
+- `rstool ws prof <input> <output>`
 - `rstool imet prof <input> <output>`
+- `rstool pts prof <input> <output>`
 
 Installation
 ------------

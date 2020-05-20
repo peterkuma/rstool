@@ -15,6 +15,9 @@ def calc_g(lat=45.):
 def calc_zg(z, lat):
 	return z*calc_g(lat)/g0
 
+def calc_z(zg, lat):
+	return zg/calc_g(lat)*g0
+
 def calc_ua(wds, wdd):
 	"""Calculate zonal wind speed (m.s-1) from wind speed wds (m.s-1) and
 	wind direction wdd (degree)."""
