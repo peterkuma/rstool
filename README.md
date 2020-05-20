@@ -90,6 +90,9 @@ Time is expressed as Julian days
 
 ### Points (pts)
 
+The pts format contains a sequence of radiosonde measurements
+as received by the base station, converted to a standard set of variables.
+
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
 | e | water vapor pressure | Pa | float64 |
@@ -113,6 +116,9 @@ If multiple are present, (`wdd`, `wds`) and (`ua`, `va`) take precedence.
 precedence.
 
 ### Profile (prof)
+
+The prof format contains standard variables interpolated as a function
+of height.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
@@ -147,6 +153,8 @@ precedence.
 | zg_lcl | lifting condensation level geopotential height | m | float64 |
 
 ### Windsond raw (raw:ws)
+
+raw:ws is a raw instrument format of Windsond converted to NetCDF.
 
 | Variable | Description | Units | Type | Comment |
 | --- | --- | --- | --- | --- |
