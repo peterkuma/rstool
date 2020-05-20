@@ -77,8 +77,8 @@ def main(input_type, output_type, input_, output):
 	if d_prof is None and d_pts is not None:
 		d_prof = prof(d_pts)
 
-	#if d_prof is not None:
-	#	postprocess(d_prof)
+	if d_prof is not None:
+		postprocess(d_prof)
 
 	not_supported_msg = 'input or output type not supported'
 
