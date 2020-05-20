@@ -248,7 +248,7 @@ def read(filename):
 		na = NA[type_]
 		ku = k.decode('utf-8')
 		d0[ku] = np.ma.array([(d[k] if k in d else na) for d in dd],
-			mask=[(k in d) for d in dd])
+			mask=[(k not in d) for d in dd])
 		d0['.'][ku] = META[p[0]]
 	for k, v in header.items():
 		p = param(k)
