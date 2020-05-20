@@ -88,9 +88,12 @@ CF Conventions and CMIP5 standard names are loosely followed by "duck typing".
 Time is expressed as Julian days
 (fractional number of days since -4712-01-01T12:00:00 UTC).
 
+The formats can be converted in the order raw:<instrument> -> pts -> prof.
+
 ### Points (pts)
 
-The pts format contains a sequence of radiosonde measurements
+pts is an instrument-independent format containing a sequence of radiosonde
+measurements
 as received by the base station, converted to a standard set of variables.
 
 | Variable | Description | Units | Type |
@@ -117,8 +120,8 @@ precedence.
 
 ### Profile (prof)
 
-The prof format contains standard variables interpolated as a function
-of height.
+prof is an instrument-independent format containing standard variables
+interpolated as a function of height.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
