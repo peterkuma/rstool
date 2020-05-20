@@ -3,13 +3,14 @@ rstool
 
 **Development status:** beta
 
-rstool is an open source command-line program for converting native radiosonde
-data to NetCDF and calculation of derived physical quantities.
+rstool is an open source command-line program for reading and converting
+native radiosonde data to NetCDF and calculation of derived physical quantities.
 
 Supported instruments:
 
-- [InterMet Systems](https://www.intermetsystems.com) (iMet) radiosondes such as iMet-1-ABxn
-- [Windsond](http://windsond.com/)
+- [InterMet Systems](https://www.intermetsystems.com) (iMet) radiosondes such as iMet-1-ABxn,
+    data files produced by the iMetOS-II software.
+- [Windsond](http://windsond.com/), data files produced by the Windsond software.
 
 Support for other instruments can be added by writing a Python module
 in `rstoollib/drivers`
