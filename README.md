@@ -90,13 +90,15 @@ CF Conventions and CMIP5 standard names are loosely followed by "duck typing".
 Time is expressed as Julian days
 (fractional number of days since -4712-01-01T12:00:00 UTC).
 
-The formats can be converted in the order raw:\<instrument\> → pts → prof.
+The formats can be converted in the order raw (raw:\<instrument\>) → points
+(pts) → profile (prof).
 
 ### Points (pts)
 
 pts is an instrument-independent format containing a sequence of radiosonde
 measurements
-as received by the base station, converted to a standard set of variables.
+as received by the base station ordered by time, converted to a standard set
+of variables.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
