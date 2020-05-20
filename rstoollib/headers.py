@@ -207,11 +207,6 @@ HEADER_PTS = {
 		'long_name': 'latitude',
 		'units': 'degrees_north',
 	},
-	'e': {
-		'.dims': ['seq'],
-		'long_name': 'water_vapor_pressure',
-		'units': 'Pa',
-	},
 	'ta': {
 		'.dims': ['seq'],
 		'long_name': 'air_temperature',

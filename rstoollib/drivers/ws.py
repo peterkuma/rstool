@@ -31,6 +31,7 @@ PARAMS = [
 	(b'fwver', 'firmware version', '1', 'float'),
 	(b'galt', 'altitude', 'm', 'int'),
 	(b'gpa', 'ground pressure', 'Pa', 'int'),
+	(b'h', 'hour', 'hour', 'int'),
 	(b'hdop', 'GPS horizontal dilution of precision (HDOP)', '', 'float'),
 	(b'hu', 'relative humidity', '%', 'float'),
 	(b'hu\d', 'relative humidity (old)', '%', 'float'),
@@ -45,12 +46,15 @@ PARAMS = [
 	(b'lonm', 'longitude', 'minute', 'float'),
 	(b'lux', 'light', 'lux', 'int'),
 	(b'mcnt', 'message counter', '1', 'int'),
+	(b'm', 'minute', 'minute', 'int'),
 	(b'md', 'mode', '1', 'int', {0: 'init', 1: 'ready for launch', 2: 'rising', 3: 'falling', 4: 'on ground silent', 5: 'on ground beeping', 6: 'on ground sometimes beeping', 7: 'cutting down'}),
+	(b'ms', 'milisecond', 'ms', 'int'),
 	(b'new', 'GPS validity', '1', 'int', {0: 'gps is old'}),
 	(b'offset', 'time start', 'seconds since 1970-01-01T00:00', 'float'),
 	(b'timezone', 'timezone', '1', 'int'),
 	(b'version', 'version', '1', 'int'),
 	(b'install', 'install', '', 'string'),
+	(b's', 'second', 's', 'int'),
 	(b'software', 'software version', '', 'string'),
 	(b'node_id', 'node ID', '1', 'int'),
 	(b'pa', 'air pressure', 'Pa', 'int'),
@@ -274,6 +278,9 @@ def read(filename):
 def pts(d):
 	n = len(d['pa'])
 	pts = {}
+	time_start = 2440587.5 + d['offset']
+	time_elapsed = d['h']*60.*60. + d['m']*60. + d['s'] + d['ms']*1e-3
+	pts['time'] = time_start + time_elapsed
 	pts['p'] = d['pa']
 	pts['z'] = d['alt']
 	for k1, k2 in [
