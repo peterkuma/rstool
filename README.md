@@ -88,7 +88,7 @@ CF Conventions and CMIP5 standard names are loosely followed by "duck typing".
 Time is expressed as Julian days
 (fractional number of days since -4712-01-01T12:00:00 UTC).
 
-The formats can be converted in the order raw:\<instrument\> -> pts -> prof.
+The formats can be converted in the order raw:\<instrument\> → pts → prof.
 
 ### Points (pts)
 
