@@ -74,8 +74,8 @@ def main(input_type, output_type, input_, output):
 	if d_pts is None and d_raw is not None and hasattr(drv, 'pts'):
 		d_pts = drv.pts(d_raw)
 
-	if d_prof is None and d_pts is not None:
-		d_prof = prof(d_pts)
+	#if d_prof is None and d_pts is not None:
+	#	d_prof = prof(d_pts)
 
 	if d_prof is not None:
 		postprocess(d_prof)

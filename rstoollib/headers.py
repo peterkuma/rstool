@@ -192,5 +192,59 @@ HEADER_PROF = {
 }
 
 HEADER_PTS = {
-
+	'p': {
+		'.dims': ['seq'],
+		'long_name': 'pressure',
+		'units': 'Pa',
+	},
+	'lon': {
+		'.dims': ['seq'],
+		'long_name': 'longitude',
+		'units': 'degrees_east',
+	},
+	'lat': {
+		'.dims': ['seq'],
+		'long_name': 'latitude',
+		'units': 'degrees_north',
+	},
+	'e': {
+		'.dims': ['seq'],
+		'long_name': 'water_vapor_pressure',
+		'units': 'Pa',
+	},
+	'ta': {
+		'.dims': ['seq'],
+		'long_name': 'air_temperature',
+		'units': 'K',
+	},
+	'hur': {
+		'.dims': ['seq'],
+		'long_name': 'relative_humidity',
+		'units': '%',
+	},
+	'wds': {
+		'.dims': ['seq'],
+		'long_name': 'wind_speed',
+		'units': 'm s-1',
+	},
+	'wdd': {
+		'.dims': ['seq'],
+		'long_name': 'wind_from_direction',
+		'units': 'degrees',
+	},
+	'ua': {
+		'.dims': ['seq'],
+		'long_name': 'x_wind',
+		'units': 'm s-1',
+	},
+	'va': {
+		'.dims': ['seq'],
+		'long_name': 'y_wind',
+		'units': 'm s-1',
+	},
+	'z': {
+		'.dims': ['seq'],
+		'long_name': 'height_above_reference_ellipsoid',
+		'units': 'm',
+	},
 }

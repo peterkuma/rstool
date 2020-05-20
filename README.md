@@ -92,6 +92,25 @@ Time is expressed as Julian days
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
+| e | water vapor pressure | Pa | float64 |
+| hur | relative humidity | % | float64 |
+| p | pressure | Pa | float64 |
+| lat | latitude | degrees north | float64 |
+| lon | longitude | degrees east | float64 |
+| ua | x wind | m.s<sup>-1</sup> | float64 |
+| va | y wind | m.s<sup>-1</sup> | float64 |
+| ta | air temperature | K | float64 |
+| z | height above reference ellipsoid | m | float64 |
+| zg | geopotential height | m | float64 |
+
+Notes:
+
+- Either `e` or `hur` should be present. If both are present, `hur` takes
+precedence.
+- Either (`wdd`, `wds`) or (`ua`, `va`) or (`lat`, `lon`) should be present.
+If multiple are present, (`wdd`, `wds`) and (`ua`, `va`) take precedence.
+- Either `z` or `zg` should be present. If both are present, `zg` takes
+precedence.
 
 ### Profile (prof)
 

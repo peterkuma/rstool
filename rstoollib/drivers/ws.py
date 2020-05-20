@@ -2,6 +2,8 @@ import re
 import numpy as np
 import ds_format as ds
 
+from rstoollib.headers import HEADER_PTS
+
 re_line = re.compile(b'^(?P<h>\d+h)?(?P<m>\d+m)?(?P<s>\d+s)?(?P<ms>\d+)?: \[\#(?P<label>[A-Z]+):(?P<data>[^:\]]*)(?P<extra>:[^\]*])?\]$')
 re_header = re.compile(b'^# (?P<key>[^=]+)=(?P<value>.*)$')
 re_session_start = re.compile(b'^# Session start (?P<session_start>.*)$')
@@ -268,3 +270,27 @@ def read(filename):
 		d0['.'][ku] = META[p[0]]
 		d0['.'][ku]['.dims'] = []
 	return d0
+
+def pts(d):
+	n = len(d['pa'])
+	pts = {}
+	pts['p'] = d['pa']
+	pts['z'] = d['alt']
+	for k1, k2 in [
+		['wdd', 'ang'],
+		['hur', 'hu'],
+		['wds', 'spd'],
+		['ta', 'te']
+	]:
+		pts[k1] = np.full(n, np.nan, np.float64)
+		for i in list(range(9, 0, -1)) + ['']:
+			if (k2 + str(i)) not in d: continue
+			mask = ~np.isnan(d[k2 + str(i)])
+			pts[k1][mask] = d[k2 + str(i)][mask]
+	pts['hur'] = d['hu']
+	pts['lat'] = d['lat']
+	pts['lon'] = d['lon']
+	pts['wds'] = d['spd']
+	pts['ta'] = d['te']
+	pts['.'] = HEADER_PTS
+	return pts
