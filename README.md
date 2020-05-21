@@ -15,7 +15,7 @@ Supported instruments:
 Support for other instruments can be added by writing a Python module
 in `rstoollib/drivers`
 to read the data files produced by the radiosonde (see the template
-in `template.py`).
+in `rstoollib/drivers/template.py`).
 
 Usage
 -----
@@ -47,7 +47,8 @@ Output types:
 - `raw` - "Raw" instrument-dependent format (NetCDF).
 - `pts` - Collection of measurement points (NetCDF).
 - `prof` - Vertical profile calculated by interpolating the measurement points
-    as a function of height (NetCDF).
+    during the ascent of the radiosonde as a function of height (NetCDF).
+- `prof:desc` - The same as `prof`, but for the descent.
 
 Currently supported input and output type combinations (other combinations are
 in development):

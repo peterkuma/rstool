@@ -34,13 +34,16 @@ def prof(d, pres=5e2, desc=False):
 	for var in VARS:
 		prof[var] = np.full(n, np.nan, np.float64)
 
-	mask = ~(np.diff(d['p']) > 0.)
+	if desc:
+		mask1 = np.array(list(~(np.diff(d['p']) < 0.)) + [True], np.bool)
+	else:
+		mask1 = np.array(list(~(np.diff(d['p']) > 0.)) + [True], np.bool)
 	for i in range(n):
 		p1 = phalf[i]
 		p2 = phalf[i + 1]
 		for var in VARS:
-			mask = (d['p'] > p2) & (d['p'] <= p1)
-			prof[var][i] = d[var][mask].mean()
+			mask2 = (d['p'] > p2) & (d['p'] <= p1)
+			prof[var][i] = d[var][mask1 & mask2].mean()
 
 	geod = Geod(ellps='WGS84')
 	for i in range(1, n - 1):

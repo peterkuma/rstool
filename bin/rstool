@@ -55,6 +55,7 @@ def main(input_type, output_type, input_, output):
 	d_raw = None
 	d_pts = None
 	d_prof = None
+	desc = False
 
 	not_supported_msg = 'input or output type not supported'
 
@@ -78,14 +79,20 @@ def main(input_type, output_type, input_, output):
 
 	if d_prof is None and d_pts is not None:
 		d_prof = prof(d_pts)
+		d_prof_desc = prof(d_pts, desc=True)
 
 	if d_prof is not None:
 		postprocess(d_prof)
+		postprocess(d_prof_desc)
 
 	if output_type == 'prof':
 		if d_prof is None:
 			raise ValueError(not_supported_msg)
 		d = d_prof
+	elif output_type == 'prof:desc':
+		if d_prof_desc is None:
+			raise ValueError(not_supported_msg)
+		d = d_prof_desc
 	elif output_type == 'pts':
 		if d_pts is None:
 			raise ValueError(not_supported_msg)
