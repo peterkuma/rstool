@@ -237,6 +237,13 @@ NetCDF by reading the `.sounding` file.
 | ucnt | ucnt | 1 | int64 |
 | version | version | 1 | int64 |
 
+### Attributes
+
+| Attribute | Description | Comment |
+| --- | --- | --- |
+| created | date created | year-month-dayThour:minute:second
+| software | software identification | rstool x.y.z (https://github.com/peterkuma/rstool)
+
 ## License
 
 This software can be used, modified and distributed freely under
