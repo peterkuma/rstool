@@ -45,5 +45,5 @@ def calc_vars(d):
 		#d['ta_surf_par_s_x'] = calc_ta_par_s(d['p'], d['ts'] + 0.5, d['e'][0])
 
 def postprocess(d):
-	remove_descending(d)
+	#remove_descending(d)
 	calc_vars(d)
