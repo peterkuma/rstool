@@ -4,8 +4,9 @@ import numpy as np
 import datetime as dt
 import json
 import re
+import csv
 import aquarius_time as aq
-from rstoollib.headers import HEADER_PROF
+from rstoollib.headers import HEADER_PROF, HEADER_PTS
 
 def find(dirname, pattern):
 	for l in os.listdir(dirname):
@@ -130,3 +131,78 @@ def read_prof(dirname):
 		d.update(info)
 	d['.'] = HEADER_PROF
 	return d
+
+PARAMS = [
+	('sample', 'sample number', '1', 'int'),
+	('date_time', 'date time', '', 'string'),
+	('press', 'pressure', 'Pa', 'float'),
+	('tair', 'air temperature', 'K', 'float'),
+	('hum', 'relative humidity', '%', 'float'),
+	('lat', 'latitude', 'degrees_north', 'float'),
+	('long', 'longitude', 'degrees_east', 'float'),
+	('alt', 'altitude', 'm', 'float'),
+	('freq', 'frequency', 'Hz', 'float'),
+	('f_offs', 'frequency offset', 'Hz', 'float'),
+]
+
+META = {p[0]: {
+	'.dims': ['seq'],
+	'long_name': p[1].replace(' ', '_'),
+	'units': p[2],
+} for p in PARAMS}
+
+def pts(d):
+	time_trans = str.maketrans({'/': '-', ' ': 'T'})
+	time = np.array([
+		aq.from_iso(x.translate(time_trans))
+		for x in d['date_time']
+	], np.float64)
+	pts = {
+		'time': time,
+		'ta': d['tair'],
+		'p': d['press'],
+		'hur': d['hum'],
+		'lat': d['lat'],
+		'lon': d['long'],
+		'z': d['alt'],
+	}
+	pts['.'] = HEADER_PTS
+	return pts
+
+def read(dirname):
+	dat_filename = find(dirname, '*.dat')
+	d = {}
+	trans = str.maketrans({'#': '', ' ': '_', '+': '_'})
+	with open(dat_filename) as f:
+		reader = csv.DictReader(f)
+		for r in reader:
+			for k, v in r.items():
+				k2 = k.lower().translate(trans)
+				d[k2] = d.get(k2, []) + [v]
+	d2 = {}
+	for p in PARAMS:
+		type_ = {
+			'int': np.int64,
+			'float': np.float64,
+			'string': str,
+		}[p[3]]
+		na = {
+			'int': -9223372036854775806,
+			'float': np.nan,
+			'string': '',
+		}[p[3]]
+		n = len(d[p[0]])
+		d2[p[0]] = np.array(d[p[0]], type_)
+		if type_ == np.float64 or type_ == np.int64:
+			mask = d2[p[0]] == 999999999
+			d2[p[0]][mask] = na
+			d2[p[0]] = np.ma.array(d2[p[0]], type_,
+				mask=mask,
+				fill_value=na
+			)
+	if 'tair' in d2:
+		d2['tair'] += 273.15
+	if 'press' in d2:
+		d2['press'] *= 1e2
+	d2['.'] = META
+	return d2
