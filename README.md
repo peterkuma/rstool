@@ -239,4 +239,5 @@ NetCDF by reading the `.sounding` file.
 
 ## License
 
-MIT license (see [LICENSE.md](LICENSE.md))
+This software can be used, modified and distributed freely under
+the terms of an MIT license (see [LICENSE.md](LICENSE.md)).
