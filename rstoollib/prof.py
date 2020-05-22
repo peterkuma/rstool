@@ -26,11 +26,7 @@ def prof(d, pres=5e2, desc=False):
 	phalf = np.arange(phalf_min, phalf_max + pres, pres)[::-1]
 	pfull = 0.5*(phalf[1:] + phalf[:-1])
 	n = len(phalf) - 1
-	prof = {
-		'p': pfull,
-		'wdd': np.full(n, np.nan, np.float64),
-		'wds': np.full(n, np.nan, np.float64),
-	}
+	prof = {}
 	for var in VARS:
 		prof[var] = np.full(n, np.nan, np.float64)
 
@@ -38,15 +34,18 @@ def prof(d, pres=5e2, desc=False):
 		mask1 = np.array(list(~(np.diff(d['p']) < 0.)) + [True], np.bool)
 	else:
 		mask1 = np.array(list(~(np.diff(d['p']) > 0.)) + [True], np.bool)
-	for i in range(n):
+	for i in range(n - 1):
 		p1 = phalf[i]
 		p2 = phalf[i + 1]
 		for var in VARS:
 			mask2 = (d['p'] > p2) & (d['p'] <= p1)
 			prof[var][i] = d[var][mask1 & mask2].mean()
 
+	prof['p'] = pfull
+	prof['wdd'] = np.full(n, np.nan, np.float64)
+	prof['wds'] = np.full(n, np.nan, np.float64)
 	geod = Geod(ellps='WGS84')
-	for i in range(1, n - 1):
+	for i in range(1, n):
 		az, _, dst = geod.inv(
 			prof['lon'][i - 1],
 			prof['lat'][i - 1],
@@ -55,7 +54,7 @@ def prof(d, pres=5e2, desc=False):
 		)
 		prof['wdd'][i] = az if az >= 0. else 360. + az
 		dt = prof['time'][i] - prof['time'][i - 1]
-		prof['wds'][i] = dst/dt
+		prof['wds'][i] = dst/(dt*24.*60.*60.)
 
 	prof['.'] = HEADER_PROF
 	return prof
