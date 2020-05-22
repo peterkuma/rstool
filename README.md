@@ -239,6 +239,9 @@ NetCDF by reading the `.sounding` file.
 
 ### Attributes
 
+rstool writes the following attributes in the raw (raw:\<instrument\>),
+points (pts) and profile (prof) NetCDF files.
+
 | Attribute | Description | Comment |
 | --- | --- | --- |
 | created | date created | year-month-dayThour:minute:second
