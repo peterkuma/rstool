@@ -50,15 +50,6 @@ Output types:
     during the ascent of the radiosonde as a function of height (NetCDF).
 - `prof:desc` - The same as `prof`, but for the descent.
 
-Currently supported input and output type combinations (other combinations are
-in development):
-
-- `rstool ws raw <input> <output>`
-- `rstool ws pts <input> <output>`
-- `rstool ws prof <input> <output>`
-- `rstool imet prof <input> <output>`
-- `rstool pts prof <input> <output>`
-
 Installation
 ------------
 
@@ -108,8 +99,8 @@ of variables.
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
 | hur | relative humidity | % | float64 |
-| lat | latitude | degrees north | float64 |
-| lon | longitude | degrees east | float64 |
+| lat | latitude | degrees North | float64 |
+| lon | longitude | degrees East | float64 |
 | ta | air temperature | K | float64 |
 | p | pressure | Pa | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
@@ -127,8 +118,8 @@ interpolated as a function of height.
 | es | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
 | hurs | near-surface relative humidity | % | float64 |
-| lat | latitude | degrees north | float64 |
-| lon | longitude | degrees east | float64 |
+| lat | latitude | degrees North | float64 |
+| lon | longitude | degrees East | float64 |
 | p | pressure | Pa | float64 |
 | p2 | pressure | Pa | float64 |
 | p_lcl | lifting condensation level pressure | Pa | float64 |
@@ -152,9 +143,28 @@ interpolated as a function of height.
 | zg | geopotential height | m | float64 |
 | zg_lcl | lifting condensation level geopotential height | m | float64 |
 
+### iMet raw (raw:imet)
+
+raw:imet is a raw instrument format of the InterMet radiosonde converted to
+NetCDF by reading the `.dat` file.
+
+| Variable | Description | Units | Type | Comment |
+| --- | --- | --- | --- | --- |
+sample | sample number | 1 | int64 |
+date_time | date time | year/month/day hour:minute:second | string |
+press | pressure | Pa | float64 |
+tair | air temperature | K | float64 |
+hum | relative humidity | % | float64 |
+lat | latitude | degrees North | float64 |
+long | longitude | degrees East | float64 |
+alt | altitude | m | float64 |
+freq | frequency | Hz | float64 |
+f_offs | frequency offset | Hz | float64 |
+
 ### Windsond raw (raw:ws)
 
-raw:ws is a raw instrument format of Windsond converted to NetCDF.
+raw:ws is a raw instrument format of the Windsond radiosonde converted to
+NetCDF by reading the `.sounding` file.
 
 | Variable | Description | Units | Type | Comment |
 | --- | --- | --- | --- | --- |
@@ -179,8 +189,8 @@ raw:ws is a raw instrument format of Windsond converted to NetCDF.
 | id | sond ID | 1 | int64 |
 | install | install | | string |
 | label | label | | string |
-| lat | latitude | degrees | float64 |
-| lon | longitude | degrees | float64 |
+| lat | latitude | degrees North | float64 |
+| lon | longitude | degrees East | float64 |
 | lux | light | lux | int64 |
 | mcnt | message counter | 1 | int64 |
 | md | mode | 1 | int64 | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
