@@ -148,7 +148,7 @@ interpolated as a function of height.
 raw:imet is a raw instrument format of the InterMet radiosonde converted to
 NetCDF by reading the `.dat` file.
 
-| Variable | Description | Units | Type | Comment |
+| Variable | Description | Units | Type |
 | --- | --- | --- | --- | --- |
 sample | sample number | 1 | int64 |
 date_time | date time | year/month/day hour:minute:second | string |
