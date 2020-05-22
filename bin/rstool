@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""rstool is an open source command-line program for converting native radiosonde
-data to NetCDF and calculation of derived physical quantities.
+"""rstool is an open source command-line program for reading and converting
+native radiosonde data to NetCDF and calculation of derived physical quantities.
 
 Usage: rstool <input_type> <output_type> <input> <output>
 
@@ -27,7 +27,8 @@ Output types:
 - `raw` - "Raw" instrument-dependent format (NetCDF).
 - `pts` - Collection of measurement points (NetCDF).
 - `prof` - Vertical profile calculated by interpolating the measurement points
-    as a function of height (NetCDF).
+    during the ascent of the radiosonde as a function of height (NetCDF).
+- `prof:desc` - The same as `prof`, but for the descent.
 """
 
 import sys
