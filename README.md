@@ -50,6 +50,20 @@ Output types:
     during the ascent of the radiosonde as a function of height (NetCDF).
 - `prof:desc` - The same as `prof`, but for the descent.
 
+The following input/output type combinations are supported:
+
+- `<instrument> raw`
+- `<instrument> pts`
+- `<instrument> prof`
+- `<instrument> prof:desc`
+- `raw:<instrument> pts`
+- `raw:<instrument> prof`
+- `pts prof`
+- `raw prof:desc`
+- `pts prof:desc`
+
+where `instrument` is one of: `imet`, `ws`.
+
 Installation
 ------------
 
