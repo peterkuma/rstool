@@ -4,6 +4,8 @@ import ds_format as ds
 from rstoollib.algorithms import *
 
 def postprocess(d):
+	"""Postprocess profile (prof) dataset d by calculating derived
+	variables."""
 	if 'zg' not in d and 'z' in d and 'lat' in d:
 		d['zg'] = calc_zg(d['z'], d['lat'])
 	if 'z' not in d and 'zg' in d and 'lat' in d:

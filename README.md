@@ -42,6 +42,7 @@ Input types:
     is one of `imet`, `ws`.
 - `pts` - Collection of measurement points (NetCDF). The output of running
     rstool with the output type `pts`.
+- `prof` - Profile (prof) dataset.
 
 Output types:
 
