@@ -36,7 +36,8 @@ def calc_wds(ua, va):
 def calc_wdd(ua, va):
 	""" Calculate wind direction (degrees) from meridional wind speed
 	ua (m.s-1) and zoal wind speed va (m.s-1)."""
-	return np.arctan(-ua, -va)/np.pi*180.
+	x = np.arctan2(-ua, -va)/np.pi*180.
+	return np.where(x >= 0., x, 360. + x) 
 
 def calc_theta(p, ta):
 	"""Calculate potential temperature (K) from pressure p (Pa) and air
