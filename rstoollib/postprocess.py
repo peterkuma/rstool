@@ -24,9 +24,12 @@ def calc_vars(d):
 	d['ta_par'] = calc_ta_par(d['p'], d['ta'][0])
 	if 'ts' in d:
 		d['llp'] = calc_llp(d['ts'], d['p'], d['theta'])
-	if 'wds' in d and 'wdd' in d:
-		d['ua'] = calc_ua(d['wds'], d['wdd'])
-		d['va'] = calc_va(d['wds'], d['wdd'])
+	if 'ua' in d and 'va' in d:
+		d['wds'] = calc_wds(d['ua'], d['va'])
+		d['wdd'] = calc_wdd(d['ua'], d['va'])
+	elif 'wds' in d and 'wdd' in d:
+		d['ua'] = calc_ua(d['wds'], d['wdd'])                           
+		d['va'] = calc_va(d['wds'], d['wdd'])    
 	if 'hus' in d:
 		ws = calc_w(d['p'], d['es'])
 		qs = 1./(1./ws + 1)

@@ -42,8 +42,8 @@ def prof(d, pres=5e2, desc=False):
 			prof[var][i] = d[var][mask1 & mask2].mean()
 
 	prof['p'] = pfull
-	prof['wdd'] = np.full(n, np.nan, np.float64)
-	prof['wds'] = np.full(n, np.nan, np.float64)
+	prof['ua'] = np.full(n, np.nan, np.float64)
+	prof['va'] = np.full(n, np.nan, np.float64)
 	geod = Geod(ellps='WGS84')
 	for i in range(1, n):
 		az, _, dst = geod.inv(
@@ -52,9 +52,8 @@ def prof(d, pres=5e2, desc=False):
 			prof['lon'][i],
 			prof['lat'][i],
 		)
-		prof['wdd'][i] = az if az >= 0. else 360. + az
-		dt = prof['time'][i] - prof['time'][i - 1]
-		prof['wds'][i] = dst/(dt*24.*60.*60.)
-
+		dt = (prof['time'][i] - prof['time'][i - 1])*24.*60.*60.
+		prof['ua'][i] = dst/dt*np.sin(az/180.*np.pi)
+		prof['va'][i] = dst/dt*np.cos(az/180.*np.pi)
 	prof['.'] = HEADER_PROF
 	return prof

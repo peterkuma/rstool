@@ -5,7 +5,7 @@ from scipy.optimize import fmin
 from scipy.integrate import quad
 
 def calc_g(lat=45.):
-	"""Calculate gravity from latitude (degree)."""
+	"""Calculate gravity from latitude (degrees)."""
 	return 9.780327*(
 		1 +
 		0.0053024*np.sin(lat/180.0*np.pi)**2 -
@@ -20,13 +20,23 @@ def calc_z(zg, lat):
 
 def calc_ua(wds, wdd):
 	"""Calculate zonal wind speed (m.s-1) from wind speed wds (m.s-1) and
-	wind direction wdd (degree)."""
+	wind direction wdd (degrees)."""
 	return np.sin(wdd/180.*np.pi)*wds
 
 def calc_va(wds, wdd):
 	"""Calculate meridional wind speed (m.s-1) from wind speed wds (m.s-1) and
-	wind direction wdd (degree)."""
+	wind direction wdd (degrees)."""
 	return np.cos(wdd/180.*np.pi)*wds
+
+def calc_wds(ua, va):
+	""" Calculate wind speed (m.s-1) from meridional wind speed ua (m.s-1)
+	and zoal wind speed va (m.s-1)."""
+	return np.sqrt(ua**2. + va**2.)
+
+def calc_wdd(ua, va):
+	""" Calculate wind direction (degrees) from meridional wind speed
+	ua (m.s-1) and zoal wind speed va (m.s-1)."""
+	return np.arctan(-ua, -va)/np.pi*180.
 
 def calc_theta(p, ta):
 	"""Calculate potential temperature (K) from pressure p (Pa) and air
@@ -55,13 +65,13 @@ def calc_ws(p, ta):
 
 def calc_gamma_s(p, ta, lat=45.):
 	"""Calculate saturated adiabatic lapse rate from pressure p (Pa),
-	temperature ta (K), at latitude lat (degree)."""
+	temperature ta (K), at latitude lat (degrees)."""
 	gamma_d = calc_gamma_d(lat)
 	ws = calc_ws(p, ta)
 	return gamma_d*(1. + l_v*ws/(R_d*ta))/(1. + l_v**2.*ws/(R_d*c_p*ta**2.))
 
 def calc_gamma_d(lat=45.):
-	"""Calculate dry adiabatic lapse rate at latitude lat (degree)."""
+	"""Calculate dry adiabatic lapse rate at latitude lat (degrees)."""
 	g = calc_g(lat)
 	return -(g/c_p)
 

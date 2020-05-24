@@ -278,9 +278,9 @@ def read(filename):
 def pts(d):
 	n = len(d['pa'])
 	pts = {}
-	time_start = 2440587.5 + d['offset']
+	time_start = 2440587.5 + d['offset']/(24.*60.*60.)
 	time_elapsed = d['h']*60.*60. + d['m']*60. + d['s'] + d['ms']*1e-3
-	pts['time'] = time_start + time_elapsed
+	pts['time'] = time_start + time_elapsed/(24.*60.*60.)
 	pts['p'] = d['pa']
 	pts['z'] = d['alt']
 	for k1, k2 in [
