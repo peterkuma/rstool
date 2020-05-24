@@ -3,17 +3,7 @@ import ds_format as ds
 
 from rstoollib.algorithms import *
 
-def remove_descending(d):
-	n = len(d['p'])
-	mask = np.zeros(n, dtype=np.bool)
-	p0 = None
-	for i in range(n):
-		if p0 is None or d['p'][i] < p0:
-			mask[i] = True
-			p0 = d['p'][i]
-	ds.select(d, {'p': mask})
-
-def calc_vars(d):
+def postprocess(d):
 	if 'zg' not in d and 'z' in d and 'lat' in d:
 		d['zg'] = calc_zg(d['z'], d['lat'])
 	if 'z' not in d and 'zg' in d and 'lat' in d:
@@ -47,6 +37,3 @@ def calc_vars(d):
 		#d['ta_surf_par_x'] = calc_ta_par(d['p'], d['ts'] + 0.5)
 		#d['ta_surf_par_s_x'] = calc_ta_par_s(d['p'], d['ts'] + 0.5, d['e'][0])
 
-def postprocess(d):
-	#remove_descending(d)
-	calc_vars(d)
