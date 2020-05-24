@@ -284,9 +284,7 @@ def pts(d):
 	pts['p'] = d['pa']
 	pts['z'] = d['alt']
 	for k1, k2 in [
-		['wdd', 'ang'],
 		['hur', 'hu'],
-		['wds', 'spd'],
 		['ta', 'te']
 	]:
 		pts[k1] = np.full(n, np.nan, np.float64)
@@ -297,7 +295,5 @@ def pts(d):
 	pts['hur'] = d['hu']
 	pts['lat'] = d['lat']
 	pts['lon'] = d['lon']
-	pts['wds'] = d['spd']
-	pts['ta'] = d['te']
 	pts['.'] = HEADER_PTS
 	return pts

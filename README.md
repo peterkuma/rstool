@@ -116,8 +116,8 @@ of variables.
 | hur | relative humidity | % | float64 |
 | lat | latitude | degrees North | float64 |
 | lon | longitude | degrees East | float64 |
-| ta | air temperature | K | float64 |
 | p | pressure | Pa | float64 |
+| ta | air temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
 | z | height above reference ellipsoid | m | float64 |
 
