@@ -54,7 +54,7 @@ Output types:
 
 The following input/output type combinations are supported:
 
-- `<instrument> raw` - native instrument to raw (NetCDF)
+- `<instrument> raw` - native instrument to instrument-dependent raw (NetCDF)
 - `<instrument> pts` - native instrument to points
 - `<instrument> prof` - native instrument to profile
 - `<instrument> prof:desc` - native instrument to descending profile
@@ -66,6 +66,45 @@ The following input/output type combinations are supported:
 - `prof prof` - profile to profile (with derived variables)
 
 where `instrument` is one of: `imet`, `ws`.
+
+Examples
+--------
+
+Convert Windsond sounding `2000-01-01_0000.sounding` to profile:
+
+```sh
+rstool ws prof 2000-01-01_0000.sounding 2000-01-01_0000.prof.nc
+```
+
+Convert iMet sounding in the directory `2000-01-01_0000` to profile:
+
+```sh
+rstool imet prof 2000-01-01_0000 2000-01-01_0000.prof.nc
+```
+
+Convert Windond sounding `2000-01-01_0000.sounding` to Windsond raw:
+
+```sh
+rstool ws raw 2000-01-01_0000.sounding 2000-01-01_0000.raw.nc
+```
+
+Convert iMet sounding in directory `2000-01-01_0000` to points:
+
+```sh
+rstool imet pts 2000-01-01_0000 2000-01-01_0000.pts.nc
+```
+
+Convert Windsond raw to points:
+
+```sh
+rstool raw:ws pts 2000-01-01_0000.raw.nc 2000-01-01_0000.pts.nc
+```
+
+Convert points to profile:
+
+```sh
+rstool pts profile 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
+```
 
 Installation
 ------------
