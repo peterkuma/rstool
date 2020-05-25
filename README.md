@@ -106,6 +106,10 @@ Time is expressed as Julian days
 The formats can be converted in the order raw (raw:\<instrument\>) → points
 (pts) → profile (prof).
 
+All variables are stored either as 64-bit floating point (float64) or 64-bit
+integer (int64). Missing values are stored as NaN in float64 and
+-9223372036854775806 in int64.
+
 ### Points (pts)
 
 pts is an instrument-independent format containing a sequence of radiosonde

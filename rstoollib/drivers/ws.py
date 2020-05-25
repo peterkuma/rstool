@@ -251,8 +251,15 @@ def read(filename):
 		type_ = p[3][1] if type(p[3]) is tuple else p[3]
 		na = NA[type_]
 		ku = k.decode('utf-8')
-		d0[ku] = np.ma.array([(d[k] if k in d else na) for d in dd],
-			mask=[(k not in d) for d in dd])
+		if type_ == 'float':
+			d0[ku] = np.array(
+				[(d[k] if k in d else np.nan) for d in dd]
+			)
+		else:
+			d0[ku] = np.ma.array(
+				[(d[k] if k in d else na) for d in dd],
+				mask=[(k not in d) for d in dd]
+			)
 		d0['.'][ku] = META[p[0]]
 	for k, v in header.items():
 		p = param(k)
@@ -279,10 +286,14 @@ def pts(d):
 	n = len(d['pa'])
 	pts = {}
 	time_start = 2440587.5 + d['offset']/(24.*60.*60.)
-	time_elapsed = d['h']*60.*60. + d['m']*60. + d['s'] + d['ms']*1e-3
+	time_elapsed = (
+		d['h']*60.*60. +
+		d['m']*60. +
+		d['s'] + d['ms']*1e-3
+	).filled(np.nan)
 	pts['time'] = time_start + time_elapsed/(24.*60.*60.)
-	pts['p'] = d['pa']
-	pts['z'] = d['alt']
+	pts['p'] = d['pa'].astype(np.float64).filled(np.nan)
+	pts['z'] = d['alt'].astype(np.float64).filled(np.nan)
 	for k1, k2 in [
 		['hur', 'hu'],
 		['ta', 'te']

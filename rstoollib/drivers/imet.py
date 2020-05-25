@@ -193,13 +193,23 @@ def read(dirname):
 		}[p[3]]
 		n = len(d[p[0]])
 		d2[p[0]] = np.array(d[p[0]], type_)
-		if type_ == np.float64 or type_ == np.int64:
+		if type_ == np.float64:
+			mask = d2[p[0]] == 999999999.
+			d2[p[0]][mask] = np.nan
+		elif type_ == np.int64:
 			mask = d2[p[0]] == 999999999
 			d2[p[0]][mask] = na
 			d2[p[0]] = np.ma.array(d2[p[0]], type_,
 				mask=mask,
 				fill_value=na
 			)
+		#if type_ == np.float64 or type_ == np.int64:
+		#	mask = d2[p[0]] == 999999999
+		#	d2[p[0]][mask] = na
+		#	d2[p[0]] = np.ma.array(d2[p[0]], type_,
+		#		mask=mask,
+		#		fill_value=na
+		#	)
 	if 'tair' in d2:
 		d2['tair'] += 273.15
 	if 'press' in d2:

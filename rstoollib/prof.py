@@ -19,7 +19,7 @@ def prof(d, pres=5e2, desc=False):
 	pres - Pressure resolution (float).
 	desc - Descending profile (bool).
 	"""
-	pmin, pmax = d['p'].min(), d['p'].max()	
+	pmin, pmax = np.nanmin(d['p']), np.nanmax(d['p'])
 	phalf_min = pmin - (pmin % pres)
 	phalf_max = pmax + pres - (pmax % pres)
 	phalf = np.arange(phalf_min, phalf_max + pres, pres)[::-1]
@@ -38,7 +38,9 @@ def prof(d, pres=5e2, desc=False):
 		p2 = phalf[i + 1]
 		for var in VARS:
 			mask2 = (d['p'] > p2) & (d['p'] <= p1)
-			prof[var][i] = d[var][mask1 & mask2].mean()
+			mask = mask1 & mask2
+			if np.sum(mask) > 0:
+				prof[var][i] = d[var][mask].mean()
 
 	prof['p'] = pfull
 	prof['ua'] = np.full(n, np.nan, np.float64)
@@ -52,7 +54,8 @@ def prof(d, pres=5e2, desc=False):
 			prof['lat'][i],
 		)
 		dt = (prof['time'][i] - prof['time'][i - 1])*24.*60.*60.
-		prof['ua'][i] = dst/dt*np.sin(az/180.*np.pi)
-		prof['va'][i] = dst/dt*np.cos(az/180.*np.pi)
+		if dt > 0.:
+			prof['ua'][i] = dst/dt*np.sin(az/180.*np.pi)
+			prof['va'][i] = dst/dt*np.cos(az/180.*np.pi)
 	prof['.'] = HEADER_PROF
 	return prof

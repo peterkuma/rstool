@@ -39,6 +39,7 @@ signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 VERSION = '0.1.0'
 
 import datetime as dt
+import numpy as np
 import ds_format as ds
 import aquarius_time as aq
 
@@ -126,7 +127,9 @@ if __name__ == '__main__':
 	output_type = sys.argv[2]
 	input_ = sys.argv[3]
 	output = sys.argv[4]
-	
+
+	np.seterr(all='ignore')
+
 	#try:
 	main(input_type, output_type, input_, output)
 	#except Exception as e:
