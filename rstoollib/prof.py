@@ -45,8 +45,8 @@ def prof(d, pres=5e2, desc=False):
 		for var in VARS:
 			mask2 = (d['p'] > p2) & (d['p'] <= p1)
 			mask = mask1 & mask2
-			if np.sum(mask) > 0:
-				prof[var][i] = d[var][mask].mean()
+			if np.sum(mask) > 0 and np.any(~np.isnan(d[var][mask])):
+				prof[var][i] = np.nanmean(d[var][mask])
 
 	prof['p'] = pfull
 	prof['ua'] = np.full(n, np.nan, np.float64)
