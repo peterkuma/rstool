@@ -113,7 +113,8 @@ def main(input_type, output_type, input_, output):
 	d['.'] = d.get('.', {})
 	d['.']['.'] = d['.'].get('.', {})
 	d['.']['.'].update({
-		'software': 'rstool ' + VERSION + ' (https://github.com/peterkuma/rstool)',
+		'software': 'rstool ' + VERSION + \
+			' (https://github.com/peterkuma/rstool)',
 		'created': aq.to_iso(aq.from_datetime(dt.datetime.utcnow())),
 	})
 	ds.write(output, d)

@@ -24,8 +24,8 @@ def calc_ua(wds, wdd):
 	return np.sin(wdd/180.*np.pi)*wds
 
 def calc_va(wds, wdd):
-	"""Calculate meridional wind speed (m.s-1) from wind speed wds (m.s-1) and
-	wind direction wdd (degrees)."""
+	"""Calculate meridional wind speed (m.s-1) from wind speed wds (m.s-1)
+	and wind direction wdd (degrees)."""
 	return np.cos(wdd/180.*np.pi)*wds
 
 def calc_wds(ua, va):
@@ -34,8 +34,8 @@ def calc_wds(ua, va):
 	return np.sqrt(ua**2. + va**2.)
 
 def calc_wdd(ua, va):
-	""" Calculate wind direction (degrees) from meridional wind speed
-	ua (m.s-1) and zoal wind speed va (m.s-1)."""
+	""" Calculate wind direction (degrees) from meridional wind speed ua
+	(m.s-1) and zoal wind speed va (m.s-1)."""
 	x = np.arctan2(-ua, -va)/np.pi*180.
 	return np.where(x >= 0., x, 360. + x)
 
@@ -46,8 +46,8 @@ def calc_theta(p, ta):
 	return ta*((p0/p)**(1.0*R_d/c_p))
 
 def calc_bvf(ta, zg, p):
-	"""Calculate Bunt-Vaisala fequency from air temperature ta (K), geopotential
-	height zg (m) and pressure p (Pa)."""
+	"""Calculate Bunt-Vaisala fequency from air temperature ta (K),
+	geopotential height zg (m) and pressure p (Pa)."""
 	zgx = np.arange(0, 20000, 400)
 	tax = np.interp(zgx, zg, ta)
 	px = np.interp(zgx, zg, p)
@@ -56,12 +56,13 @@ def calc_bvf(ta, zg, p):
 	return (px[1:] + px[:-1])/2.0, bvf
 
 def calc_es(ta):
-	"""Calculate saturated vapor pressure (Pa) from air temperature ta (K)."""
+	"""Calculate saturated vapor pressure (Pa) from air temperature ta
+	(K)."""
 	return 6.112*np.exp((17.67*(ta - 273.15))/(ta - 273.15 + 243.5))*1e2
 
 def calc_ws(p, ta):
-	"""Calculate saturated water vapour mixing ratio (1) from pressure p (Pa)
-	and air temperature ta (K)."""
+	"""Calculate saturated water vapour mixing ratio (1) from pressure p
+	(Pa) and air temperature ta (K)."""
 	return calc_w(p, calc_es(ta))
 
 def calc_gamma_s(p, ta, lat=45.):
@@ -85,9 +86,8 @@ def calc_ta_par(p, ta0):
 
 def calc_ta_par_s(p, ta0, e0):
 	"""Calculate saturated parcel temperature at pressures p (Pa), assuming
-	surface air temperature ta0 (K) and surface water vapor pressure e0 (Pa).
-	p has to be an array dense enough for an acurrate integration.
-	"""
+	surface air temperature ta0 (K) and surface water vapor pressure e0
+	(Pa). p has to be an array dense enough for an acurrate integration."""
 	g = calc_g()
 	p0 = p[0]
 	n = len(p)
@@ -113,7 +113,8 @@ def calc_w(p, e):
 	return epsilon*e/(p - e)
 
 def calc_w_from_q(q):
-	"""Calculate water vapor mixing ratio (1) from specific humidity q (1)."""
+	"""Calculate water vapor mixing ratio (1) from specific humidity q
+	(1)."""
 	return q/(1. - q)
 
 def calc_e(w, p):
@@ -123,7 +124,8 @@ def calc_e(w, p):
 
 @np.vectorize
 def calc_td(e):
-	"""Calculate dew point temperature from water vapor mixing ratio e (1)."""
+	"""Calculate dew point temperature from water vapor mixing ratio e
+	(1)."""
 	def f(ta):
 		es = calc_es(ta)
 		return np.abs(es - e)

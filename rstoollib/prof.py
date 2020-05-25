@@ -30,9 +30,15 @@ def prof(d, pres=5e2, desc=False):
 		prof[var] = np.full(n, np.nan, np.float64)
 
 	if desc:
-		mask1 = np.array(list(~(np.diff(d['p']) < 0.)) + [True], np.bool)
+		mask1 = np.array(
+			list(~(np.diff(d['p']) < 0.)) + [True],
+			np.bool
+		)
 	else:
-		mask1 = np.array(list(~(np.diff(d['p']) > 0.)) + [True], np.bool)
+		mask1 = np.array(
+			list(~(np.diff(d['p']) > 0.)) + [True],
+			np.bool
+		)
 	for i in range(n - 1):
 		p1 = phalf[i]
 		p2 = phalf[i + 1]

@@ -86,7 +86,8 @@ META = {p[0]: {
 	'long_name': p[1].replace(' ', '_'),
 	'units': p[2],
 	'flag_values': list(p[4].keys()) if len(p) > 4 else None,
-	'flag_meanings': ' '.join([x.replace(' ', '_') for x in p[4].values()]) if len(p) > 4 else None,
+	'flag_meanings': ' '.join([x.replace(' ', '_') for x in p[4].values()]) \
+		if len(p) > 4 else None,
 } for p in PARAMS}
 
 for k, v in META.items():
@@ -106,13 +107,19 @@ def stage2(d):
 	if b'fwver' in d:
 		d[b'fwver'] /= 100.
 	if b'lat' in d:
-		d[b'lat'] = np.sign(d[b'lat'])*(np.floor(np.abs(d[b'lat'])/1e6) + (np.abs(d[b'lat'])/1e6 % 1.)*1e2/60.)
+		d[b'lat'] = np.sign(d[b'lat'])*(
+			np.floor(np.abs(d[b'lat'])/1e6) + \
+			(np.abs(d[b'lat'])/1e6 % 1.)*1e2/60.
+		)
 	if b'latm' in d:
 		d[b'latm'] /= 1e4
 	if b'latd' in d:
 		d[b'latd'] /= 1e4
 	if b'lon' in d:
-		d[b'lon'] = np.sign(d[b'lon'])*(np.floor(np.abs(d[b'lon'])/1e6) + (np.abs(d[b'lon'])/1e6 % 1.)*1e2/60.)
+		d[b'lon'] = np.sign(d[b'lon'])*(
+			np.floor(np.abs(d[b'lon'])/1e6) + \
+			(np.abs(d[b'lon'])/1e6 % 1.)*1e2/60.
+		)
 	if b'lonm' in d:
 		d[b'lonm'] /= 1e4
 	if b'lond' in d:
@@ -220,7 +227,8 @@ def postprocess(dd):
 					xd2 -= 1.
 				if xd2 - xd < -0.5:
 					xd2 += 1.
-				x = np.sign(x)*(np.floor(np.abs(x)) + (np.floor(xm) + xd2)/60.)
+				x = np.sign(x)*(np.floor(np.abs(x)) + \
+					(np.floor(xm) + xd2)/60.)
 			if varm in d:
 				del d[varm]
 			if vard in d:
