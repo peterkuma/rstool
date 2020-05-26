@@ -174,7 +174,14 @@ of variables.
 ### Profile (prof)
 
 prof is an instrument-independent format containing standard variables
-interpolated as a function of height.
+interpolated as a function of height. Profiles are calculated by averaging
+points (pts) on a regular vertical pressure grid. For calculation of
+an ascending profile (default), only strictly increasing subset of points is
+considered. For a descending profile (prof:desc), only strictly decreasing
+subset of points is considered. Vertical intervals with no points are
+filled with missing values. It is therefore possible to identify vertical
+intervals where no radiosonde data were recieved, and optionally interpolate
+(linearly or in some other way) across these intervals when plotting.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
