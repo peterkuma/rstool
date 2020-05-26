@@ -305,6 +305,16 @@ points (pts) and profile (prof) NetCDF files.
 | created | date created | year-month-dayThour:minute:second
 | software | software identification | rstool x.y.z (https://github.com/peterkuma/rstool)
 
+In addition, the following attributes may be available in raw, pts and prof
+datasets depending on the instrument:
+
+| Attribute | Description |
+| --- | --- |
+| station | station information |
+| balloon | ballon information |
+| sonde | sonde information |
+| operator | operator name |
+
 ## License
 
 This software can be used, modified and distributed freely under

@@ -66,4 +66,5 @@ def prof(d, pres=5e2, desc=False):
 	for var in ['tas', 'hurs', 'ps', 'uas', 'vas']:
 		prof[var] = d[var] if var in d else np.nan
 	prof['.'] = HEADER_PROF
+	prof['.']['.'] = d['.'].get('.', {})
 	return prof

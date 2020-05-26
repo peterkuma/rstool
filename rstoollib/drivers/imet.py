@@ -86,6 +86,7 @@ def read_flt(filename):
 		'ps': np.nan,
 		'uas': np.nan,
 		'vas': np.nan,
+		'.': {'.': {}},
 	}
 	c = configparser.ConfigParser()
 	try: c.read(filename, encoding='utf-8-sig')
@@ -105,6 +106,18 @@ def read_flt(filename):
 		d['vas'] = calc_va(d['wdss'], d['wdds'])
 	if 'wdss' in d: del d['wdss']
 	if 'wdds' in d: del d['wdds']
+	try: d['.']['.']['operator'] = c['Flight Station']['OperatorName']
+	except: pass
+	try: d['.']['.']['station'] = c['Flight Station']['Name']
+	except: pass
+	try: d['.']['.']['balloon'] = c['Flight Balloon']['Name']
+	except: pass
+	try: d['.']['.']['balloon'] += ' %sg' % c['Flight Balloon']['Filling Weight']
+	except: pass
+	try: d['.']['.']['sonde'] = c['Flight Sonde']['ID']
+	except: pass
+	try: d['.']['.']['sonde'] += ' S/N: %s' % c['Flight Sonde']['Sonde SN']
+	except: pass
 	return d
 
 def read_summary(filename):
@@ -207,6 +220,7 @@ def pts(d):
 		'vas': d['vas'],
 	}
 	pts['.'] = HEADER_PTS
+	pts['.']['.'] = d['.'].get('.', {})
 	return pts
 
 def read_dat(filename):
@@ -263,5 +277,5 @@ def read(dirname):
 	d = read_flt(filename_flt)
 	d2 = read_dat(filename_dat)
 	d.update(d2)
-	d['.'] = META
+	d['.'].update(META)
 	return d
