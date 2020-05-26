@@ -167,8 +167,8 @@ of variables.
 | ta | air temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
-| uas | eastward near-surface wind speed | m s-1 | float64 |
-| vas | northward near-surface wind speed | m s-1 | float64 |
+| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | z | height above reference ellipsoid | m | float64 |
 
 ### Profile (prof)
@@ -199,9 +199,9 @@ interpolated as a function of height.
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
 | ts | surface temperature | K | float64 |
 | ua | x wind | m.s<sup>-1</sup> | float64 |
-| uas | eastward near-surface wind speed | m s-1 | float64 |
+| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | va | y wind | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind speed | m s-1 | float64 |
+| vas | northward near-surface wind speed | m.<sup>s-1</sup> | float64 |
 | wdd | wind from direction | degrees | float64 |
 | wdds | near-surface wind from direction | degrees | float64 |
 | wds | wind speed | m.s<sup>-1</sup> | float64 |
@@ -230,8 +230,8 @@ NetCDF by reading the `.dat` file.
 | sample | sample number | 1 | int64 |
 | tair | air temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
-| uas | eastward near-surface wind speed | m s-1 | float64 |
-| vas | northward near-surface wind speed | m s-1 | float64 |
+| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 
 ### Windsond raw (raw:ws)
 
