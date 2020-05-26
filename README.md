@@ -201,7 +201,7 @@ interpolated as a function of height.
 | ua | x wind | m.s<sup>-1</sup> | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | va | y wind | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind speed | m.<sup>s-1</sup> | float64 |
+| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | wdd | wind from direction | degrees | float64 |
 | wdds | near-surface wind from direction | degrees | float64 |
 | wds | wind speed | m.s<sup>-1</sup> | float64 |
