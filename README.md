@@ -183,20 +183,17 @@ interpolated as a function of height.
 | es | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
 | hurs | near-surface relative humidity | % | float64 |
-| hurs | near-surface relative humidity | % | float64 |
 | lat | latitude | degrees North | float64 |
 | lon | longitude | degrees East | float64 |
 | p | pressure | Pa | float64 |
 | p2 | pressure | Pa | float64 |
 | p_lcl | lifting condensation level pressure | Pa | float64 |
-| ps | near-surface pressure | Pa | float64 |
 | ps | surface air pressure | Pa | float64 |
 | ta | air temperature | K | float64 |
 | ta_par | dry parcel temperature | K | float64 |
 | ta_par_s | saturated parcel temperature | K | float64 |
 | ta_surf_par | dry surface parcel temperature | K | float64 |
 | ta_surf_par_s | saturated surface parcel temperature | K | float64 |
-| tas | near-surface air temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | theta | air potential temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
