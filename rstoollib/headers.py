@@ -1,94 +1,55 @@
-HEADER_PROF = {
-	'zg': {
-		'.dims': ['p'],
-		'long_name': 'geopotential_height',
-		'units': 'm',
-	},
-	'z': {
-		'.dims': ['p'],
-		'long_name': 'height_above_reference_ellipsoid',
-		'units': 'm',
-	},
-	'p': {
-		'.dims': ['p'],
-		'long_name': 'pressure',
-		'units': 'Pa',
-	},
-	'p2': {
-		'.dims': ['p2'],
-		'long_name': 'pressure_2',
-		'units': 'Pa',
-	},
-	'ta': {
-		'.dims': ['p'],
-		'long_name': 'air_temperature',
-		'units': 'K',
-	},
-	'hur': {
-		'.dims': ['p'],
-		'long_name': 'relative_humidity',
-		'units': '%',
-	},
-	'wds': {
-		'.dims': ['p'],
-		'long_name': 'wind_speed',
-		'units': 'm s-1',
-	},
-	'wdd': {
-		'.dims': ['p'],
-		'long_name': 'wind_from_direction',
-		'units': 'degrees',
-	},
-	'ua': {
-		'.dims': ['p'],
-		'long_name': 'x_wind',
-		'units': 'm s-1',
-	},
-	'va': {
-		'.dims': ['p'],
-		'long_name': 'y_wind',
-		'units': 'm s-1',
-	},
-	'theta': {
-		'.dims': ['p'],
-		'long_name': 'air_potential_temperature',
-		'units': 'K',
-	},
-	'bvf': {
-		'.dims': ['p2'],
-		'long_name': 'brunt_vaisala_frequency_in_air',
-		'units': 's-1',
-	},
-	'es': {
-		'.dims': ['p'],
-		'long_name': 'saturation_vapor_pressure',
-		'units': 'Pa',
-	},
-	'e': {
-		'.dims': ['p'],
-		'long_name': 'water_vapor_pressure',
-		'units': 'Pa',
-	},
-	'ta_par': {
-		'.dims': ['p'],
-		'long_name': 'dry_parcel_temperature',
-		'units': 'K',
-	},	
-	'ta_par_s': {
-		'.dims': ['p'],
-		'long_name': 'saturated_parcel_temperature',
-		'units': 'K',
-	},
-	'ta_surf_par': {
-		'.dims': ['p'],
-		'long_name': 'dry_surface_parcel_temperature',
-		'units': 'K',
-	},
-	'ta_surf_par_s': {
-		'.dims': ['p'],
-		'long_name': 'saturated_surface_parcel_temperature',
-		'units': 'K',
-	},
+HEADER_PTS = [
+	('hur', 'relative_humidity', '%', ['seq']),
+	('hurs', 'near_surface_relative_humidity', '%', []),
+	('lat', 'latitude', 'degrees_north', ['seq']),
+	('lon', 'longitude', 'degrees_east', ['seq']),
+	('p', 'pressure', 'Pa', ['seq']),
+	('ps', 'surface_air_pressure', 'Pa', []),
+	('ta', 'air_temperature', 'K', ['seq']),
+	('tas', 'near_surface_air_temperature', 'K', []),
+	('time', 'time', 'days since -4712-01-01 12:00:00', ['seq']),
+	('uas', 'eastward_near-surface_wind_speed', 'm s-1', []),
+	('vas', 'northward_near-surface_wind_speed', 'm s-1', []),
+	('z', 'height_above_reference_ellipsoid', 'm', ['seq']),
+]
+HEADER_PTS = {
+	x[0]: {'.dims': x[3], 'long_name': x[1], 'units': x[2]}
+	for x in HEADER_PTS
+}
+
+HEADER_PROF = [
+	('bvf', 'brunt_vaisala_frequency_in_air', 's-1', ['p2']),
+	('e', 'water_vapor_pressure', 'Pa', ['p']),
+	('es', 'saturation_vapor_pressure', 'Pa', ['p']),
+	('hur', 'relative_humidity', '%', ['p']),
+	('hurs', 'near_surface_relative_humidity', '%', []),
+	('lat', 'latitude', 'degrees_north', ['p']),
+	('llp', 'atmosphere_lifting_level_pressure', 'Pa', []),
+	('lon', 'longitude', 'degrees_east', ['p']),
+	('p', 'pressure', 'Pa', ['p']),
+	('p2', 'pressure_2', 'Pa', ['p2']),
+	('p_lcl', 'lifting_condensation_level_pressure', 'Pa', []),
+	('ps', 'surface_air_pressure', 'Pa', []),
+	('ta', 'air_temperature', 'K', ['p']),
+	('ta_par', 'dry_parcel_temperature', 'K', ['p']),
+	('ta_par_s', 'saturated_parcel_temperature', 'K', ['p']),
+	('ta_surf_par', 'dry_surface_parcel_temperature', 'K', ['p']),
+	('ta_surf_par_s', 'saturated_surface_parcel_temperature', 'K', ['p']),
+	('tas', 'near_surface_air_temperature', 'K', []),
+	('theta', 'air_potential_temperature', 'K', ['p']),
+	('time', 'time', 'days since -4712-01-01 12:00:00', ['p']),
+	('ts', 'surface_temperature', 'K', []),
+	('ua', 'eastward_wind', 'm s-1', ['p']),
+	('uas', 'eastward_near-surface_wind_speed', 'm s-1', []),
+	('va', 'northward_wind', 'm s-1', ['p']),
+	('vas', 'northward_near-surface_wind_speed', 'm s-1', []),
+	('wdd', 'wind_from_direction', 'degrees', ['p']),
+	('wdds', 'near_surface_wind_from_direction', 'degrees', ['p']),
+	('wds', 'wind_speed', 'm s-1', ['p']),
+	('wdss', 'near_surface_wind_speed', 'm s-1', ['p']),
+	('z', 'height_above_reference_ellipsoid', 'm', ['p']),
+	('zg', 'geopotential_height', 'm', ['p']),
+	('zg_lcl', 'lifting_condensation_level_geopotential_height', 'm', []),
 	#'ta_surf_par_x': {
 	#	'.dims': ['p'],
 	#	'long_name': 'dry_surface_parcel_temperature',
@@ -99,26 +60,6 @@ HEADER_PROF = {
 	#	'long_name': 'saturated_surface_parcel_temperature',
 	#	'units': 'K',
 	#},
-	'p_lcl': {
-		'.dims': [],
-		'long_name': 'lifting_condensation_level_pressure',
-		'units': 'Pa',
-	},
-	'ts': {
-		'.dims': [],
-		'long_name': 'surface_temperature',
-		'units': 'K',
-	},
-	'llp': {
-		'.dims': [],
-		'long_name': 'atmosphere_lifting_level_pressure',
-		'units': 'Pa',
-	},
-	'zg_lcl': {
-		'.dims': [],
-		'long_name': 'lifting_condensation_level_geopotential_height',
-		'units': 'm',
-	},
 	#'clp': {
 	#	'.dims': [],
 	#	'long_name': 'atmosphere_condensation_level_pressure',
@@ -149,102 +90,8 @@ HEADER_PROF = {
 	#	'long_name': 'launch_time',
 	#	'units': 'days since -4712-01-01 12:00:00',
 	#},
-	'time': {
-		'.dims': ['p'],
-		'long_name': 'time',
-		'units': 'days since -4712-01-01 12:00:00',
-	},
-	'lon': {
-		'.dims': ['p'],
-		'long_name': 'longitude',
-		'units': 'degrees_east',
-	},
-	'lat': {
-		'.dims': ['p'],
-		'long_name': 'latitude',
-		'units': 'degrees_north',
-	},
-	'tas': {
-		'.dims': [],
-		'long_name': 'air_temperature',
-		'units': 'K',
-	},
-	'ps': {
-		'.dims': [],
-		'long_name': 'pressure',
-		'units': 'Pa',
-	},
-	'hurs': {
-		'.dims': [],
-		'long_name': 'relative_humidity',
-		'units': '%',
-	},
-	'wdss': {
-		'.dims': [],
-		'long_name': 'wind_speed',
-		'units': 'm s-1',
-	},
-	'wdds': {
-		'.dims': [],
-		'long_name': 'wind_from_direction',
-		'units': 'degrees',
-	},
-}
-
-HEADER_PTS = {
-	'p': {
-		'.dims': ['seq'],
-		'long_name': 'pressure',
-		'units': 'Pa',
-	},
-	'lon': {
-		'.dims': ['seq'],
-		'long_name': 'longitude',
-		'units': 'degrees_east',
-	},
-	'lat': {
-		'.dims': ['seq'],
-		'long_name': 'latitude',
-		'units': 'degrees_north',
-	},
-	'ta': {
-		'.dims': ['seq'],
-		'long_name': 'air_temperature',
-		'units': 'K',
-	},
-	'hur': {
-		'.dims': ['seq'],
-		'long_name': 'relative_humidity',
-		'units': '%',
-	},
-	'wds': {
-		'.dims': ['seq'],
-		'long_name': 'wind_speed',
-		'units': 'm s-1',
-	},
-	'wdd': {
-		'.dims': ['seq'],
-		'long_name': 'wind_from_direction',
-		'units': 'degrees',
-	},
-	'ua': {
-		'.dims': ['seq'],
-		'long_name': 'x_wind',
-		'units': 'm s-1',
-	},
-	'va': {
-		'.dims': ['seq'],
-		'long_name': 'y_wind',
-		'units': 'm s-1',
-	},
-	'z': {
-		'.dims': ['seq'],
-		'long_name': 'height_above_reference_ellipsoid',
-		'units': 'm',
-	},
-	'time': {
-		'.dims': ['seq'],
-		'long_name': 'time',
-		'units': 'days since -4712-01-01 12:00:00',
-	},
+]
+HEADER_PROF = {
+	x[0]: {'.dims': x[3], 'long_name': x[1], 'units': x[2]}
+	for x in HEADER_PROF
 }

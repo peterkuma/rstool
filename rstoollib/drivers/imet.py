@@ -5,8 +5,34 @@ import datetime as dt
 import json
 import re
 import csv
+import configparser
 import aquarius_time as aq
+from rstoollib.algorithms import *
 from rstoollib.headers import HEADER_PROF, HEADER_PTS
+
+PARAMS = [
+	('sample', 'sample number', '1', 'int'),
+	('date_time', 'date time', '', 'string'),
+	('press', 'pressure', 'Pa', 'float'),
+	('tair', 'air temperature', 'K', 'float'),
+	('hum', 'relative humidity', '%', 'float'),
+	('lat', 'latitude', 'degrees_north', 'float'),
+	('long', 'longitude', 'degrees_east', 'float'),
+	('alt', 'altitude', 'm', 'float'),
+	('freq', 'frequency', 'Hz', 'float'),
+	('f_offs', 'frequency offset', 'Hz', 'float'),
+	('tas', 'near-surface air temperature', 'K', 'float', []),
+	('ps', 'surface air pressure', 'Pa', 'float', []),
+	('hurs', 'near-surface relative humidity', '%', 'float', []),
+	('uas', 'eastward near-surface wind speed', 'm s-1', 'float', []),
+	('vas', 'northward near-surface wind speed', 'm s-1', 'float', []),
+]
+
+META = {p[0]: {
+	'.dims': p[4] if len(p) > 4 else ['seq'],
+	'long_name': p[1].replace(' ', '_'),
+	'units': p[2],
+} for p in PARAMS}
 
 def find(dirname, pattern):
 	for l in os.listdir(dirname):
@@ -52,6 +78,34 @@ def decode_geo(s):
 		sign = 1 if g['dir'] in [b'E', b'N'] else -1
 		x = sign*(deg + minute/60. + second/60./60.)
 	return x
+
+def read_flt(filename):
+	d = {
+		'tas': np.nan,
+		'hurs': np.nan,
+		'ps': np.nan,
+		'uas': np.nan,
+		'vas': np.nan,
+	}
+	c = configparser.ConfigParser()
+	try: c.read(filename, encoding='utf-8-sig')
+	except: return d
+	try: d['tas'] = float(c['Weather']['Temperature']) + 273.15
+	except: pass 
+	try: d['hurs'] = float(c['Weather']['Humidity'])
+	except: pass 
+	try: d['ps'] = float(c['Weather']['Pressure'])
+	except: pass 
+	try: d['wdds'] = float(c['Weather']['Wind Direction'])
+	except: pass
+	try: d['wdss'] = float(c['Weather']['Wind Speed'])
+	except: pass
+	if 'wdss' in d and 'wdds' in d:
+		d['uas'] = calc_ua(d['wdss'], d['wdds'])
+		d['vas'] = calc_va(d['wdss'], d['wdds'])
+	if 'wdss' in d: del d['wdss']
+	if 'wdds' in d: del d['wdds']
+	return d
 
 def read_summary(filename):
 	d = {}
@@ -132,25 +186,6 @@ def read_prof(dirname):
 	d['.'] = HEADER_PROF
 	return d
 
-PARAMS = [
-	('sample', 'sample number', '1', 'int'),
-	('date_time', 'date time', '', 'string'),
-	('press', 'pressure', 'Pa', 'float'),
-	('tair', 'air temperature', 'K', 'float'),
-	('hum', 'relative humidity', '%', 'float'),
-	('lat', 'latitude', 'degrees_north', 'float'),
-	('long', 'longitude', 'degrees_east', 'float'),
-	('alt', 'altitude', 'm', 'float'),
-	('freq', 'frequency', 'Hz', 'float'),
-	('f_offs', 'frequency offset', 'Hz', 'float'),
-]
-
-META = {p[0]: {
-	'.dims': ['seq'],
-	'long_name': p[1].replace(' ', '_'),
-	'units': p[2],
-} for p in PARAMS}
-
 def pts(d):
 	time_trans = str.maketrans({'/': '-', ' ': 'T'})
 	time = np.array([
@@ -165,15 +200,19 @@ def pts(d):
 		'lat': d['lat'],
 		'lon': d['long'],
 		'z': d['alt'],
+		'ps': d['ps'],
+		'tas': d['tas'],
+		'hurs': d['hurs'],
+		'uas': d['uas'],
+		'vas': d['vas'],
 	}
 	pts['.'] = HEADER_PTS
 	return pts
 
-def read(dirname):
-	dat_filename = find(dirname, '*.dat')
+def read_dat(filename):
 	d = {}
 	trans = str.maketrans({'#': '', ' ': '_', '+': '_'})
-	with open(dat_filename) as f:
+	with open(filename) as f:
 		reader = csv.DictReader(f)
 		for r in reader:
 			for k, v in r.items():
@@ -181,6 +220,8 @@ def read(dirname):
 				d[k2] = d.get(k2, []) + [v]
 	d2 = {}
 	for p in PARAMS:
+		if p[0] not in d:
+			continue
 		type_ = {
 			'int': np.int64,
 			'float': np.float64,
@@ -214,5 +255,13 @@ def read(dirname):
 		d2['tair'] += 273.15
 	if 'press' in d2:
 		d2['press'] *= 1e2
-	d2['.'] = META
 	return d2
+
+def read(dirname):
+	filename_dat = find(dirname, '*.dat')
+	filename_flt = find(dirname, '*.flt')
+	d = read_flt(filename_flt)
+	d2 = read_dat(filename_dat)
+	d.update(d2)
+	d['.'] = META
+	return d

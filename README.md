@@ -159,11 +159,16 @@ of variables.
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
 | hur | relative humidity | % | float64 |
+| hurs | near-surface relative humidity | % | float64 |
 | lat | latitude | degrees North | float64 |
 | lon | longitude | degrees East | float64 |
 | p | pressure | Pa | float64 |
+| ps | surface air pressure | Pa | float64 |
 | ta | air temperature | K | float64 |
+| tas | near-surface air temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
+| uas | eastward near-surface wind speed | m s-1 | float64 |
+| vas | northward near-surface wind speed | m s-1 | float64 |
 | z | height above reference ellipsoid | m | float64 |
 
 ### Profile (prof)
@@ -178,23 +183,28 @@ interpolated as a function of height.
 | es | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
 | hurs | near-surface relative humidity | % | float64 |
+| hurs | near-surface relative humidity | % | float64 |
 | lat | latitude | degrees North | float64 |
 | lon | longitude | degrees East | float64 |
 | p | pressure | Pa | float64 |
 | p2 | pressure | Pa | float64 |
 | p_lcl | lifting condensation level pressure | Pa | float64 |
 | ps | near-surface pressure | Pa | float64 |
+| ps | surface air pressure | Pa | float64 |
 | ta | air temperature | K | float64 |
 | ta_par | dry parcel temperature | K | float64 |
 | ta_par_s | saturated parcel temperature | K | float64 |
 | ta_surf_par | dry surface parcel temperature | K | float64 |
 | ta_surf_par_s | saturated surface parcel temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
+| tas | near-surface air temperature | K | float64 |
 | theta | air potential temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
 | ts | surface temperature | K | float64 |
 | ua | x wind | m.s<sup>-1</sup> | float64 |
+| uas | eastward near-surface wind speed | m s-1 | float64 |
 | va | y wind | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind speed | m s-1 | float64 |
 | wdd | wind from direction | degrees | float64 |
 | wdds | near-surface wind from direction | degrees | float64 |
 | wds | wind speed | m.s<sup>-1</sup> | float64 |
@@ -210,16 +220,21 @@ NetCDF by reading the `.dat` file.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
-sample | sample number | 1 | int64 |
-date_time | date time | year/month/day hour:minute:second | string |
-press | pressure | Pa | float64 |
-tair | air temperature | K | float64 |
-hum | relative humidity | % | float64 |
-lat | latitude | degrees North | float64 |
-long | longitude | degrees East | float64 |
-alt | altitude | m | float64 |
-freq | frequency | Hz | float64 |
-f_offs | frequency offset | Hz | float64 |
+| alt | altitude | m | float64 |
+| date_time | date time | year/month/day hour:minute:second | string |
+| f_offs | frequency offset | Hz | float64 |
+| freq | frequency | Hz | float64 |
+| hum | relative humidity | % | float64 |
+| hurs | near-surface relative humidity | % | float64 |
+| lat | latitude | degrees North | float64 |
+| long | longitude | degrees East | float64 |
+| press | pressure | Pa | float64 |
+| ps | surface air pressure | Pa | float64 |
+| sample | sample number | 1 | int64 |
+| tair | air temperature | K | float64 |
+| tas | near-surface air temperature | K | float64 |
+| uas | eastward near-surface wind speed | m s-1 | float64 |
+| vas | northward near-surface wind speed | m s-1 | float64 |
 
 ### Windsond raw (raw:ws)
 
