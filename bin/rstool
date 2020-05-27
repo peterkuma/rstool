@@ -43,6 +43,7 @@ import numpy as np
 import ds_format as ds
 import aquarius_time as aq
 
+import rstoollib
 from rstoollib.drivers import DRIVERS
 from rstoollib.headers import HEADER_PTS, HEADER_PROF
 from rstoollib import postprocess, prof
@@ -54,11 +55,12 @@ def get_driver(name):
 		raise ValueError('%s: unknown input type' % name)
 	return drv
 	
-def main(input_type, output_type, input_, output):
+def main(input_type, output_type, input_, output, surf=None):
 	d_raw = None
 	d_pts = None
 	d_prof = None
 	d_prof_desc = None
+	d_surf = None
 	desc = False
 
 	not_supported_msg = 'input or output type not supported'
@@ -84,6 +86,14 @@ def main(input_type, output_type, input_, output):
 	if d_prof is None and d_pts is not None:
 		d_prof = prof(d_pts)
 		d_prof_desc = prof(d_pts, desc=True)
+
+	if d_prof is not None and surf is not None:
+		drv = rstoollib.drivers.surf
+		d_surf = drv.read(surf, d_prof['time'][0])
+		if d_surf is not None:
+			for k, v in d_surf.items():
+				if k != '.':
+					d_prof[k] = d_surf[k]
 
 	if d_prof is not None:
 		postprocess(d_prof)
@@ -120,19 +130,25 @@ def main(input_type, output_type, input_, output):
 	ds.write(output, d)
 
 if __name__ == '__main__':
-	if len(sys.argv) != 5:
+	if len(sys.argv) not in [5, 6]:
 		sys.stderr.write(sys.modules[__name__].__doc__)
 		sys.exit(1)
 
 	input_type = sys.argv[1]
 	output_type = sys.argv[2]
-	input_ = sys.argv[3]
-	output = sys.argv[4]
+	if len(sys.argv) == 5:
+		surf = None
+		input_ = sys.argv[3]
+		output = sys.argv[4]
+	elif len(sys.argv) == 6:
+		input_ = sys.argv[3]
+		surf = sys.argv[4]
+		output = sys.argv[5]
 
 	np.seterr(all='ignore')
 
 	#try:
-	main(input_type, output_type, input_, output)
+	main(input_type, output_type, input_, output, surf=surf)
 	#except Exception as e:
 	#	sys.stderr.write('%s: %s\n' % (sys.argv[0], str(e)))
 	#	sys.exit(1)

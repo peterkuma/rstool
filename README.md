@@ -22,14 +22,18 @@ Usage
 -----
 
 ```sh
-rstool <input_type> <output_type> <input> <output>
+rstool <input_type> <output_type> <input> [<surface>] <output>
 ```
+
+rstool converts native radiosonde data to NetCDF raw, points (pts) and
+profile (prof) datasets and calculates derived profile variables.
 
 Arguments:
 
 - `input_type` - See Input types below.
 - `output_type` - See Output types below.
 - `input` - Input file or directory.
+- `surface` - Near-surface variables (NetCDF).
 - `output` - Output file (NetCDF).
 
 Input types:
@@ -222,6 +226,27 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 | z | height above reference ellipsoid | m | float64 |
 | zg | geopotential height | m | float64 |
 | zg_lcl | lifting condensation level geopotential height | m | float64 |
+
+### Surface (surf)
+
+surf dataset specifies near-surface variables which can be used
+as an optional input to rstool. These can come from a co-located automatic
+weather station (AWS). Some native radiosonde data can already contain
+these varibales (iMet). Near-surface variables are needed to calculate
+some derived profile variables such as the lifting condensation level.
+
+| Variable | Description | Units | Type |
+| --- | --- | --- | --- |
+| time | time | days since -4712-01-01T12:00:00 UTC | float64 |
+| hurs | near-surface relative humidity | % | float64 |
+| ts | surface temperature | K | float64 |
+| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
+| wdds | near-surface wind from direction | degrees | float64 |
+| wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
+
+All variables must have a single dimension `time`.
+Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
 
 ### iMet raw (raw:imet)
 

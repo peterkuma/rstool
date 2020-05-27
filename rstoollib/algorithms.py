@@ -124,8 +124,7 @@ def calc_e(w, p):
 
 @np.vectorize
 def calc_td(e):
-	"""Calculate dew point temperature from water vapor mixing ratio e
-	(1)."""
+	"""Calculate dew point (K) from water vapor pressure e (Pa)."""
 	def f(ta):
 		es = calc_es(ta)
 		return np.abs(es - e)
