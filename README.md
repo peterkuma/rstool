@@ -167,6 +167,9 @@ of variables.
 | ta | air temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
+| station_lat | station latitude | degrees North | float64 |
+| station_lon | station longitude | degrees East | float64 |
+| station_z | station altitude | m | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | z | height above reference ellipsoid | m | float64 |
@@ -196,6 +199,9 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 | p2 | pressure | Pa | float64 |
 | p_lcl | lifting condensation level pressure | Pa | float64 |
 | ps | surface air pressure | Pa | float64 |
+| station_lat | station latitude | degrees North | float64 |
+| station_lon | station longitude | degrees East | float64 |
+| station_z | station altitude | m | float64 |
 | ta | air temperature | K | float64 |
 | ta_par | dry parcel temperature | K | float64 |
 | ta_par_s | saturated parcel temperature | K | float64 |
@@ -235,6 +241,9 @@ NetCDF by reading the `.dat` file.
 | press | pressure | Pa | float64 |
 | ps | surface air pressure | Pa | float64 |
 | sample | sample number | 1 | int64 |
+| station_lat | station latitude | degrees North | float64 |
+| station_lon | station longitude | degrees East | float64 |
+| station_z | station altitude | m | float64 |
 | tair | air temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |

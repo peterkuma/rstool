@@ -26,6 +26,9 @@ PARAMS = [
 	('hurs', 'near-surface relative humidity', '%', 'float', []),
 	('uas', 'eastward near-surface wind speed', 'm s-1', 'float', []),
 	('vas', 'northward near-surface wind speed', 'm s-1', 'float', []),
+	('station_lon', 'station longitude', 'degrees_east', 'float', []),
+	('station_lat', 'station latitude', 'degrees_north', 'float', []),
+	('station_z', 'station altitude', 'm', 'float', []),
 ]
 
 META = {p[0]: {
@@ -117,6 +120,12 @@ def read_flt(filename):
 	try: d['.']['.']['sonde'] = c['Flight Sonde']['ID']
 	except: pass
 	try: d['.']['.']['sonde'] += ' S/N: %s' % c['Flight Sonde']['Sonde SN']
+	except: pass
+	try: d['station_lon'] = float(c['Flight Station']['Longitude'])
+	except: pass
+	try: d['station_lat'] =  float(c['Flight Station']['Latitude'])
+	except: pass
+	try: d['station_z'] =  float(c['Flight Station']['Altitude'])
 	except: pass
 	return d
 
@@ -218,6 +227,9 @@ def pts(d):
 		'hurs': d['hurs'],
 		'uas': d['uas'],
 		'vas': d['vas'],
+		'station_lon': d['station_lon'],
+		'station_lat': d['station_lat'],
+		'station_z': d['station_z'],
 	}
 	pts['.'] = HEADER_PTS
 	pts['.']['.'] = d['.'].get('.', {})

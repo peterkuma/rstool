@@ -63,7 +63,16 @@ def prof(d, pres=5e2, desc=False):
 		if dt > 0.:
 			prof['ua'][i] = dst/dt*np.sin(az/180.*np.pi)
 			prof['va'][i] = dst/dt*np.cos(az/180.*np.pi)
-	for var in ['tas', 'hurs', 'ps', 'uas', 'vas']:
+	for var in [
+		'tas',
+		'hurs',
+		'ps',
+		'uas',
+		'vas',
+		'station_lat',
+		'station_lon',
+		'station_z'
+	]:
 		prof[var] = d[var] if var in d else np.nan
 	prof['.'] = HEADER_PROF
 	prof['.']['.'] = d['.'].get('.', {})
