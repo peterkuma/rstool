@@ -234,6 +234,10 @@ as an optional input to rstool. These can come from a co-located automatic
 weather station (AWS). Some native radiosonde data can already contain
 these varibales (iMet). Near-surface variables are needed to calculate
 some derived profile variables such as the lifting condensation level.
+All variables must have a single dimension `time`. The point nearest
+to the radiosonde launch time is picked. If no points are within
+1 hour of the launch, the surface input is ignored.
+Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
@@ -244,9 +248,6 @@ some derived profile variables such as the lifting condensation level.
 | vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | wdds | near-surface wind from direction | degrees | float64 |
 | wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
-
-All variables must have a single dimension `time`.
-Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
 
 ### iMet raw (raw:imet)
 
