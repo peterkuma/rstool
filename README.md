@@ -353,3 +353,9 @@ datasets depending on the instrument:
 
 This software can be used, modified and distributed freely under
 the terms of an MIT license (see [LICENSE.md](LICENSE.md)).
+
+## Releases
+
+### 0.1.0
+
+- Initial beta release.
