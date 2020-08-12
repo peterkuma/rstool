@@ -356,6 +356,6 @@ the terms of an MIT license (see [LICENSE.md](LICENSE.md)).
 
 ## Releases
 
-### 0.1.0
+### 0.1.0 (2020-08-12)
 
 - Initial beta release.
