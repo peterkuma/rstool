@@ -356,6 +356,11 @@ the terms of an MIT license (see [LICENSE.md](LICENSE.md)).
 
 ## Releases
 
+### 0.1.1 (2020-08-14)
+
+- Fixed missing surf module.
+- Installation of the script via setuptools entry points.
+
 ### 0.1.0 (2020-08-12)
 
 - Initial beta release.
