@@ -135,8 +135,10 @@ on the command line.
 
 Below is a description of the output NetCDF formats. Whenever possible,
 CF Conventions and CMIP5 standard names are loosely followed by "duck typing".
-Time is expressed as Julian days
-(fractional number of days since -4712-01-01T12:00:00 UTC).
+Time is expressed as Julian date
+(fractional number of days since -4712-01-01T12:00:00 UTC). These can be
+converted to UNIX time (number of non-leap seconds since 1970-01-01T00:00 UTC)
+with `(time - 2440587.5)*86400`.
 
 The formats can be converted in the order raw (raw:\<instrument\>) → points
 (pts) → profile (prof).
