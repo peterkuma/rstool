@@ -168,9 +168,9 @@ of variables.
 | station_lat | station latitude | degrees North | float64 |
 | station_lon | station longitude | degrees East | float64 |
 | station_z | station altitude | m | float64 |
-| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| z | height above reference ellipsoid | m | float64 |
+| uas | eastward near-surface wind | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind | m.s<sup>-1</sup> | float64 |
+| z | altitude | m | float64 |
 
 ### Profile (prof)
 
@@ -187,7 +187,7 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
 | bvf | Brunt–Väisälä frequency in air | s<sup>-1</sup> | float64 |
-| e | water vapor pressure | Pa | float64 |
+| e | water vapor pressure in air | Pa | float64 |
 | es | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
 | hurs | near-surface relative humidity | % | float64 |
@@ -195,7 +195,7 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 | lon | longitude | degrees East | float64 |
 | p | pressure | Pa | float64 |
 | p2 | pressure | Pa | float64 |
-| p_lcl | lifting condensation level pressure | Pa | float64 |
+| p_lcl | atmosphere lifting condensation level pressure | Pa | float64 |
 | ps | surface air pressure | Pa | float64 |
 | station_lat | station latitude | degrees North | float64 |
 | station_lon | station longitude | degrees East | float64 |
@@ -209,15 +209,15 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 | theta | air potential temperature | K | float64 |
 | time | time | days since -4712-01-01T12:00:00 UTC | float64 |
 | ts | surface temperature | K | float64 |
-| ua | x wind | m.s<sup>-1</sup> | float64 |
+| ua | eastward wind | m.s<sup>-1</sup> | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| va | y wind | m.s<sup>-1</sup> | float64 |
+| va | northward wind | m.s<sup>-1</sup> | float64 |
 | vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | wdd | wind from direction | degrees | float64 |
 | wdds | near-surface wind from direction | degrees | float64 |
 | wds | wind speed | m.s<sup>-1</sup> | float64 |
 | wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| z | height above reference ellipsoid | m | float64 |
+| z | altitude | m | float64 |
 | zg | geopotential height | m | float64 |
 | zg_lcl | lifting condensation level geopotential height | m | float64 |
 
