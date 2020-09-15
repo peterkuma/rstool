@@ -4,8 +4,11 @@ from setuptools import setup, find_packages
 
 setup(
 	name='rstool',
-	version='0.1.0',
-	scripts=['bin/rstool'],
+	version='0.1.1',
+	py_modules=['rstool'],
+	entry_points={
+		'console_scripts': ['rstool=rstool:main'],
+	},
 	packages=find_packages(),
 	description='Command-line program for converting native radiosonde data to NetCDF and calculation of derived quantities, supporting InterMet Systems (iMet) and Windsond radiosondes',
 	author='Peter Kuma',
