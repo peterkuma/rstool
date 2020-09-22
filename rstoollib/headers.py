@@ -10,7 +10,7 @@ HEADER_PTS = [
 	('station_z', 'station altitude', 'height_above_reference_ellipsoid', 'm', []),
 	('ta', 'air temperature', 'air_temperature', 'K', ['seq']),
 	('tas', 'near-surface air temperature', 'air_temperature', 'K', []),
-	('time', 'time', 'time', 'days since -4712-01-01 12:00:00', ['seq']),
+	('time', 'time', 'time', 'days since -4713-01-01 12:00 UTC', ['seq']),
 	('uas', 'eastward near-surface wind', 'eastward_wind', 'm s-1', []),
 	('vas', 'northward near-surface wind', 'northward_wind', 'm s-1', []),
 	('z', 'altitude', 'height_above_reference_ellipsoid', 'm', ['seq']),
@@ -43,7 +43,7 @@ HEADER_PROF = [
 	('ta_surf_par_s', 'saturated surface parcel temperature', 'air_temperature', 'K', ['p']),
 	('tas', 'near-surface air temperature', 'air_pressure', 'K', []),
 	('theta', 'air potential temperature', 'air_potential_temperature', 'K', ['p']),
-	('time', 'time', 'time', 'days since -4712-01-01 12:00:00', ['p']),
+	('time', 'time', 'time', 'days since -4713-01-01 12:00 UTC', ['p']),
 	('ts', 'surface temperature', 'surface_temperature', 'K', []),
 	('ua', 'eastward wind', 'eastward_wind', 'm s-1', ['p']),
 	('uas', 'eastward near-surface wind', 'eastward_wind', 'm s-1', []),
@@ -94,7 +94,7 @@ HEADER_PROF = [
 	#'launch_time': {
 	#	'.dims': [],
 	#	'long_name': 'launch_time',
-	#	'units': 'days since -4712-01-01 12:00:00',
+	#	'units': 'days since -4713-01-01 12:00 UTC',
 	#},
 ]
 HEADER_PROF = {

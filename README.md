@@ -135,10 +135,9 @@ on the command line.
 
 Below is a description of the output NetCDF formats. Whenever possible,
 CF Conventions and CMIP5 standard names are loosely followed by "duck typing".
-Time is expressed as Julian date
-(fractional number of days since -4712-01-01T12:00:00 UTC). These can be
-converted to UNIX time (number of non-leap seconds since 1970-01-01T00:00 UTC)
-with `(time - 2440587.5)*86400`.
+Time is expressed as Julian date (fractional number of days since 1 January 4713
+BCE 12:00 UTC). These can be converted to UNIX time (number of non-leap seconds
+since 1 January 1970 00:00 UTC) with `(time - 2440587.5)*86400`.
 
 The formats can be converted in the order raw (raw:\<instrument\>) → points
 (pts) → profile (prof).
@@ -164,7 +163,7 @@ of variables.
 | ps | surface air pressure | Pa | float64 |
 | ta | air temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
-| time | time | days since -4712-01-01T12:00:00 UTC | float64 |
+| time | time | days since -4713-01-01 12:00 UTC | float64 |
 | station_lat | station latitude | degrees North | float64 |
 | station_lon | station longitude | degrees East | float64 |
 | station_z | station altitude | m | float64 |
@@ -207,7 +206,7 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 | ta_surf_par_s | saturated surface parcel temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | theta | air potential temperature | K | float64 |
-| time | time | days since -4712-01-01T12:00:00 UTC | float64 |
+| time | time | days since -4713-01-01 12:00 UTC | float64 |
 | ts | surface temperature | K | float64 |
 | ua | eastward wind | m.s<sup>-1</sup> | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
@@ -235,7 +234,7 @@ Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
-| time | time | days since -4712-01-01T12:00:00 UTC | float64 |
+| time | time | days since -4713-01-01 12:00 UTC | float64 |
 | hurs | near-surface relative humidity | % | float64 |
 | ts | surface temperature | K | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
