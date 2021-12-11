@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='rstool',
-	version='0.1.2-dev',
+	version='1.0.0',
 	py_modules=['rstool'],
 	entry_points={
 		'console_scripts': ['rstool=rstool:main'],
@@ -20,7 +20,7 @@ setup(
 		'numpy',
 		'scipy',
 		'pyproj',
-		'ds-format>=1.0.1',
+		'ds-format>=1.1.1',
 		'aquarius-time>=0.1.0',
 		'cftime>=1.5.1',
 	],
