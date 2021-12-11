@@ -25,7 +25,7 @@ setup(
 		'cftime>=1.5.1',
 	],
 	classifiers=[
-		'Development Status :: 4 - Beta',
+		'Development Status :: 5 - Production/Stable',
 		'Environment :: Console',
 		'Intended Audience :: Science/Research',
 		'License :: OSI Approved :: MIT License',
