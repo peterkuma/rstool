@@ -10,7 +10,7 @@ HEADER_PTS = [
 	('station_z', 'station altitude', 'height_above_reference_ellipsoid', 'm', []),
 	('ta', 'air temperature', 'air_temperature', 'K', ['seq']),
 	('tas', 'near-surface air temperature', 'air_temperature', 'K', []),
-	('time', 'time', 'time', 'days since -4713-01-01 12:00 UTC', ['seq']),
+	('time', 'time', 'time', 'days since -4713-11-24 12:00 UTC', ['seq']),
 	('uas', 'eastward near-surface wind', 'eastward_wind', 'm s-1', []),
 	('vas', 'northward near-surface wind', 'northward_wind', 'm s-1', []),
 	('z', 'altitude', 'height_above_reference_ellipsoid', 'm', ['seq']),
@@ -19,6 +19,7 @@ HEADER_PTS = {
 	x[0]: {'.dims': x[4], 'long_name': x[1], 'standard_name': x[2], 'units': x[3]}
 	for x in HEADER_PTS
 }
+HEADER_PTS['time']['calendar'] = 'proleptic_gregorian'
 
 HEADER_PROF = [
 	('bvf', 'brunt vaisala frequency in air', 'brunt_vaisala_frequency_in_air', 's-1', ['p2']),
@@ -43,7 +44,7 @@ HEADER_PROF = [
 	('ta_surf_par_s', 'saturated surface parcel temperature', 'air_temperature', 'K', ['p']),
 	('tas', 'near-surface air temperature', 'air_pressure', 'K', []),
 	('theta', 'air potential temperature', 'air_potential_temperature', 'K', ['p']),
-	('time', 'time', 'time', 'days since -4713-01-01 12:00 UTC', ['p']),
+	('time', 'time', 'time', 'days since -4713-11-24 12:00 UTC', ['p']),
 	('ts', 'surface temperature', 'surface_temperature', 'K', []),
 	('ua', 'eastward wind', 'eastward_wind', 'm s-1', ['p']),
 	('uas', 'eastward near-surface wind', 'eastward_wind', 'm s-1', []),
