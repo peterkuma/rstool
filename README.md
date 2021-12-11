@@ -1,8 +1,6 @@
 rstool
 ======
 
-**Development status:** beta
-
 rstool is an open source command-line program for reading and converting
 native radiosonde data to NetCDF and calculation of derived physical quantities.
 
