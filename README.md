@@ -105,7 +105,7 @@ rstool raw:ws pts 2000-01-01_0000.raw.nc 2000-01-01_0000.pts.nc
 Convert points to profile:
 
 ```sh
-rstool pts profile 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
+rstool pts prof 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
 ```
 
 Installation
