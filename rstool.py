@@ -45,7 +45,6 @@ import aquarius_time as aq
 
 import rstoollib
 from rstoollib.drivers import DRIVERS
-from rstoollib.headers import HEADER_PTS, HEADER_PROF
 from rstoollib import postprocess, prof
 
 def get_driver(name):
