@@ -45,6 +45,7 @@ import aquarius_time as aq
 
 import rstoollib
 from rstoollib.drivers import DRIVERS
+from rstoollib.headers import HEADER_PTS, HEADER_PROF
 from rstoollib import postprocess, prof
 
 def get_driver(name):
@@ -70,8 +71,10 @@ def main_(input_type, output_type, input_, output, surf=None):
 		d_raw = ds.read(input_)
 	elif input_type == 'pts':
 		d_pts = ds.read(input_)
+		d_prof['.'] = HEADER_PTS
 	elif input_type == 'prof':
 		d_prof = ds.read(input_)
+		d_prof['.'] = HEADER_PROF
 	else:
 		drv = get_driver(input_type)
 		#if output_type == 'prof' and hasattr(drv, 'read_prof'):
