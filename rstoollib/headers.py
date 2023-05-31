@@ -27,6 +27,7 @@ HEADER_PROF = [
 	('es', 'saturation vapor pressure', 'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
 	('hur', 'relative humidity', 'relative_humidity', '%', ['p']),
 	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', []),
+	('hus', 'specific humidity', 'specific_humidity', '1', ['p']),
 	('lat', 'latitude', 'latitude', 'degrees_north', ['p']),
 	('llp', 'atmosphere lifting level pressure', 'air_pressure', 'Pa', []),
 	('lon', 'longitude', 'longitude', 'degrees_east', ['p']),
