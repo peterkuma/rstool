@@ -120,7 +120,7 @@ pipx install rstool
 ```
 
 **Note:** Make sure the directory `~/.local/bin` is included in the
-environmental variable `PATH`).
+environmental variable `PATH`.
 
 Run with:
 
