@@ -111,23 +111,22 @@ rstool pts prof 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
 Installation
 ------------
 
-Recommended operating system to run rstool is Linux with Python 3.
+Recommended operating system to run rstool is Linux with Python 3 and pipx.
 
 Install with:
 
 ```sh
-pip3 install rstool
+pipx install rstool
 ```
 
-**Note:** Append `--user` to install in your home directory on unix-like
-operating systems (make sure the directory `~/.local/bin` is included in the
+**Note:** Make sure the directory `~/.local/bin` is included in the
 environmental variable `PATH`).
 
 Run with:
 
 `rstool`
 
-on the command line.
+in the command line.
 
 ## Format description
 
