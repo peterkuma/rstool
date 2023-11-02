@@ -103,3 +103,4 @@ HEADER_PROF = {
 	x[0]: {'.dims': x[4], 'long_name': x[1], 'standard_name': x[2], 'units': x[3]}
 	for x in HEADER_PROF
 }
+HEADER_PROF['time']['calendar'] = 'proleptic_gregorian'
