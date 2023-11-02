@@ -36,7 +36,7 @@ import sys
 import signal
 signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
-VERSION = '0.1.1'
+__version__ = '1.0.0'
 
 import datetime as dt
 import numpy as np
@@ -125,7 +125,7 @@ def main_(input_type, output_type, input_, output, surf=None):
 	d['.'] = d.get('.', {})
 	d['.']['.'] = d['.'].get('.', {})
 	d['.']['.'].update({
-		'software': 'rstool ' + VERSION + \
+		'software': 'rstool ' + __version__ + \
 			' (https://github.com/peterkuma/rstool)',
 		'created': aq.to_iso(aq.from_datetime(dt.datetime.utcnow())),
 	})
