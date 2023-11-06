@@ -118,7 +118,7 @@ def calc_w_from_q(q):
 	return q/(1. - q)
 
 def calc_e(w, p):
-	"""Calculate specific humidity (1) from water vapor mixing ratio w (1)
+	"""Calculate vapor pressure (Pa) from water vapor mixing ratio w (1)
 	and pressure p (Pa)."""
 	return w*p/(epsilon + w)
 
