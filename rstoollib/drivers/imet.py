@@ -95,11 +95,11 @@ def read_flt(filename):
 	try: c.read(filename, encoding='utf-8-sig')
 	except: return d
 	try: d['tas'] = float(c['Weather']['Temperature']) + 273.15
-	except: pass 
+	except: pass
 	try: d['hurs'] = float(c['Weather']['Humidity'])
-	except: pass 
+	except: pass
 	try: d['ps'] = float(c['Weather']['Pressure'])
-	except: pass 
+	except: pass
 	try: d['wdds'] = float(c['Weather']['Wind Direction'])
 	except: pass
 	try: d['wdss'] = float(c['Weather']['Wind Speed'])
