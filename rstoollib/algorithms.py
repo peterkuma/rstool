@@ -5,7 +5,8 @@ from scipy.optimize import fmin
 from scipy.integrate import quad
 
 def calc_g(lat=45.):
-	"""Calculate gravity from latitude (degrees)."""
+	"""Calculate gravitational acceleration (m.s-2) from latitude lat
+	(degrees)."""
 	return 9.780327*(
 		1 +
 		0.0053024*np.sin(lat/180.0*np.pi)**2 -
@@ -13,9 +14,13 @@ def calc_g(lat=45.):
 	)
 
 def calc_zg(z, lat):
+	"""Calculate geopotential height (m) from height z (m) and latitude lat
+	(degrees)."""
 	return z*calc_g(lat)/g0
 
 def calc_z(zg, lat):
+	"""Calculate height (m) from geopotential height zg (m) and latitude lat
+	(degrees)."""
 	return zg/calc_g(lat)*g0
 
 def calc_ua(wds, wdd):
