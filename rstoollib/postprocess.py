@@ -20,8 +20,8 @@ def postprocess(d):
 		d['wds'] = calc_wds(d['ua'], d['va'])
 		d['wdd'] = calc_wdd(d['ua'], d['va'])
 	elif 'wds' in d and 'wdd' in d:
-		d['ua'] = calc_ua(d['wds'], d['wdd'])                           
-		d['va'] = calc_va(d['wds'], d['wdd'])    
+		d['ua'] = calc_ua(d['wds'], d['wdd'])
+		d['va'] = calc_va(d['wds'], d['wdd'])
 	if 'hus' in d:
 		ws = calc_w(d['p'], d['es'])
 		w = calc_w_from_q(d['hus'])
@@ -40,4 +40,3 @@ def postprocess(d):
 		d['ta_surf_par_s'] = calc_ta_par_s(d['p'], d['ts'], d['e'][0])
 		#d['ta_surf_par_x'] = calc_ta_par(d['p'], d['ts'] + 0.5)
 		#d['ta_surf_par_s_x'] = calc_ta_par_s(d['p'], d['ts'] + 0.5, d['e'][0])
-
