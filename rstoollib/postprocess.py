@@ -12,9 +12,9 @@ def postprocess(d):
 		d['z'] = calc_z(d['zg'], d['lat'])
 	if 'p' in d and 'ta' in d and 'theta' not in d:
 		d['theta'] = calc_theta(d['p'], d['ta'])
-	if 'theta' in d and 'zg' in d and 'p' in d and 'p2' not in d and \
-		'bvf' not in d:
-		d['p2'], d['bvf'] = calc_bvf(d['theta'], d['zg'], d['p'])
+	if 'theta' in d and 'zg' in d and 'p' in d and 'lat' in d and \
+		'p2' not in d and 'bvf' not in d:
+		d['p2'], d['bvf'] = calc_bvf(d['theta'], d['zg'], d['p'], d['lat'])
 	if 'ta' in d and 'es' not in d:
 		d['es'] = calc_es(d['ta'])
 	if 'p' in d and 'ta' in d and 'ta_par' not in d:
