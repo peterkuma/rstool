@@ -27,7 +27,9 @@ def postprocess(d):
 		qs = 1./(1./ws + 1)
 		d['hur'] = 100.*d['hus']/qs
 	if 'hur' in d:
-		d['e'] = d['hur']/100.*d['es']
+		ws = calc_w(d['p'], d['es'])
+		w = d['hur']/100*ws
+		d['e'] = calc_e(w, d['p'])
 		d['p_lcl'] = calc_lclp(d['p'][0], d['e'][0], d['ta'][0])
 		d['zg_lcl'] = np.interp(d['p_lcl'], d['p'][::-1], d['zg'][::-1])
 		#d['clp'] = calc_clp(d['p'], d['e'], d['ta'])
