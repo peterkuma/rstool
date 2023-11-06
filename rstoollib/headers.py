@@ -44,6 +44,7 @@ HEADER_PROF = [
 	('ta_surf_par', 'dry surface parcel temperature', 'air_temperature', 'K', ['p']),
 	('ta_surf_par_s', 'saturated surface parcel temperature', 'air_temperature', 'K', ['p']),
 	('tas', 'near-surface air temperature', 'air_pressure', 'K', []),
+	('tds', 'near-surface dew point temperature', 'dew_point_temperature', 'K', []),
 	('theta', 'air potential temperature', 'air_potential_temperature', 'K', ['p']),
 	('time', 'time', 'time', 'days since -4713-11-24 12:00 UTC', ['p']),
 	('ts', 'surface temperature', 'surface_temperature', 'K', []),

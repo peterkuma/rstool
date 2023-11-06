@@ -220,20 +220,23 @@ intervals where no radiosonde data were recieved, and optionally interpolate
 
 ### Surface (surf)
 
-surf dataset specifies near-surface variables which can be used
-as an optional input to rstool. These can come from a co-located automatic
-weather station (AWS). Some native radiosonde data can already contain
-these varibales (iMet). Near-surface variables are needed to calculate
-some derived profile variables such as the lifting condensation level.
-All variables must have a single dimension `time`. The point nearest
-to the radiosonde launch time is picked. If no points are within
-1 hour of the launch, the surface input is ignored.
-Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
+surf dataset specifies near-surface variables which can be used as an optional
+input to rstool. These can come from a co-located automatic weather station
+(AWS). Some native radiosonde data can already contain same of these varibales
+(iMet). Near-surface variables are needed to calculate some derived profile
+variables such as the lifting condensation level. All variables must have a
+single dimension `time`. The point nearest to the radiosonde launch time is
+picked. If no points are within 1 hour of the radiosonde launch, the surface
+input is ignored.  Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
+Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
 
 | Variable | Description | Units | Type |
 | --- | --- | --- | --- |
 | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
 | hurs | near-surface relative humidity | % | float64 |
+| ps | surface pressure | Pa | float64 |
+| tas | near-surface dew point temperature | K | float64 |
+| tds | near-surface dew point temperature | K | float64 |
 | ts | surface temperature | K | float64 |
 | uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
 | vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |

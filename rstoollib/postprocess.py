@@ -52,3 +52,9 @@ def postprocess(d):
 	if 'wdss' in d and 'wdds' in d and 'uav' not in d and 'vas' not in d:
 		d['uas'] = calc_ua(d['wdss'], d['wdds'])
 		d['vas'] = calc_va(d['wdss'], d['wdds'])
+	if 'tds' in d and 'ps' in d and 'tas' in d and 'hurs' not in d:
+		e = calc_es(d['tds'])
+		w = calc_w(d['ps'], e)
+		es = calc_es(d['tas'])
+		ws = calc_w(d['ps'], es)
+		d['hurs'] = 100*w/ws
