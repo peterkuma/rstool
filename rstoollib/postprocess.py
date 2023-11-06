@@ -24,8 +24,8 @@ def postprocess(d):
 		d['va'] = calc_va(d['wds'], d['wdd'])    
 	if 'hus' in d:
 		ws = calc_w(d['p'], d['es'])
-		qs = 1./(1./ws + 1)
-		d['hur'] = 100.*d['hus']/qs
+		w = calc_w_from_q(d['hus'])
+		d['hur'] = 100*w/ws
 	if 'hur' in d:
 		ws = calc_w(d['p'], d['es'])
 		w = d['hur']/100*ws
