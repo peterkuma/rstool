@@ -1,7 +1,7 @@
 import numpy as np
 import ds_format as ds
 
-VARS = ['tas', 'hurs', 'ps', 'wdss', 'wdds', 'ts', 'lon', 'lat']
+VARS = ['hurs', 'ps', 'tas', 'tds', 'ts', 'uas', 'vas', 'wdds', 'wdss']
 
 def read(filename, time):
 	d = ds.read(filename, ['time'])
