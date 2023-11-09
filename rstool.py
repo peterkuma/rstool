@@ -55,7 +55,7 @@ def get_driver(name):
 		raise ValueError('%s: unknown input type' % name)
 	return drv
 
-def main(input_type, output_type, input_, output, surf=None):
+def main2(input_type, output_type, input_, output, surf=None):
 	d_raw = None
 	d_pts = None
 	d_prof = None
@@ -131,7 +131,7 @@ def main(input_type, output_type, input_, output, surf=None):
 	})
 	ds.write(output, d)
 
-if __name__ == '__main__':
+def main():
 	if len(sys.argv) not in [5, 6]:
 		sys.stderr.write(sys.modules[__name__].__doc__)
 		sys.exit(1)
@@ -150,7 +150,10 @@ if __name__ == '__main__':
 	np.seterr(all='ignore')
 
 	#try:
-	main(input_type, output_type, input_, output, surf=surf)
+	main2(input_type, output_type, input_, output, surf=surf)
 	#except Exception as e:
 	#	sys.stderr.write('%s: %s\n' % (sys.argv[0], str(e)))
 	#	sys.exit(1)
+
+if __name__ == '__main__':
+	main()
