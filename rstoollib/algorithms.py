@@ -53,11 +53,12 @@ def calc_theta(p, ta):
 def calc_bvf(ta, zg, p, lat):
 	"""Calculate Bunt-Vaisala fequency from air temperature ta (K),
 	geopotential height zg (m) and pressure p (Pa)."""
+	g = calc_g(lat)
 	zgx = np.arange(0, 20000, 400)
 	tax = np.interp(zgx, zg, ta)
 	px = np.interp(zgx, zg, p)
-	g = calc_g(lat)
-	bvf2 = g*np.diff(tax)/np.diff(zgx)/((tax[1:] + tax[:-1])/2. + 273.15)
+	gx = np.interp(zgx, zg, g)
+	bvf2 = (gx[1:] + gx[:-1])*0.5*np.diff(tax)/np.diff(zgx)/((tax[1:] + tax[:-1])*0.5 + 273.15)
 	bvf = np.sqrt(np.abs(bvf2))*np.sign(bvf2)
 	return (px[1:] + px[:-1])/2.0, bvf
 
