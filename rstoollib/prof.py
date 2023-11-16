@@ -32,12 +32,12 @@ def prof(d, pres=5e2, desc=False):
 	if desc:
 		mask1 = np.array(
 			list(~(np.diff(d['p']) < 0.)) + [True],
-			np.bool
+			bool
 		)
 	else:
 		mask1 = np.array(
 			list(~(np.diff(d['p']) > 0.)) + [True],
-			np.bool
+			bool
 		)
 	for i in range(n - 1):
 		p1 = phalf[i]
