@@ -232,7 +232,7 @@ Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
 | --- | --- | --- | --- |
 | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
 | hurs | near-surface relative humidity | % | float64 |
-| ps | surface pressure | Pa | float64 |
+| ps | surface air pressure | Pa | float64 |
 | tas | near-surface dew point temperature | K | float64 |
 | tds | near-surface dew point temperature | K | float64 |
 | ts | surface temperature | K | float64 |
