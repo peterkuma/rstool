@@ -81,7 +81,6 @@ def main2(input_type, output_type, input_, output, surf=None):
 		d_raw = ds.read(input_)
 	elif input_type == 'pts':
 		d_pts = ds.read(input_)
-		d_prof['.'] = HEADER_PTS
 	elif input_type == 'prof':
 		d_prof = ds.read(input_)
 		d_prof['.'] = HEADER_PROF
