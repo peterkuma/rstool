@@ -108,22 +108,84 @@ rstool pts prof 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
 
 ## Installation
 
-Recommended operating system to run rstool is Linux with Python 3 and pipx.
+It is recommended to run rstool on Linux.
 
-Install with:
+### Linux
+
+On Debian-derived distributions (Ubuntu, Devuan, ...), install the required
+system packages with:
+
+```sh
+sudo apt install python3 python3-pip pipx
+```
+
+On Fedora, install the required system packages with:
+
+```sh
+sudo yum install python3 pipx
+```
+
+Install rstool:
 
 ```sh
 pipx install rstool
 ```
 
-**Note:** Make sure the directory `~/.local/bin` is included in the
-environmental variable `PATH`.
+Make sure that `$HOME/.local/bin` is included in the `PATH` environment
+variable if not already. This can be done with `pipx ensurepath`.
 
-Run with:
+You should now be able to run `rstool`.
 
-`rstool`
+To uninstall:
 
-in the command line.
+```sh
+pipx uninstall rstool
+```
+
+### macOS
+
+Open the Terminal. Install rstool with:
+
+```sh
+python3 -m pip install rstool
+```
+
+Make sure that `/Users/<user>/Library/Python/<version>/bin` is included in the
+`PATH` environment variable if not already, where `<user>` is your system
+user name and `<version>` is the Python version. This path should be printed
+by the above command. This can be done by adding this line to the file
+`.zprofile` in your home directory and restart the Terminal:
+
+```sh
+PATH="$PATH:/Users/<user>/Library/Python/<version>/bin"
+```
+
+You should now be able to run `rstool`.
+
+To uninstall:
+
+```sh
+python3 -m pip uninstall rstool
+```
+
+### Windows
+
+Install [Python 3](https://www.python.org). In the installer, tick `Add
+python.exe to PATH`.
+
+Open Command Prompt from the Start menu. Install rstool with:
+
+```sh
+pip install rstool
+```
+
+You should now be able to run `rstool`.
+
+To uninstall:
+
+```sh
+pip uninstall rstool
+```
 
 ## Format description
 
