@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='rstool',
-	version='1.0.0',
+	version='1.1.0',
 	py_modules=['rstool'],
 	entry_points={
 		'console_scripts': ['rstool=rstool:main'],
@@ -21,7 +21,7 @@ setup(
 		'scipy',
 		'pyproj',
 		'ds-format>=1.1.1',
-		'aquarius-time>=0.1.0',
+		'aquarius-time>=0.3.0',
 		'cftime>=1.5.1',
 	],
 	classifiers=[

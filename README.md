@@ -356,6 +356,17 @@ an MIT license (see [LICENSE.md](LICENSE.md)).
 
 ## Releases
 
+### 1.1.0 (2023-11-17)
+
+- Fixed a bool type error due to a removal of the type from the numpy package.
+- Improvements in the processing of surface variables.
+- Latitude-dependent gravitational acceleration calculation.
+- Destination variables are now only set if not existing already in prof to prof
+  conversion.
+- More accurate calculation of relative humidity from specific humidity.
+- Fixed missing calendar attribute in the time variable of prof output.
+- Fixes and improvements in the documentation.
+
 ### 1.0.0 (2021-12-11)
 
 - Changed calendar to proleptic Gregorian.
