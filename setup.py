@@ -15,7 +15,18 @@ setup(
 	author_email='peter@peterkuma.net',
 	url='https://github.com/peterkuma/rstool',
 	platforms='any',
-	keywords=['radiosonde', 'netcdf', 'atmospheric-science'],
+	keywords=[
+		'atmospheric-science'
+		'climate',
+		'climate-science',
+		'imet',
+		'intermet',
+		'netcdf',
+		'radiosonde',
+		'weather',
+		'weather-balloon',
+		'windsond',
+	],
 	install_requires=[
 		'numpy',
 		'scipy',
