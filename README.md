@@ -176,7 +176,7 @@ ascending profile (default), only strictly increasing subset of points is
 considered. For a descending profile (prof:desc), only strictly decreasing
 subset of points is considered. Vertical intervals with no points are filled
 with missing values. It is therefore possible to identify vertical intervals
-where no radiosonde data were recieved, and optionally interpolate (linearly or
+where no radiosonde data were received, and optionally interpolate (linearly or
 in some other way) across these intervals when plotting.
 
 | Variable | Description | Units | Type |
@@ -220,7 +220,7 @@ in some other way) across these intervals when plotting.
 
 surf dataset specifies near-surface variables which can be used as an optional
 input to rstool. These can come from a co-located automatic weather station
-(AWS). Some native radiosonde data can already contain same of these varibales
+(AWS). Some native radiosonde data can already contain same of these variables
 (iMet). Near-surface variables are needed to calculate some derived profile
 variables such as the lifting condensation level. All variables must have a
 single dimension `time`. The point nearest to the radiosonde launch time is
@@ -345,7 +345,7 @@ datasets depending on the instrument:
 | Attribute | Description |
 | --- | --- |
 | station | station information |
-| balloon | ballon information |
+| balloon | balloon information |
 | sonde | sonde information |
 | operator | operator name |
 
