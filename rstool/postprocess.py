@@ -1,7 +1,7 @@
 import numpy as np
 import ds_format as ds
 
-from rstoollib.algorithms import *
+from rstool.algorithms import *
 
 def postprocess(d):
 	"""Postprocess profile (prof) dataset d by calculating derived

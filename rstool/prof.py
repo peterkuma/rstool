@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import ma
 from pyproj import Geod
-from rstoollib.headers import HEADER_PROF
+from rstool.headers import HEADER_PROF
 
 VARS = [
 	'z',

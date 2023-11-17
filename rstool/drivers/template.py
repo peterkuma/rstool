@@ -1,6 +1,6 @@
 import ds_format as ds
 
-from rstoollib.headers import HEADER_PTS, HEADER_PROF
+from rstool.headers import HEADER_PTS, HEADER_PROF
 
 # This is a template for a new rstool driver which reads native instrument
 # data and outputs raw- or pts-formatted data.

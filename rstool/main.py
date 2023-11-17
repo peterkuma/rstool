@@ -53,10 +53,10 @@ import numpy as np
 import ds_format as ds
 import aquarius_time as aq
 
-import rstoollib
-from rstoollib.drivers import DRIVERS
-from rstoollib.headers import HEADER_PTS, HEADER_PROF
-from rstoollib import postprocess, prof
+import rstool
+from rstool.drivers import DRIVERS
+from rstool.headers import HEADER_PTS, HEADER_PROF
+from rstool import postprocess, prof
 
 def get_driver(name):
 	try:
@@ -100,7 +100,7 @@ def main2(input_type, output_type, input_, output, surf=None):
 		d_prof_desc = prof(d_pts, desc=True)
 
 	if d_prof is not None and surf is not None:
-		drv = rstoollib.drivers.surf
+		drv = rstool.drivers.surf
 		d_surf = drv.read(surf, d_prof['time'][0])
 		if d_surf is not None:
 			for k, v in d_surf.items():

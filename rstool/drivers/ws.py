@@ -2,7 +2,7 @@ import re
 import numpy as np
 import ds_format as ds
 
-from rstoollib.headers import HEADER_PTS
+from rstool.headers import HEADER_PTS
 
 re_line = re.compile(b'^(?P<h>\d+h)?(?P<m>\d+m)?(?P<s>\d+s)?(?P<ms>\d+)?: \[\#(?P<label>[A-Z]+):(?P<data>[^:\]]*)(?P<extra>:[^\]*])?\]$')
 re_header = re.compile(b'^# (?P<key>[^=]+)=(?P<value>.*)$')
@@ -12,7 +12,7 @@ NA = {
 	'int': -9223372036854775806,
 	'float': np.nan,
 	'hex': -9223372036854775806,
-	'string': '', 
+	'string': '',
 }
 
 PARAMS = [
@@ -37,7 +37,7 @@ PARAMS = [
 	(b'hu\d', 'relative humidity (old)', '%', 'float'),
 	(b'hw', 'hw', '1', 'int'),
 	(b'id', 'sond ID', '1', 'int'),
-	(b'label', 'label', '', 'string'), 
+	(b'label', 'label', '', 'string'),
 	(b'lat', 'latitude', 'degrees', 'float'),
 	(b'latd', 'latitude', 'decimal part of minute', 'int'),
 	(b'latm', 'latitude', 'minute', 'float'),
@@ -96,7 +96,7 @@ for k, v in META.items():
 	if v['flag_values'] is None:
 		del v['flag_values']
 	if v['flag_meanings'] is None:
-		del v['flag_meanings']	
+		del v['flag_meanings']
 
 def param(key):
 	for p in PARAMS:
@@ -141,7 +141,7 @@ def stage2(d):
 	if b'q0' in d or b'q1' in d:
 		q0 = d.get(b'q0', 0)
 		q1 = d.get(b'q1', 0)
-		d[b'q'] = max(q0, q1)	
+		d[b'q'] = max(q0, q1)
 	if b'r' in d or b'q' in d:
 		rssi = (d[b'r'] if b'r' in d else d[b'q'])/256.
 		if b'rec' in d:
@@ -191,7 +191,7 @@ def stage0(line):
 		d = {}
 		d[b'key'] = g['key']
 		d[b'value'] = g['value']
-		return d	
+		return d
 	m = re_line.match(line)
 	if m is None:
 		return
@@ -245,7 +245,7 @@ def read(filename):
 			d = stage0(line)
 			if d is not None:
 				if b'key' in d and b'value' in d:
-					header[d[b'key']] = d[b'value']	
+					header[d[b'key']] = d[b'value']
 				else:
 					dd += [d]
 	postprocess(dd)

@@ -7,7 +7,7 @@ setup(
 	version='1.1.0',
 	py_modules=['rstool'],
 	entry_points={
-		'console_scripts': ['rstool=rstool:main'],
+		'console_scripts': ['rstool=rstool.main:main'],
 	},
 	packages=find_packages(),
 	description='Command-line program for converting native radiosonde data to NetCDF and calculation of derived quantities, supporting InterMet Systems (iMet) and Windsond radiosondes',

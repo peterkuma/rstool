@@ -7,8 +7,8 @@ import re
 import csv
 import configparser
 import aquarius_time as aq
-from rstoollib.algorithms import *
-from rstoollib.headers import HEADER_PROF, HEADER_PTS
+from rstool.algorithms import *
+from rstool.headers import HEADER_PROF, HEADER_PTS
 
 PARAMS = [
 	('sample', 'sample number', '1', 'int'),
