@@ -1,5 +1,4 @@
-rstool
-======
+# rstool
 
 rstool is an open source command-line program for reading and converting native
 radiosonde data to NetCDF and calculation of derived physical quantities. It
@@ -17,8 +16,7 @@ Support for other instruments can be added by writing a Python module in
 `rstoollib/drivers` to read the data files produced by the radiosonde (see the
 template in `rstoollib/drivers/template.py`).
 
-Usage
------
+## Usage
 
 ```sh
 rstool <input_type> <output_type> <input> [<surface>] <output>
@@ -70,8 +68,7 @@ The following input/output type combinations are supported:
 
 where `instrument` is one of: `imet`, `ws`.
 
-Examples
---------
+## Examples
 
 Convert Windsond sounding `2000-01-01_0000.sounding` to profile:
 
@@ -109,8 +106,7 @@ Convert points to profile:
 rstool pts prof 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
 ```
 
-Installation
-------------
+## Installation
 
 Recommended operating system to run rstool is Linux with Python 3 and pipx.
 
