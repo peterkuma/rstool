@@ -20,8 +20,8 @@ def prof(d, pres=5e2, desc=False):
 	desc - Descending profile (bool).
 	"""
 	pmin, pmax = np.nanmin(d['p']), np.nanmax(d['p'])
-	phalf_min = pmin - (pmin % pres)
-	phalf_max = pmax + pres - (pmax % pres)
+	phalf_min = np.floor(pmin/pres)*pres
+	phalf_max = np.ceil(pmax/pres)*pres
 	phalf = np.arange(phalf_min, phalf_max + pres, pres)[::-1]
 	pfull = 0.5*(phalf[1:] + phalf[:-1])
 	n = len(phalf) - 1
@@ -39,7 +39,7 @@ def prof(d, pres=5e2, desc=False):
 			list(~(np.diff(d['p']) > 0.)) + [True],
 			bool
 		)
-	for i in range(n - 1):
+	for i in range(n):
 		p1 = phalf[i]
 		p2 = phalf[i + 1]
 		for var in VARS:
