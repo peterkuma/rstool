@@ -50,6 +50,9 @@ def calc_theta(p, ta):
 	p0 = p[0]
 	return ta*((p0/p)**(1.0*R_d/c_p))
 
+def calc_theta_v(theta, w):
+	return theta*(1 + w/epsilon)/(1 + w)
+
 def calc_bvf(ta, zg, p, lat):
 	"""Calculate Bunt-Vaisala fequency from air temperature ta (K),
 	geopotential height zg (m) and pressure p (Pa)."""
@@ -137,7 +140,7 @@ def calc_td(e):
 		return np.abs(es - e)
 	return fmin(f, 273.15, disp=False)[0]
 
-def calc_lclp(p0, e0, ta0):
+def calc_p_lcl(p0, e0, ta0):
 	"""Calculate lifting condensation level (LCL) pressure (Pa) from surface
 	pressure p0 (Pa), surface water vapor mixing ratio e0 (Pa) and surface
 	air temperature ta0 (K)."""
@@ -158,7 +161,5 @@ def calc_clp(p, e, ta):
 		return np.abs(ws1 - w0)
 	return fmin(f, p[0], disp=False)[0]
 
-def calc_llp(ts, p, theta):
-	p0 = p[0]
-	p1 = min(p0, np.interp(ts, theta, p))
-	return p1
+def calc_p_ll(ts, p, theta):
+	return min(p[0], np.interp(ts, theta, p))

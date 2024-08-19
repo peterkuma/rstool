@@ -1,3 +1,10 @@
+def header(x):
+	out = {}
+	for i, h in enumerate(['long_name', 'standard_name', 'units', '.dims']):
+		if x[i+1] is not None:
+			out[h] = x[i+1]
+	return out
+
 HEADER_PTS = [
 	('hur', 'relative humidity', 'relative_humidity', '%', ['seq']),
 	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', []),
@@ -15,10 +22,7 @@ HEADER_PTS = [
 	('vas', 'northward near-surface wind', 'northward_wind', 'm s-1', []),
 	('z', 'altitude', 'height_above_reference_ellipsoid', 'm', ['seq']),
 ]
-HEADER_PTS = {
-	x[0]: {'.dims': x[4], 'long_name': x[1], 'standard_name': x[2], 'units': x[3]}
-	for x in HEADER_PTS
-}
+HEADER_PTS = {x[0]: header(x) for x in HEADER_PTS}
 HEADER_PTS['time']['calendar'] = 'proleptic_gregorian'
 
 HEADER_PROF = [
@@ -46,6 +50,7 @@ HEADER_PROF = [
 	('tas', 'near-surface air temperature', 'air_pressure', 'K', []),
 	('tds', 'near-surface dew point temperature', 'dew_point_temperature', 'K', []),
 	('theta', 'air potential temperature', 'air_potential_temperature', 'K', ['p']),
+	('theta_v', 'air virtual potential temperature', None, 'K', ['p']),
 	('time', 'time', 'time', 'days since -4713-11-24 12:00 UTC', ['p']),
 	('ts', 'surface temperature', 'surface_temperature', 'K', []),
 	('ua', 'eastward wind', 'eastward_wind', 'm s-1', ['p']),
@@ -100,8 +105,5 @@ HEADER_PROF = [
 	#	'units': 'days since -4713-01-01 12:00 UTC',
 	#},
 ]
-HEADER_PROF = {
-	x[0]: {'.dims': x[4], 'long_name': x[1], 'standard_name': x[2], 'units': x[3]}
-	for x in HEADER_PROF
-}
+HEADER_PROF = { x[0]: header(x) for x in HEADER_PROF }
 HEADER_PROF['time']['calendar'] = 'proleptic_gregorian'

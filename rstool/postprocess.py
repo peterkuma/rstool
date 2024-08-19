@@ -19,8 +19,8 @@ def postprocess(d):
 		d['es'] = calc_es(d['ta'])
 	if 'p' in d and 'ta' in d and 'ta_par' not in d:
 		d['ta_par'] = calc_ta_par(d['p'], d['ta'][0])
-	if 'ts' in d and 'p' in d and 'theta' in d and 'llp' not in d:
-		d['llp'] = calc_llp(d['ts'], d['p'], d['theta'])
+	if 'ts' in d and 'p' in d and 'theta' in d and 'p_ll' not in d:
+		d['p_ll'] = calc_p_ll(d['ts'], d['p'], d['theta'])
 	if 'ua' in d and 'va' in d and 'wds' not in d and 'wdd' not in d:
 		d['wds'] = calc_wds(d['ua'], d['va'])
 		d['wdd'] = calc_wdd(d['ua'], d['va'])
@@ -35,12 +35,19 @@ def postprocess(d):
 		ws = calc_w(d['p'], d['es'])
 		w = d['hur']/100*ws
 		d['e'] = calc_e(w, d['p'])
+	if 'theta' in d and 'p' in d and 'es' in d and 'hur' in d and \
+		'theta_v' not in d:
+		ws = calc_w(d['p'], d['es'])
+		w = d['hur']/100*ws
+		d['theta_v'] = calc_theta_v(d['theta'], w)
 	if 'p' in d and 'e' in d and 'ta' in d and 'p_lcl' not in d:
-		d['p_lcl'] = calc_lclp(d['p'][0], d['e'][0], d['ta'][0])
+		d['p_lcl'] = calc_p_lcl(d['p'][0], d['e'][0], d['ta'][0])
 	if 'p_lcl' in d and 'p' in d and 'zg' in d and 'zg_lcl' not in d:
 		d['zg_lcl'] = np.interp(d['p_lcl'], d['p'][::-1], d['zg'][::-1])
 		#d['clp'] = calc_clp(d['p'], d['e'], d['ta'])
 		#d['cl'] = np.interp(d['clp'], d['p'][::-1], d['zg'][::-1])
+	if 'p_ll' in d and 'p' in d and 'zg' in d and 'zg_ll' not in d:
+		d['zg_ll'] = np.interp(d['p_ll'], d['p'][::-1], d['zg'][::-1])
 	if 'p' in d and 'ta' in d and 'e' in d and 'ta_par_s' not in d:
 		d['ta_par_s'] = calc_ta_par_s(d['p'], d['ta'][0], d['e'][0])
 	if 'p' in d and 'ts' in d and 'ta_surf_par' not in d:
