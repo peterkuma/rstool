@@ -6,7 +6,7 @@ from scipy.integrate import quad
 
 def calc_g(lat=45.):
 	"""Calculate gravitational acceleration (m.s-2) from latitude lat
-	(degrees)."""
+	(degree)."""
 	return 9.780327*(
 		1 +
 		0.0053024*np.sin(lat/180.0*np.pi)**2 -
@@ -15,22 +15,22 @@ def calc_g(lat=45.):
 
 def calc_zg(z, lat):
 	"""Calculate geopotential height (m) from height z (m) and latitude lat
-	(degrees)."""
-	return z*calc_g(lat)/g0
+	(degree)."""
+	return z*calc_g(lat)/gsl
 
 def calc_z(zg, lat):
 	"""Calculate height (m) from geopotential height zg (m) and latitude lat
-	(degrees)."""
-	return zg/calc_g(lat)*g0
+	(degree)."""
+	return zg/calc_g(lat)*gsl
 
 def calc_ua(wds, wdd):
 	"""Calculate zonal wind speed (m.s-1) from wind speed wds (m.s-1) and
-	wind direction wdd (degrees)."""
+	wind direction wdd (degree)."""
 	return np.sin(wdd/180.*np.pi)*wds
 
 def calc_va(wds, wdd):
 	"""Calculate meridional wind speed (m.s-1) from wind speed wds (m.s-1)
-	and wind direction wdd (degrees)."""
+	and wind direction wdd (degree)."""
 	return np.cos(wdd/180.*np.pi)*wds
 
 def calc_wds(ua, va):
@@ -39,7 +39,7 @@ def calc_wds(ua, va):
 	return np.sqrt(ua**2. + va**2.)
 
 def calc_wdd(ua, va):
-	""" Calculate wind direction (degrees) from meridional wind speed ua
+	""" Calculate wind direction (degree) from meridional wind speed ua
 	(m.s-1) and zoal wind speed va (m.s-1)."""
 	x = np.arctan2(-ua, -va)/np.pi*180.
 	return np.where(x >= 0., x, 360. + x)
@@ -47,11 +47,11 @@ def calc_wdd(ua, va):
 def calc_theta(p, ta):
 	"""Calculate potential temperature (K) from pressure p (Pa) and air
 	temperature ta (K)."""
-	p0 = p[0]
-	return ta*((p0/p)**(1.0*R_d/c_p))
+	ps = p[0]
+	return ta*((ps/p)**(1.0*rd/cp))
 
 def calc_theta_v(theta, w):
-	return theta*(1 + w/epsilon)/(1 + w)
+	return theta*(1 + w/eps)/(1 + w)
 
 def calc_bvf(ta, zg, p, lat):
 	"""Calculate Bunt-Vaisala fequency from air temperature ta (K),
@@ -65,54 +65,54 @@ def calc_bvf(ta, zg, p, lat):
 	bvf = np.sqrt(np.abs(bvf2))*np.sign(bvf2)
 	return (px[1:] + px[:-1])/2.0, bvf
 
-def calc_es(ta):
+def calc_esat(ta):
 	"""Calculate saturated vapor pressure (Pa) from air temperature ta
 	(K)."""
 	return 6.112*np.exp((17.67*(ta - 273.15))/(ta - 273.15 + 243.5))*1e2
 
-def calc_ws(p, ta):
+def calc_wsat(p, ta):
 	"""Calculate saturated water vapour mixing ratio (1) from pressure p
 	(Pa) and air temperature ta (K)."""
-	return calc_w(p, calc_es(ta))
+	return calc_w(p, calc_esat(ta))
 
 def calc_gamma_s(p, ta, lat=45.):
 	"""Calculate saturated adiabatic lapse rate from pressure p (Pa),
-	temperature ta (K), at latitude lat (degrees)."""
+	temperature ta (K), at latitude lat (degree)."""
 	gamma_d = calc_gamma_d(lat)
-	ws = calc_ws(p, ta)
-	return gamma_d*(1. + l_v*ws/(R_d*ta))/(1. + l_v**2.*ws/(R_d*c_p*ta**2.))
+	wsat = calc_wsat(p, ta)
+	return gamma_d*(1. + lv*wsat/(rd*ta))/(1. + lv**2.*wsat/(rd*cp*ta**2.))
 
 def calc_gamma_d(lat=45.):
-	"""Calculate dry adiabatic lapse rate at latitude lat (degrees)."""
+	"""Calculate dry adiabatic lapse rate at latitude lat (degree)."""
 	g = calc_g(lat)
-	return -(g/c_p)
+	return -(g/cp)
 
-def calc_ta_par(p, ta0):
+def calc_ta_par(p, tas):
 	"""Calculate dry parcel temperature at pressures p (Pa), assuming
-	surface air temperature ta0 (K).
+	near-surface air temperature tas (K).
 	"""
-	p0 = p[0]
-	return ta0*(p/p0)**(R_d/c_p)
+	ps = p[0]
+	return tas*(p/ps)**(rd/cp)
 
-def calc_ta_par_s(p, ta0, e0):
+def calc_ta_par_s(p, tas, es):
 	"""Calculate saturated parcel temperature at pressures p (Pa), assuming
-	surface air temperature ta0 (K) and surface water vapor pressure e0
-	(Pa). p has to be an array dense enough for an acurrate integration."""
+	near-surface air temperature tas (K) and near-surface water vapor pressure
+	es (Pa). p has to be an array dense enough for an acurrate integration."""
 	g = calc_g()
-	p0 = p[0]
+	ps = p[0]
 	n = len(p)
 	ta_s = np.full(n, np.nan, np.float64)
-	ta_s[0] = ta0
+	ta_s[0] = tas
 	gamma_d = calc_gamma_d()
-	w0 = calc_w(p0, e0)
+	w0 = calc_w(ps, es)
 	for i in range(1, n):
-		es = calc_es(ta_s[i-1])
-		ws = calc_w(p[i-1], es)
-		if w0 < ws:
+		esat = calc_esat(ta_s[i-1])
+		wsat = calc_w(p[i-1], esat)
+		if ws < wsat:
 			gamma = gamma_d
 		else:
 			gamma = calc_gamma_s(p[i], ta_s[i-1])
-		dta_dp = -R_d*ta_s[i-1]/(p[i]*g)*gamma
+		dta_dp = -rd*ta_s[i-1]/(p[i]*g)*gamma
 		dp = p[i] - p[i-1]
 		ta_s[i] = ta_s[i-1] + dta_dp*dp
 	return ta_s
@@ -120,7 +120,7 @@ def calc_ta_par_s(p, ta0, e0):
 def calc_w(p, e):
 	"""Calculate water vapor mixing ratio (1) from pressure p (Pa) and water
 	vapor pressure e (Pa)."""
-	return epsilon*e/(p - e)
+	return eps*e/(p - e)
 
 def calc_w_from_q(q):
 	"""Calculate water vapor mixing ratio (1) from specific humidity q
@@ -130,35 +130,35 @@ def calc_w_from_q(q):
 def calc_e(w, p):
 	"""Calculate vapor pressure (Pa) from water vapor mixing ratio w (1)
 	and pressure p (Pa)."""
-	return w*p/(epsilon + w)
+	return w*p/(eps + w)
 
 @np.vectorize
 def calc_td(e):
 	"""Calculate dew point (K) from water vapor pressure e (Pa)."""
 	def f(ta):
-		es = calc_es(ta)
-		return np.abs(es - e)
+		esat = calc_esat(ta)
+		return np.abs(esat - e)
 	return fmin(f, 273.15, disp=False)[0]
 
-def calc_p_lcl(p0, e0, ta0):
+def calc_p_lcl(ps, es, tas):
 	"""Calculate lifting condensation level (LCL) pressure (Pa) from surface
-	pressure p0 (Pa), surface water vapor mixing ratio e0 (Pa) and surface
-	air temperature ta0 (K)."""
-	w0 = calc_w(p0, e0)
+	air pressure ps (Pa), near-surface water vapor mixing ratio es (Pa) and
+	near-surface air temperature tas (K)."""
+	ws = calc_w(ps, es)
 	def f(p):
-		ta = ta0*((p/p0)**(1.0*R_d/c_p))
-		es = calc_es(ta)
-		w = calc_w(p, es)
-		return np.abs(w - w0)
+		ta = tas*((p/ps)**(rd/cp))
+		esat = calc_esat(ta)
+		w = calc_w(p, esat)
+		return np.abs(w - ws)
 	return fmin(f, 1000e2, disp=False)[0]
 
 def calc_clp(p, e, ta):
-	w0 = calc_w(p[0], e[0])
-	es = calc_es(ta)
-	ws = calc_w(p, es)
+	ws = calc_w(p[0], e[0])
+	esat = calc_esat(ta)
+	wsat = calc_w(p, esat)
 	def f(p1):
-		ws1 = np.interp(p1, p[::-1], ws[::-1])
-		return np.abs(ws1 - w0)
+		wsat1 = np.interp(p1, p[::-1], wsat[::-1])
+		return np.abs(wsat1 - ws)
 	return fmin(f, p[0], disp=False)[0]
 
 def calc_p_ll(ts, p, theta):

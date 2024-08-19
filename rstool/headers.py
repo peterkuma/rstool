@@ -27,8 +27,8 @@ HEADER_PTS['time']['calendar'] = 'proleptic_gregorian'
 
 HEADER_PROF = [
 	('bvf', 'brunt vaisala frequency in air', 'brunt_vaisala_frequency_in_air', 's-1', ['p2']),
-	('e', 'water vapor pressure in air', 'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
-	('es', 'saturation vapor pressure', 'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
+	('e', 'water vapor partial pressure in air', 'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
+	('esat', 'saturation water vapor partial pressure in air', 'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
 	('hur', 'relative humidity', 'relative_humidity', '%', ['p']),
 	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', []),
 	('hus', 'specific humidity', 'specific_humidity', '1', ['p']),
@@ -83,21 +83,6 @@ HEADER_PROF = [
 	#	'.dims': [],
 	#	'long_name': 'atmosphere_condensation_level',
 	#	'units': 'm',
-	#},
-	#'platform_altitude': {
-	#	'.dims': [],
-	#	'long_name': 'platform_altitude',
-	#	'units': 'm',
-	#},
-	#'launch_lon': {
-	#	'.dims': [],
-	#	'long_name': 'launch_lon',
-	#	'units': 'degrees_east',
-	#},
-	#'launch_lat': {
-	#	'.dims': [],
-	#	'long_name': 'launch_lat',
-	#	'units': 'degrees_north',
 	#},
 	#'launch_time': {
 	#	'.dims': [],

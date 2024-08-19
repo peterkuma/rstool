@@ -15,8 +15,8 @@ def postprocess(d):
 	if 'theta' in d and 'zg' in d and 'p' in d and 'lat' in d and \
 		'p2' not in d and 'bvf' not in d:
 		d['p2'], d['bvf'] = calc_bvf(d['theta'], d['zg'], d['p'], d['lat'])
-	if 'ta' in d and 'es' not in d:
-		d['es'] = calc_es(d['ta'])
+	if 'ta' in d and 'esat' not in d:
+		d['esat'] = calc_esat(d['ta'])
 	if 'p' in d and 'ta' in d and 'ta_par' not in d:
 		d['ta_par'] = calc_ta_par(d['p'], d['ta'][0])
 	if 'ts' in d and 'p' in d and 'theta' in d and 'p_ll' not in d:
@@ -27,18 +27,18 @@ def postprocess(d):
 	elif 'wds' in d and 'wdd' in d and 'ua' not in d and 'va' not in d:
 		d['ua'] = calc_ua(d['wds'], d['wdd'])
 		d['va'] = calc_va(d['wds'], d['wdd'])
-	if 'p' in d and 'es' in d and 'hus' in d and 'hur' not in d:
-		ws = calc_w(d['p'], d['es'])
+	if 'p' in d and 'esat' in d and 'hus' in d and 'hur' not in d:
+		wsat = calc_w(d['p'], d['esat'])
 		w = calc_w_from_q(d['hus'])
-		d['hur'] = 100*w/ws
-	if 'p' in d and 'es' in d and 'hur' in d and 'e' not in d:
-		ws = calc_w(d['p'], d['es'])
-		w = d['hur']/100*ws
+		d['hur'] = 100*w/wsat
+	if 'p' in d and 'esat' in d and 'hur' in d and 'e' not in d:
+		wsat = calc_w(d['p'], d['esat'])
+		w = d['hur']/100*wsat
 		d['e'] = calc_e(w, d['p'])
-	if 'theta' in d and 'p' in d and 'es' in d and 'hur' in d and \
+	if 'theta' in d and 'p' in d and 'esat' in d and 'hur' in d and \
 		'theta_v' not in d:
-		ws = calc_w(d['p'], d['es'])
-		w = d['hur']/100*ws
+		wsat = calc_w(d['p'], d['esat'])
+		w = d['hur']/100*wsat
 		d['theta_v'] = calc_theta_v(d['theta'], w)
 	if 'p' in d and 'e' in d and 'ta' in d and 'p_lcl' not in d:
 		d['p_lcl'] = calc_p_lcl(d['p'][0], d['e'][0], d['ta'][0])
@@ -60,8 +60,8 @@ def postprocess(d):
 		d['uas'] = calc_ua(d['wdss'], d['wdds'])
 		d['vas'] = calc_va(d['wdss'], d['wdds'])
 	if 'tds' in d and 'ps' in d and 'tas' in d and 'hurs' not in d:
-		e = calc_es(d['tds'])
+		e = calc_esat(d['tds'])
 		w = calc_w(d['ps'], e)
-		es = calc_es(d['tas'])
-		ws = calc_w(d['ps'], es)
-		d['hurs'] = 100*w/ws
+		esat = calc_esat(d['tas'])
+		wsat = calc_w(d['ps'], esat)
+		d['hurs'] = 100*w/wsat

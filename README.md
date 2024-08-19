@@ -243,7 +243,7 @@ in some other way) across these intervals when plotting.
 | --- | --- | --- | --- |
 | bvf | Brunt–Väisälä frequency in air | s<sup>-1</sup> | float64 |
 | e | water vapor pressure in air | Pa | float64 |
-| es | saturation vapor pressure | Pa | float64 |
+| esat | saturation vapor pressure | Pa | float64 |
 | hur | relative humidity | % | float64 |
 | hurs | near-surface relative humidity | % | float64 |
 | lat | latitude | degrees North | float64 |
@@ -262,6 +262,7 @@ in some other way) across these intervals when plotting.
 | ta_surf_par_s | saturated surface parcel temperature | K | float64 |
 | tas | near-surface air temperature | K | float64 |
 | theta | air potential temperature | K | float64 |
+| theta_v | air virtual potential temperature | K | float64 |
 | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
 | ts | surface temperature | K | float64 |
 | ua | eastward wind | m.s<sup>-1</sup> | float64 |
