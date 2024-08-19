@@ -98,7 +98,7 @@ def read_flt(filename):
 	except: pass
 	try: d['hurs'] = float(c['Weather']['Humidity'])
 	except: pass
-	try: d['ps'] = float(c['Weather']['Pressure'])
+	try: d['ps'] = float(c['Weather']['Pressure'])*1e2
 	except: pass
 	try: d['wdds'] = float(c['Weather']['Wind Direction'])
 	except: pass
