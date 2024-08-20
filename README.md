@@ -323,7 +323,7 @@ raw:imet is a raw instrument format of the InterMet radiosonde converted to
 NetCDF by reading the `.dat` file.
 
 | Variable | Long name | Standard name | Units |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | alt | altitude | height_above_reference_ellipsoid | m |
 | date_time | date time | | year/month/day hour:minute:second |
 | f_offs | frequency offset | | Hz |
@@ -349,7 +349,7 @@ raw:ws is a raw instrument format of the Windsond radiosonde converted to
 NetCDF by reading the `.sounding` file.
 
 | Variable | Long name | Standard name | Units | Comment |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | afc | automatic frequency control | | Hz |
 | afc1 | automatic frequency control 1 | | Hz |
 | afc2 | automatic frequency control 2 | | Hz |
