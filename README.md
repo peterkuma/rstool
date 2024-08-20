@@ -268,9 +268,9 @@ in some other way) across these intervals when plotting.
 | tv | virtual temperature | virtual_temperature | K | float64 |
 | tvs | near-surface virtual temperature | virtual_temperature | K | float64 |
 | ta_par | dry air parcel temperature | air_temperature | K | float64 |
-| ta_par_s | saturation air parcel temperature | air_temperature | K | float64 |
+| ta_par_sat | saturation air parcel temperature | air_temperature | K | float64 |
 | ta_surf_par | dry surface-temperature air parcel temperature | air_temperature | K | float64 |
-| ta_surf_par_s | saturation surface-temperature air parcel temperature | air_temperature | K | float64 |
+| ta_surf_par_sat | saturation surface-temperature air parcel temperature | air_temperature | K | float64 |
 | tas | near-surface air temperature | air_temperature | K | float64 |
 | theta | air potential temperature | air_potential_temperature | K | float64 |
 | theta_v | virtual potential temperature | virtual_temperature | K | float64 |
