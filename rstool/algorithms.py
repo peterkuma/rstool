@@ -1,165 +1,179 @@
 import numpy as np
-import scipy.constants
-from rstool.const import *
 from scipy.optimize import fmin
-from scipy.integrate import quad
 
-def calc_g(lat=45.):
-	"""Calculate gravitational acceleration (m.s-2) from latitude lat
-	(degree)."""
-	return 9.780327*(
-		1 +
-		0.0053024*np.sin(lat/180.0*np.pi)**2 -
-		0.0000058*np.sin(2*lat/180.0*np.pi)**2
-	)
+from rstool.const import *
 
-def calc_zg(z, lat):
-	"""Calculate geopotential height (m) from height z (m) and latitude lat
-	(degree)."""
-	return z*calc_g(lat)/gsl
-
-def calc_z(zg, lat):
-	"""Calculate height (m) from geopotential height zg (m) and latitude lat
-	(degree)."""
-	return zg/calc_g(lat)*gsl
-
-def calc_ua(wds, wdd):
-	"""Calculate zonal wind speed (m.s-1) from wind speed wds (m.s-1) and
-	wind direction wdd (degree)."""
-	return np.sin(wdd/180.*np.pi)*wds
-
-def calc_va(wds, wdd):
-	"""Calculate meridional wind speed (m.s-1) from wind speed wds (m.s-1)
-	and wind direction wdd (degree)."""
-	return np.cos(wdd/180.*np.pi)*wds
-
-def calc_wds(ua, va):
-	""" Calculate wind speed (m.s-1) from meridional wind speed ua (m.s-1)
-	and zoal wind speed va (m.s-1)."""
-	return np.sqrt(ua**2. + va**2.)
-
-def calc_wdd(ua, va):
-	""" Calculate wind direction (degree) from meridional wind speed ua
-	(m.s-1) and zoal wind speed va (m.s-1)."""
-	x = np.arctan2(-ua, -va)/np.pi*180.
-	return np.where(x >= 0., x, 360. + x)
-
-def calc_theta(p, ta):
-	"""Calculate potential temperature (K) from pressure p (Pa) and air
-	temperature ta (K)."""
-	ps = p[0]
-	return ta*((ps/p)**(1.0*rd/cp))
-
-def calc_theta_v(theta, w):
-	return theta*(1 + w/eps)/(1 + w)
-
-def calc_bvf(ta, zg, p, lat):
-	"""Calculate Bunt-Vaisala fequency from air temperature ta (K),
-	geopotential height zg (m) and pressure p (Pa)."""
-	g = calc_g(lat)
-	zgx = np.arange(0, 20000, 400)
-	tax = np.interp(zgx, zg, ta)
-	px = np.interp(zgx, zg, p)
-	gx = np.interp(zgx, zg, g)
-	bvf2 = (gx[1:] + gx[:-1])*0.5*np.diff(tax)/np.diff(zgx)/((tax[1:] + tax[:-1])*0.5 + 273.15)
+def calc_bvf(*, theta_v, zg, p, g):
+	'''Calculate Brunt-Väisälä fequency from air temperature *ta* (K),
+	geopotential height *zg* (m), air pressure *p* (Pa) and gravitational
+	acceleration *g* (m.s-2).'''
+	zg_half = np.arange(0, 20000, 400)
+	theta_v_half = np.interp(zg_half, zg, theta_v)
+	theta_v_full = (theta_v_half[1:] + theta_v_half[:-1])*0.5
+	phalf = np.interp(zg_half, zg, p)
+	pfull = (phalf[1:] + phalf[:-1])*0.5
+	bvf2 = g*np.diff(theta_v_half)/np.diff(zg_half)/theta_v_full
 	bvf = np.sqrt(np.abs(bvf2))*np.sign(bvf2)
-	return (px[1:] + px[:-1])/2.0, bvf
+	return pfull, bvf
 
-def calc_esat(ta):
-	"""Calculate saturated vapor pressure (Pa) from air temperature ta
-	(K)."""
-	return 6.112*np.exp((17.67*(ta - 273.15))/(ta - 273.15 + 243.5))*1e2
-
-def calc_wsat(p, ta):
-	"""Calculate saturated water vapour mixing ratio (1) from pressure p
-	(Pa) and air temperature ta (K)."""
-	return calc_w(p, calc_esat(ta))
-
-def calc_gamma_s(p, ta, lat=45.):
-	"""Calculate saturated adiabatic lapse rate from pressure p (Pa),
-	temperature ta (K), at latitude lat (degree)."""
-	gamma_d = calc_gamma_d(lat)
-	wsat = calc_wsat(p, ta)
-	return gamma_d*(1. + lv*wsat/(rd*ta))/(1. + lv**2.*wsat/(rd*cp*ta**2.))
-
-def calc_gamma_d(lat=45.):
-	"""Calculate dry adiabatic lapse rate at latitude lat (degree)."""
-	g = calc_g(lat)
-	return -(g/cp)
-
-def calc_ta_par(p, tas):
-	"""Calculate dry parcel temperature at pressures p (Pa), assuming
-	near-surface air temperature tas (K).
-	"""
-	ps = p[0]
-	return tas*(p/ps)**(rd/cp)
-
-def calc_ta_par_s(p, tas, es):
-	"""Calculate saturated parcel temperature at pressures p (Pa), assuming
-	near-surface air temperature tas (K) and near-surface water vapor pressure
-	es (Pa). p has to be an array dense enough for an acurrate integration."""
-	g = calc_g()
-	ps = p[0]
-	n = len(p)
-	ta_s = np.full(n, np.nan, np.float64)
-	ta_s[0] = tas
-	gamma_d = calc_gamma_d()
-	w0 = calc_w(ps, es)
-	for i in range(1, n):
-		esat = calc_esat(ta_s[i-1])
-		wsat = calc_w(p[i-1], esat)
-		if ws < wsat:
-			gamma = gamma_d
-		else:
-			gamma = calc_gamma_s(p[i], ta_s[i-1])
-		dta_dp = -rd*ta_s[i-1]/(p[i]*g)*gamma
-		dp = p[i] - p[i-1]
-		ta_s[i] = ta_s[i-1] + dta_dp*dp
-	return ta_s
-
-def calc_w(p, e):
-	"""Calculate water vapor mixing ratio (1) from pressure p (Pa) and water
-	vapor pressure e (Pa)."""
-	return eps*e/(p - e)
-
-def calc_w_from_q(q):
-	"""Calculate water vapor mixing ratio (1) from specific humidity q
-	(1)."""
-	return q/(1. - q)
-
-def calc_e(w, p):
-	"""Calculate vapor pressure (Pa) from water vapor mixing ratio w (1)
-	and pressure p (Pa)."""
+def calc_e(*, w, p):
+	'''Calculate water vapor partial pressure in air (Pa) from humidity
+	mixing ratio *w* (1) and air pressure *p* (Pa).'''
 	return w*p/(eps + w)
 
+def calc_esat(*, ta):
+	'''Calculate saturation water vapor partial pressure (Pa) from air
+	temperature *ta* (K).'''
+	return 6.112*np.exp((17.67*(ta - n0))/(ta - n0 + 243.5))*1e2
+
+def calc_g(*, lat=45):
+	'''Calculate gravitational acceleration (m.s-2) from latitude *lat*
+	(degree). Height dependence is ignored.'''
+	return 9.780327*(
+		1 +
+		0.0053024*np.sin(lat/180*np.pi)**2 -
+		0.0000058*np.sin(2*lat/180*np.pi)**2
+	)
+
+def calc_gamma(*, g):
+	'''Calculate air temperature lapse rate (K.m-1) at gravitational
+	acceleration *g* (m.s-2).'''
+	return g/cp
+
+def calc_gamma_sat(*, p, ta, gamma):
+	'''Calculate saturation air temperature lapse rate (K.m-1) from pressure
+	*p* (Pa), temperature *ta* (K) and air temperature lapse rate *gamma*
+	(K.m-1).'''
+	wsat = calc_wsat(p=p, ta=ta)
+	return gamma*(1 + lv*wsat/(rd*ta))/(1 + lv**2*wsat*eps/(rd*cp*ta**2))
+
+def calc_hur(*, w, wsat):
+	'''Calculate relative humidity (%) from humidity mixing ratio *w* (1) and
+	saturation water vapor mixing ratio in air *wsat* (1).'''
+	return 100*w/wsat
+
+def calc_hus(*, w):
+	return w/(1 + w)
+
+def calc_ta_par(*, p, ps, tas):
+	'''Calculate dry adiabatic air parcel temperature at air pressure *p* (Pa),
+	assuming surface air pressure *ps* and near-surface air temperature *tas*
+	(K).
+	'''
+	return tas*(p/ps)**kappa
+
+def calc_ta_par_sat(*, p, tas, ws, g, gamma):
+	'''Calculate saturation air parcel temperature at pressure *p* (Pa),
+	assuming near-surface air temperature *tas* (K), near-surface humidity
+	mixing ratio *ws* (1), gravitational acceleration *g* (m.s-2) and air
+	temperature lapse rate *gamma* (K.m-1). *p* has to be an array dense enough
+	for acurrate integration.'''
+	n = len(p)
+	ta_par_sat = np.full(n, np.nan, np.float64)
+	ta_par_sat[0] = tas
+	for i in range(1, n):
+		wsat = calc_wsat(p=p[i-1], ta=ta_par_sat[i-1])
+		if ws < wsat:
+			gamma1 = gamma
+		else:
+			gamma1 = calc_gamma_sat(p=p[i], ta=ta_par_sat[i-1], gamma=gamma)
+		dta_dp = rd*ta_par_sat[i-1]/(p[i]*g)*gamma1
+		dp = p[i] - p[i-1]
+		ta_par_sat[i] = ta_par_sat[i-1] + dta_dp*dp
+	return ta_par_sat
+
+def calc_tv(*, ta, w):
+	'''Calculate virtual temperature (K) from air temperature *ta* (K) and
+	humidity mixing ration *w* (1).'''
+	return ta*(1 + w/eps)/(1 + w)
+
+def calc_theta(*, p, ps, ta):
+	'''Calculate air potential temperature (K) from air pressure *p* (Pa),
+	surface air pressure *ps* (Pa) and air temperature *ta* (K).'''
+	return ta*(ps/p)**kappa
+
 @np.vectorize
-def calc_td(e):
-	"""Calculate dew point (K) from water vapor pressure e (Pa)."""
+def calc_td(*, e, hur, ta):
+	'''Calculate dew point temperature (K) from water vapor pressure e (Pa).'''
 	def f(ta):
-		esat = calc_esat(ta)
+		esat = calc_esat(ta=ta)
 		return np.abs(esat - e)
-	return fmin(f, 273.15, disp=False)[0]
+	return fmin(f, n0, disp=False)[0]
 
-def calc_p_lcl(ps, es, tas):
-	"""Calculate lifting condensation level (LCL) pressure (Pa) from surface
-	air pressure ps (Pa), near-surface water vapor mixing ratio es (Pa) and
-	near-surface air temperature tas (K)."""
-	ws = calc_w(ps, es)
+@np.vectorize
+def calc_p_lcl(*, ps, ws, tas):
+	'''Calculate lifting condensation level pressure (Pa) from surface air
+	pressure *ps* (Pa), near-surface humidity mixing ratio *ws* (Pa) and
+	near-surface air temperature *tas* (K).'''
 	def f(p):
-		ta = tas*((p/ps)**(rd/cp))
-		esat = calc_esat(ta)
-		w = calc_w(p, esat)
-		return np.abs(w - ws)
-	return fmin(f, 1000e2, disp=False)[0]
+		ta = calc_ta_par(p=p, ps=ps, tas=tas)
+		wsat = calc_wsat(p=p, ta=ta)
+		return np.abs(wsat - ws)
+	return fmin(f, 1e5, disp=False)[0]
 
-def calc_clp(p, e, ta):
-	ws = calc_w(p[0], e[0])
-	esat = calc_esat(ta)
-	wsat = calc_w(p, esat)
-	def f(p1):
-		wsat1 = np.interp(p1, p[::-1], wsat[::-1])
-		return np.abs(wsat1 - ws)
-	return fmin(f, p[0], disp=False)[0]
-
-def calc_p_ll(ts, p, theta):
+def calc_p_ll(*, ts, p, theta):
 	return min(p[0], np.interp(ts, theta, p))
+
+def calc_ua(*, wds, wdd):
+	'''Calculate eastward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
+	direction *wdd* (degree).'''
+	return -np.sin(wdd/180*np.pi)*wds
+
+def calc_va(*, wds, wdd):
+	'''Calculate northward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
+	direction *wdd* (degree).'''
+	return -np.cos(wdd/180*np.pi)*wds
+
+def calc_w(*,
+	p=None, e=None, # op 1
+	hus=None, # op 2
+	hur=None, wsat=None, # op 3
+):
+	'''Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
+	water vapor partial pressure *e* (Pa), [option 2] specific humidity *hus*
+	(1), or [option 3] relative humidity *hur* (%) and saturation humidity
+	mixing ratio *wsat* (1).'''
+	if p is not None and e is not None:
+		return eps*e/(p - e)
+	elif hus is not None:
+		return hus/(1 - hus)
+	elif hur is not None and wsat is not None:
+		return hur/100*wsat
+	else:
+		raise TypeError('invalid arguments')
+
+def calc_wdd(*, ua, va):
+	''' Calculate wind direction (degree) from eastward wind *ua* (m.s-1) and
+	northward wind *va* (m.s-1).'''
+	return np.arctan2(-ua, -va)/np.pi*180 % 360
+
+def calc_wds(*, ua, va):
+	'''Calculate wind speed (m.s-1) from eastward wind *ua* (m.s-1) and
+	northward wind *va* (m.s-1).'''
+	return np.sqrt(ua**2 + va**2)
+
+def calc_wsat(*, p, ta):
+	'''Calculate saturation humidity mixing ratio (1) from air pressure *p*
+	(Pa) and air temperature *ta* (K).'''
+	esat = calc_esat(ta=ta)
+	return calc_w(p=p, e=esat)
+
+def calc_z(*,
+	zg=None, g=None, # op 1
+	p1=None, p=None, z=None, # op 2
+):
+	'''Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
+	grativational acceleration *g* (m.s-2), [option 2] by interpolation from
+	air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
+	altitude at all levels *z* (m).'''
+	if zg is not None and g is not None:
+		return zg/g*gsl
+	elif p1 is not None and p is not None and z is not None:
+		return np.interp(p1, p[::-1], z[::-1])
+	else:
+		raise TypeError('invalid arguments')
+
+def calc_zg(*, z, g):
+	'''Calculate geopotential height (m) from altitude *z* (m) and
+	gravitational acceleration *g* (m.s-2).'''
+	return z*g/gsl

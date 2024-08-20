@@ -209,23 +209,24 @@ pts is an instrument-independent format containing a sequence of radiosonde
 measurements as received by the base station ordered by time, converted to a
 standard set of variables.
 
-| Variable | Description | Units | Type |
+| Variable | Long name | Standard name | Units | Type |
 | --- | --- | --- | --- |
-| hur | relative humidity | % | float64 |
-| hurs | near-surface relative humidity | % | float64 |
-| lat | latitude | degrees North | float64 |
-| lon | longitude | degrees East | float64 |
-| p | pressure | Pa | float64 |
-| ps | surface air pressure | Pa | float64 |
-| ta | air temperature | K | float64 |
-| tas | near-surface air temperature | K | float64 |
-| time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
-| station_lat | station latitude | degrees North | float64 |
-| station_lon | station longitude | degrees East | float64 |
-| station_z | station altitude | m | float64 |
-| uas | eastward near-surface wind | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind | m.s<sup>-1</sup> | float64 |
-| z | altitude | m | float64 |
+| hur | relative humidity | relative_humidity | % | float64 |
+| hurs | near-surface relative humidity | relative_humidity | % | float64 |
+| lat | latitude | latitude | degree North | float64 |
+| lon | longitude | longitude | degree East | float64 |
+| p | air pressure | air_pressure | Pa | float64 |
+| ps | surface air pressure | surface_air_pressure | Pa | float64 |
+| ta | air temperature | air_temperature | K | float64 |
+| tas | near-surface air temperature | air_temperature | K | float64 |
+| time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
+| station_lat | station latitude | latitude | degree North | float64 |
+| station_lon | station longitude | longitude | degree East | float64 |
+| station_z | station altitude | height_above_reference_ellipsoid | m | float64 |
+| station_time | station time | time | days since -4713-11-24 12:00 UTC | float64 | 
+| uas | eastward near-surface wind | eastward_wind | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind | northward_wind | m.s<sup>-1</sup> | float64 |
+| z | altitude | height_above_reference_ellipsoid | m | float64 |
 
 ### Profile (prof)
 
@@ -239,43 +240,57 @@ with missing values. It is therefore possible to identify vertical intervals
 where no radiosonde data were received, and optionally interpolate (linearly or
 in some other way) across these intervals when plotting.
 
-| Variable | Description | Units | Type |
+| Variable | Long name | Standard name | Units | Type |
 | --- | --- | --- | --- |
-| bvf | Brunt–Väisälä frequency in air | s<sup>-1</sup> | float64 |
-| e | water vapor pressure in air | Pa | float64 |
-| esat | saturation vapor pressure | Pa | float64 |
-| hur | relative humidity | % | float64 |
-| hurs | near-surface relative humidity | % | float64 |
-| lat | latitude | degrees North | float64 |
-| lon | longitude | degrees East | float64 |
-| p | pressure | Pa | float64 |
-| p2 | pressure | Pa | float64 |
-| p_lcl | atmosphere lifting condensation level pressure | Pa | float64 |
-| ps | surface air pressure | Pa | float64 |
-| station_lat | station latitude | degrees North | float64 |
-| station_lon | station longitude | degrees East | float64 |
-| station_z | station altitude | m | float64 |
-| ta | air temperature | K | float64 |
-| ta_par | dry parcel temperature | K | float64 |
-| ta_par_s | saturated parcel temperature | K | float64 |
-| ta_surf_par | dry surface parcel temperature | K | float64 |
-| ta_surf_par_s | saturated surface parcel temperature | K | float64 |
-| tas | near-surface air temperature | K | float64 |
-| theta | air potential temperature | K | float64 |
-| theta_v | air virtual potential temperature | K | float64 |
-| time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
-| ts | surface temperature | K | float64 |
-| ua | eastward wind | m.s<sup>-1</sup> | float64 |
-| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| va | northward wind | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| wdd | wind from direction | degrees | float64 |
-| wdds | near-surface wind from direction | degrees | float64 |
-| wds | wind speed | m.s<sup>-1</sup> | float64 |
-| wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| z | altitude | m | float64 |
-| zg | geopotential height | m | float64 |
-| zg_lcl | lifting condensation level geopotential height | m | float64 |
+| bvf | Brunt–Väisälä frequency in air | brunt_vaisala_frequency_in_air | s<sup>-1</sup> | float64 |
+| e | water vapor pressure in air | water_vapor_partial_pressure_in_air | Pa | float64 |
+| es | near-surface water vapor partial pressure in air | water_vapor_partial_pressure_in_air | Pa | float64 |
+| esat | saturation vapor pressure | water_vapor_partial_pressure_in_air | Pa | float64 |
+| esats | near-surface saturation vapor pressure | water_vapor_partial_pressure_in_air | Pa | float64 |
+| g | gravitational acceleration | | m.s<sup>-2</sup> | float64 |
+| gamma | air temperature lapse rate | air_temperature_lapse_rate | K.m<sup>-1</sup> | float64
+| gamma_sat | air temperature saturation lapse rate | air_temperature_lapse_rate | K.m</sup>-1</sup> | float64 |
+| hur | relative humidity | relative_humiidty | % | float64 |
+| hurs | near-surface relative humidity | relative_humidity | % | float64 |
+| lat | latitude | latitude | degree North | float64 |
+| lon | longitude | longitude | degree East | float64 |
+| p | air pressure | air_pressure | Pa | float64 |
+| p2 | air pressure | air_pressure | Pa | float64 |
+| p_lcl | atmosphere lifting condensation level pressure | air_pressure | Pa | float64 |
+| ps | surface air pressure | surface_air_presssure | Pa | float64 |
+| station_lat | station latitude | latitude | degree North | float64 |
+| station_lon | station longitude | longitude | degree East | float64 |
+| station_time | station time | time | days since -4713-11-24 12:00 UTC | float64 | 
+| station_z | station altitude | height_above_reference_ellipsoid | m | float64 |
+| ta | air temperature | air_temperature | K | float64 |
+| td | dew point temperature | dew_point_temperature | K | float64 |
+| tds | near-surface dew point temperature | dew_point_temperature | K | float64 |
+| tv | virtual temperature | virtual_temperature | K | float64 |
+| tvs | near-surface virtual temperature | virtual_temperature | K | float64 |
+| ta_par | dry air parcel temperature | air_temperature | K | float64 |
+| ta_par_s | saturation air parcel temperature | air_temperature | K | float64 |
+| ta_surf_par | dry surface-temperature air parcel temperature | air_temperature | K | float64 |
+| ta_surf_par_s | saturation surface-temperature air parcel temperature | air_temperature | K | float64 |
+| tas | near-surface air temperature | air_temperature | K | float64 |
+| theta | air potential temperature | air_potential_temperature | K | float64 |
+| theta_v | virtual potential temperature | virtual_temperature | K | float64 |
+| time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
+| ts | surface temperature | surface_temperature | K | float64 |
+| ua | eastward wind | eastward_wind | m.s<sup>-1</sup> | float64 |
+| uas | eastward near-surface wind | eastward_wind | m.s<sup>-1</sup> | float64 |
+| va | northward wind | northward_wind | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind | northward_wind | m.s<sup>-1</sup> | float64 |
+| w | humidity mixing ratio | humidity_mixing_ratio | 1 | float64 |
+| wdd | wind from direction | wind_from_direction | degree | float64 |
+| wdds | near-surface wind from direction | wind_from_direction | degree | float64 |
+| wds | wind speed | wind_speed | m.s<sup>-1</sup> | float64 |
+| wdss | near-surface wind speed | wind_speed | m.s<sup>-1</sup> | float64 |
+| ws | near-surface humidity mixing ratio | humidity_mixing_ratio | 1 | float64 |
+| wsat | saturation humidity mixing ratio | humidity_mixing_ratio | 1 | float64 |
+| wsats | near-surface saturation humidity mixing ratio | humidity_mixing_ratio | 1 | float64 |
+| z | altitude | height_above_reference_ellipsoid | m | float64 |
+| zg | geopotential height | geopotential_height | m | float64 |
+| zg_lcl | lifting condensation level geopotential height | geopotential_height | m | float64 |
 
 ### Surface (surf)
 
@@ -289,106 +304,106 @@ picked. If no points are within 1 hour of the radiosonde launch, the surface
 input is ignored.  Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
 Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
 
-| Variable | Description | Units | Type |
+| Variable | Long name | Standard name | Units | Type |
 | --- | --- | --- | --- |
-| time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
-| hurs | near-surface relative humidity | % | float64 |
-| ps | surface air pressure | Pa | float64 |
-| tas | near-surface air temperature | K | float64 |
-| tds | near-surface dew point temperature | K | float64 |
-| ts | surface temperature | K | float64 |
-| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| wdds | near-surface wind from direction | degrees | float64 |
-| wdss | near-surface wind speed | m.s<sup>-1</sup> | float64 |
+| time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
+| hurs | near-surface relative humidity | relative_humidity | % | float64 |
+| ps | surface air pressure | surface_air_pressure | Pa | float64 |
+| tas | near-surface air temperature | air_temperature | K | float64 |
+| tds | near-surface dew point temperature | dew_point_temperature | K | float64 |
+| ts | surface temperature | surface_temperature | K | float64 |
+| uas | eastward near-surface wind speed | eastward_wind_speed | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind speed | northward_wind_speed | m.s<sup>-1</sup> | float64 |
+| wdds | near-surface wind from direction | wind_from_direction | degree | float64 |
+| wdss | near-surface wind speed | wind_speed | m.s<sup>-1</sup> | float64 |
 
 ### iMet raw (raw:imet)
 
 raw:imet is a raw instrument format of the InterMet radiosonde converted to
 NetCDF by reading the `.dat` file.
 
-| Variable | Description | Units | Type |
+| Variable | Long name | Standard name | Units | Type |
 | --- | --- | --- | --- |
-| alt | altitude | m | float64 |
-| date_time | date time | year/month/day hour:minute:second | string |
-| f_offs | frequency offset | Hz | float64 |
-| freq | frequency | Hz | float64 |
-| hum | relative humidity | % | float64 |
-| hurs | near-surface relative humidity | % | float64 |
-| lat | latitude | degrees North | float64 |
-| long | longitude | degrees East | float64 |
-| press | pressure | Pa | float64 |
-| ps | surface air pressure | Pa | float64 |
-| sample | sample number | 1 | int64 |
-| station_lat | station latitude | degrees North | float64 |
-| station_lon | station longitude | degrees East | float64 |
-| station_z | station altitude | m | float64 |
-| tair | air temperature | K | float64 |
-| tas | near-surface air temperature | K | float64 |
-| uas | eastward near-surface wind speed | m.s<sup>-1</sup> | float64 |
-| vas | northward near-surface wind speed | m.s<sup>-1</sup> | float64 |
+| alt | altitude | height_above_reference_ellipsoid | m | float64 |
+| date_time | date time | | year/month/day hour:minute:second | string |
+| f_offs | frequency offset | | Hz | float64 |
+| freq | frequency | | Hz | float64 |
+| hum | relative humidity | relative_humidity | % | float64 |
+| hurs | near-surface relative humidity | relative_humidity | % | float64 |
+| lat | latitude | latitude | degree North | float64 |
+| long | longitude | longitude | degree East | float64 |
+| press | air pressure | air_pressure | Pa | float64 |
+| ps | surface air pressure | surface_air_pressure | Pa | float64 |
+| sample | sample number | | 1 | int64 |
+| station_lat | station latitude | station_latitude | degree North | float64 |
+| station_lon | station longitude | station longitude | degree East | float64 |
+| station_z | station altitude | height_above_reference_ellipsoid | m | float64 |
+| tair | air temperature | air_temperature | K | float64 |
+| tas | near-surface air temperature | air_temperature | K | float64 |
+| uas | eastward near-surface wind speed | eastward_wind | m.s<sup>-1</sup> | float64 |
+| vas | northward near-surface wind speed | northward_wind | m.s<sup>-1</sup> | float64 |
 
 ### Windsond raw (raw:ws)
 
 raw:ws is a raw instrument format of the Windsond radiosonde converted to
 NetCDF by reading the `.sounding` file.
 
-| Variable | Description | Units | Type | Comment |
+| Variable | Long name | Standard name | Units | Type | Comment |
 | --- | --- | --- | --- | --- |
-| afc | automatic frequency control | Hz | int64 |
-| afc1 | automatic frequency control 1 | Hz | int64 |
-| afc2 | automatic frequency control 2 | Hz | int64 |
-| alt | GPS altitude | m | int64 |
-| ang | wind direction | degrees | float64 |
-| ang\<n\> | wind direction (old) | degrees | float64 |
-| behlan | behavior after landing | 1 | int64 | 0: power-save, 1: beacon at once |
-| burn | burn string | 1 | int64 | 0: at cut down
-| crc | cyclic redundancy check (CRC) | 1 | int64 |
-| cutalt | cut dow altitude | m | int64 |
-| extra | extra information | | string |
-| fwver | firmware version | 1 | float64 |
-| galt | altitude | m | int64 | |
-| gpa | ground pressure | Pa | int |
-| hdop | GPS horizontal dilution of precision (HDOP) |  | float64 |
-| hu | relative humidity | % | float64 |
-| hu\<n\> | relative humidity (old) | % | float64 |
-| hw | hw | 1 | int64 |
-| id | sond ID | 1 | int64 |
-| install | install | | string |
-| label | label | | string |
-| lat | latitude | degrees North | float64 |
-| lon | longitude | degrees East | float64 |
-| lux | light | lux | int64 |
-| mcnt | message counter | 1 | int64 |
-| md | mode | 1 | int64 | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
-| new | GPS validity | 1 | int64 | 0: GPS is old |
-| node_id | node ID | 1 | int64 |
-| offset | time start | seconds since 1970-01-01T00:00 | float64 |
-| pa | air pressure | Pa | int64 |
-| pwr | power | W | float64 |
-| q | quality | 1 | int64 |
-| q0 | quality | 1 | int64 |
-| q1 | quality | 1 | int64 |
-| qu | quality | % | float64 |
-| r | quality | 1 | int64 |
-| rec | correction | 1 | int64 |
-| rec<n> | correction (old) | 1 | int64 |
-| relAP | release altitude | m | int64 |
-| role | role | 1 | int64 |
-| sats | number of GPS satellites | 1 | int64 |
-| seq | sequence number | 1 | int64 |
-| sid | session ID | 1 | int64 |
-| software | software version | | string |
-| spd | wind speed | m.s<sup>-1</sup> | float64 |
-| spd\<n\> | wind speed (old) | m.s<sup>-1</sup> | float64 |
-| su | power supply | V | float64 |
-| syn | | 1 | int64 |
-| te | temperature | K | float64 |
-| te\<n\> | temperature (old) | K | float64 |
-| tei | internal temperature | K | float64 |
-| timezone | timezone | 1 | int64 |
-| ucnt | ucnt | 1 | int64 |
-| version | version | 1 | int64 |
+| afc | automatic frequency control | | Hz | int64 |
+| afc1 | automatic frequency control 1 | | Hz | int64 |
+| afc2 | automatic frequency control 2 | | Hz | int64 |
+| alt | GPS altitude | height_above_reference_ellipsoid | m | int64 |
+| ang | wind direction | wind_from_direction | degree | float64 |
+| ang\<n\> | wind direction (old) | wind_from_direction | degree | float64 |
+| behlan | behavior after landing | | 1 | int64 | 0: power-save, 1: beacon at once |
+| burn | burn string | | 1 | int64 | 0: at cut down
+| crc | cyclic redundancy check (CRC) | | 1 | int64 |
+| cutalt | cut dow altitude | height_above_reference_ellipsoid | m | int64 |
+| extra | extra information | | | string |
+| fwver | firmware version | | 1 | float64 |
+| galt | altitude | height_above_reference_ellipsoid | m | int64 | |
+| gpa | ground pressure | surface_air_pressure | Pa | int |
+| hdop | GPS horizontal dilution of precision (HDOP) | | | float64 |
+| hu | relative humidity | relative_humidity | % | float64 |
+| hu\<n\> | relative humidity (old) | relative_humidity | % | float64 |
+| hw | hw | | 1 | int64 |
+| id | sond ID | | 1 | int64 |
+| install | install | | | string |
+| label | label | | | string |
+| lat | latitude | latitude | degree North | float64 |
+| lon | longitude | longitude | degree East | float64 |
+| lux | light | | lux | int64 |
+| mcnt | message counter | | 1 | int64 |
+| md | mode | | 1 | int64 | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
+| new | GPS validity | | 1 | int64 | 0: GPS is old |
+| node_id | node ID | | 1 | int64 |
+| offset | time start | time | seconds since 1970-01-01T00:00 | float64 |
+| pa | air pressure | air_pressure | Pa | int64 |
+| pwr | power | |  W | float64 |
+| q | quality | | 1 | int64 |
+| q0 | quality | | 1 | int64 |
+| q1 | quality | | 1 | int64 |
+| qu | quality | | % | float64 |
+| r | quality | | 1 | int64 |
+| rec | correction | | 1 | int64 |
+| rec<n> | correction (old) | | 1 | int64 |
+| relAP | release altitude | height_above_reference_ellipsoid | m | int64 |
+| role | role | | 1 | int64 |
+| sats | number of GPS satellites | | 1 | int64 |
+| seq | sequence number | | 1 | int64 |
+| sid | session ID | | 1 | int64 |
+| software | software version | | | string |
+| spd | wind speed | wind_speed | m.s<sup>-1</sup> | float64 |
+| spd\<n\> | wind speed (old) | wind_speed | m.s<sup>-1</sup> | float64 |
+| su | power supply | | V | float64 |
+| syn | | | 1 | int64 |
+| te | air temperature | air_temperature | K | float64 |
+| te\<n\> | temperature (old) | air_temperature | K | float64 |
+| tei | internal temperature | | K | float64 |
+| timezone | timezone | | 1 | int64 |
+| ucnt | ucnt | | 1 | int64 |
+| version | version | | 1 | int64 |
 
 ### Attributes
 

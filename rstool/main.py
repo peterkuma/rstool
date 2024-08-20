@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""rstool converts native radiosonde data to NetCDF raw, points (pts) and profile (prof) datasets and calculates derived profile variables.
+'''rstool converts native radiosonde data to NetCDF raw, points (pts) and profile (prof) datasets and calculates derived profile variables.
 
 Usage: rstool <input_type> <output_type> <input> [<surface>] <output>
 
@@ -40,13 +40,13 @@ The following input/output type combinations are supported:
 - `prof prof` - profile to profile (with derived variables)
 
 where `instrument` is one of: `imet`, `ws`.
-"""
+'''
 
 import sys
 import signal
 signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
-__version__ = '1.1.0'
+__version__ = '2.0.0-dev'
 
 import datetime as dt
 import numpy as np
@@ -86,8 +86,6 @@ def main2(input_type, output_type, input_, output, surf=None):
 		d_prof['.'] = HEADER_PROF
 	else:
 		drv = get_driver(input_type)
-		#if output_type == 'prof' and hasattr(drv, 'read_prof'):
-		#	d_prof = drv.read_prof(input_)
 		if hasattr(drv, 'read'):
 			d_raw = drv.read(input_)
 
@@ -158,11 +156,7 @@ def main():
 
 	np.seterr(all='ignore')
 
-	#try:
 	main2(input_type, output_type, input_, output, surf=surf)
-	#except Exception as e:
-	#	sys.stderr.write('%s: %s\n' % (sys.argv[0], str(e)))
-	#	sys.exit(1)
 
 if __name__ == '__main__':
 	main()

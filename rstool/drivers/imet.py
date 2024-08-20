@@ -7,34 +7,37 @@ import re
 import csv
 import configparser
 import aquarius_time as aq
+
 from rstool.algorithms import *
+from rstool.const import n0
 from rstool.headers import HEADER_PROF, HEADER_PTS
 
 PARAMS = [
-	('sample', 'sample number', '1', 'int'),
-	('date_time', 'date time', '', 'string'),
-	('press', 'pressure', 'Pa', 'float'),
-	('tair', 'air temperature', 'K', 'float'),
-	('hum', 'relative humidity', '%', 'float'),
-	('lat', 'latitude', 'degrees_north', 'float'),
-	('long', 'longitude', 'degrees_east', 'float'),
-	('alt', 'altitude', 'm', 'float'),
-	('freq', 'frequency', 'Hz', 'float'),
-	('f_offs', 'frequency offset', 'Hz', 'float'),
-	('tas', 'near-surface air temperature', 'K', 'float', []),
-	('ps', 'surface air pressure', 'Pa', 'float', []),
-	('hurs', 'near-surface relative humidity', '%', 'float', []),
-	('uas', 'eastward near-surface wind speed', 'm s-1', 'float', []),
-	('vas', 'northward near-surface wind speed', 'm s-1', 'float', []),
-	('station_lon', 'station longitude', 'degrees_east', 'float', []),
-	('station_lat', 'station latitude', 'degrees_north', 'float', []),
-	('station_z', 'station altitude', 'm', 'float', []),
+	('alt', 'altitude', 'height_above_reference_ellipsoid', 'm', 'float'),
+	('date_time', 'date time', None, '', 'string'),
+	('f_offs', 'frequency offset', None, 'Hz', 'float'),
+	('freq', 'frequency', None, 'Hz', 'float'),
+	('hum', 'relative humidity', 'relative_humidity', '%', 'float'),
+	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', 'float', []),
+	('lat', 'latitude', 'latitude', 'degrees_north', 'float'),
+	('long', 'longitude', 'longitude', 'degrees_east', 'float'),
+	('press', 'air pressure', 'air_pressure', 'Pa', 'float'),
+	('ps', 'surface air pressure', 'surface_air_pressure', 'Pa', 'float', []),
+	('sample', 'sample number', None, '1', 'int'),
+	('station_lat', 'station latitude', 'latitude', 'degrees_north', 'float', []),
+	('station_lon', 'station longitude', 'longitude', 'degrees_east', 'float', []),
+	('station_z', 'station altitude', 'height_above_reference_ellipsoid', 'm', 'float', []),
+	('tair', 'air temperature', 'air_temperature', 'K', 'float'),
+	('tas', 'near-surface air temperature', 'air_temperature', 'K', 'float', []),
+	('uas', 'eastward near-surface wind speed', 'eastward_wind', 'm s-1', 'float', []),
+	('vas', 'northward near-surface wind speed', 'northward_wind', 'm s-1', 'float', []),
 ]
 
 META = {p[0]: {
-	'.dims': p[4] if len(p) > 4 else ['seq'],
-	'long_name': p[1].replace(' ', '_'),
-	'units': p[2],
+	'.dims': p[5] if len(p) > 5 else ['seq'],
+	'long_name': p[1],
+	'standard_name': p[2],
+	'units': p[3],
 } for p in PARAMS}
 
 def find(dirname, pattern):
@@ -62,7 +65,7 @@ def read_tspotint(filename):
 		zg.append(float(x[6]))
 	return {
 		'p': np.array(p, np.float64)*1e2,
-		'ta': np.array(ta, np.float64) + 273.15,
+		'ta': np.array(ta, np.float64) + n0,
 		'hur': np.array(hur, np.float64),
 		'wds': np.array(wds, np.float64),
 		'wdd': np.array(wdd, np.float64),
@@ -94,7 +97,7 @@ def read_flt(filename):
 	c = configparser.ConfigParser()
 	try: c.read(filename, encoding='utf-8-sig')
 	except: return d
-	try: d['tas'] = float(c['Weather']['Temperature']) + 273.15
+	try: d['tas'] = float(c['Weather']['Temperature']) + n0
 	except: pass
 	try: d['hurs'] = float(c['Weather']['Humidity'])
 	except: pass
@@ -104,11 +107,6 @@ def read_flt(filename):
 	except: pass
 	try: d['wdss'] = float(c['Weather']['Wind Speed'])
 	except: pass
-	if 'wdss' in d and 'wdds' in d:
-		d['uas'] = calc_ua(d['wdss'], d['wdds'])
-		d['vas'] = calc_va(d['wdss'], d['wdds'])
-	if 'wdss' in d: del d['wdss']
-	if 'wdds' in d: del d['wdds']
 	try: d['.']['.']['operator'] = c['Flight Station']['OperatorName']
 	except: pass
 	try: d['.']['.']['station'] = c['Flight Station']['Name']
@@ -252,12 +250,12 @@ def read_dat(filename):
 			'int': np.int64,
 			'float': np.float64,
 			'string': str,
-		}[p[3]]
+		}[p[4]]
 		na = {
 			'int': -9223372036854775806,
 			'float': np.nan,
 			'string': '',
-		}[p[3]]
+		}[p[4]]
 		n = len(d[p[0]])
 		d2[p[0]] = np.array(d[p[0]], type_)
 		if type_ == np.float64:
@@ -270,15 +268,8 @@ def read_dat(filename):
 				mask=mask,
 				fill_value=na
 			)
-		#if type_ == np.float64 or type_ == np.int64:
-		#	mask = d2[p[0]] == 999999999
-		#	d2[p[0]][mask] = na
-		#	d2[p[0]] = np.ma.array(d2[p[0]], type_,
-		#		mask=mask,
-		#		fill_value=na
-		#	)
 	if 'tair' in d2:
-		d2['tair'] += 273.15
+		d2['tair'] += n0
 	if 'press' in d2:
 		d2['press'] *= 1e2
 	return d2

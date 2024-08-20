@@ -13,12 +13,12 @@ VARS = [
 ]
 
 def prof(d, pres=5e2, desc=False):
-	"""Calculate profile (prof) from points (pts).
+	'''Calculate profile (prof) from points (pts).
 
 	d - Points (pts) dataset (dict).
 	pres - Pressure resolution (float).
 	desc - Descending profile (bool).
-	"""
+	'''
 	pmin, pmax = np.nanmin(d['p']), np.nanmax(d['p'])
 	phalf_min = np.floor(pmin/pres)*pres
 	phalf_max = np.ceil(pmax/pres)*pres
