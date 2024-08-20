@@ -210,7 +210,7 @@ measurements as received by the base station ordered by time, converted to a
 standard set of variables.
 
 | Variable | Long name | Standard name | Units | Type |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | hur | relative humidity | relative_humidity | % | float64 |
 | hurs | near-surface relative humidity | relative_humidity | % | float64 |
 | lat | latitude | latitude | degree North | float64 |
@@ -241,7 +241,7 @@ where no radiosonde data were received, and optionally interpolate (linearly or
 in some other way) across these intervals when plotting.
 
 | Variable | Long name | Standard name | Units | Type |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | bvf | Brunt–Väisälä frequency in air | brunt_vaisala_frequency_in_air | s<sup>-1</sup> | float64 |
 | e | water vapor pressure in air | water_vapor_partial_pressure_in_air | Pa | float64 |
 | es | near-surface water vapor partial pressure in air | water_vapor_partial_pressure_in_air | Pa | float64 |
@@ -305,7 +305,7 @@ input is ignored.  Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
 Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
 
 | Variable | Long name | Standard name | Units | Type |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) | float64 |
 | hurs | near-surface relative humidity | relative_humidity | % | float64 |
 | ps | surface air pressure | surface_air_pressure | Pa | float64 |
@@ -323,7 +323,7 @@ raw:imet is a raw instrument format of the InterMet radiosonde converted to
 NetCDF by reading the `.dat` file.
 
 | Variable | Long name | Standard name | Units | Type |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | alt | altitude | height_above_reference_ellipsoid | m | float64 |
 | date_time | date time | | year/month/day hour:minute:second | string |
 | f_offs | frequency offset | | Hz | float64 |
@@ -349,7 +349,7 @@ raw:ws is a raw instrument format of the Windsond radiosonde converted to
 NetCDF by reading the `.sounding` file.
 
 | Variable | Long name | Standard name | Units | Type | Comment |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | afc | automatic frequency control | | Hz | int64 |
 | afc1 | automatic frequency control 1 | | Hz | int64 |
 | afc2 | automatic frequency control 2 | | Hz | int64 |
