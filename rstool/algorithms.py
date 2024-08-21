@@ -90,6 +90,17 @@ def calc_hus(*, w):
 	'''
 	return w/(1 + w)
 
+def calc_lts(*, p, theta, thetas):
+	'''
+	**calc_lts**(\*, *p*, *theta*, *thetas*):
+
+	Calculate lower tropospheric stability (K) from air pressure *p* (Pa), air
+	potential temperature *theta* (K) and near-surface air potential
+	temperature *thetas* (K).
+	'''
+	theta700 = np.interp(700e2, p[::-1], theta[::-1])
+	return theta700 - thetas
+
 def calc_rho(*, rhod, rhow):
 	'''
 	**calc_rho**(\*, *rhod*, *rhow*)

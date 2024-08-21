@@ -15,6 +15,7 @@ DEPS = [
 	['hurs', ['ws', 'wsats'], calc_hur, ['w', 'wsat']],
 	['hus', 'w', calc_hus],
 	['huss', 'ws', calc_hus, 'w'],
+	['lts', ['p', 'theta', 'thetas'], calc_lts],
 	['pc', ['ps', 'ws', 'tas'], calc_pc],
 	['p_ll', ['ps', 'ts', 'p', 'theta'], calc_p_ll],
 	['rho', ['rhod', 'rhow'], calc_rho],

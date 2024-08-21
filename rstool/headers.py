@@ -57,6 +57,8 @@ HEADER_PROF = [
 	('hus', 'specific humidity', 'specific_humidity', '1', ['p']),
 	('lat', 'latitude', 'latitude', 'degree_north', ['p']),
 	('lon', 'longitude', 'longitude', 'degree_east', ['p']),
+	('lts', 'lower tropospheric stability', None, 'K', [],
+		{'units_metadata': 'temperature: difference'}),
 	('p', 'pressure', 'air_pressure', 'Pa', ['p']),
 	('p_bvf', 'pressure of bvf', 'air_pressure', 'Pa', ['p_bvf']),
 	('pc', 'condensation pressure', 'air_pressure', 'Pa', []),

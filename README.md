@@ -231,6 +231,7 @@ w, wsat 🠢 hur\
 ws, wsats 🠢 hurs\
 w 🠢 hus\
 ws 🠢 huss\
+p, theta, thetas 🠢 lts\
 ps, ws, tas 🠢 pc\
 ps, ts, p, theta 🠢 p_ll\
 rhod, rhow 🠢 rho\
@@ -338,6 +339,7 @@ in some other way) across these intervals when plotting.
 | hurs | near-surface relative humidity | relative_humidity | % |
 | lat | latitude | latitude | degree north |
 | lon | longitude | longitude | degree east |
+| lts | lower tropospheric stability | | K |
 | p | air pressure | air_pressure | Pa |
 | p_bvf | air pressure of bvf | air_pressure | Pa |
 | pc | condensation pressure | air_pressure | Pa |
@@ -571,6 +573,12 @@ saturation water vapor mixing ratio in air *wsat* (1).
 **calc_hus**(\*, *w*)
 
 Calculate specific humidity (1) from humidity mixing ratio *w* (1).
+
+**calc_lts**(\*, *p*, *theta*, *thetas*):
+
+Calculate lower tropospheric stability (K) from air pressure *p* (Pa), air
+potential temperature *theta* (K) and near-surface air potential
+temperature *thetas* (K).
 
 **calc_rho**(\*, *rhod*, *rhow*)
 
