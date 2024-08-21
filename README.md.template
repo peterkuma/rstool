@@ -204,7 +204,7 @@ To uninstall:
 pip uninstall rstool
 ```
 
-## Calculation of derived physial quantities
+## Calculation of derived physical quantities
 
 rstool calculates a number of physical quantities from a set of source physical
 quantities, such as different humidity quantities (water vapor partial
