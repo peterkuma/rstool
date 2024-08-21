@@ -340,12 +340,12 @@ in some other way) across these intervals when plotting.
 | p_bvf | air pressure of bvf | air_pressure | Pa |
 | pc | condensation pressure | air_pressure | Pa |
 | ps | surface air pressure | surface_air_presssure | Pa |
-| rho | air density | air_density | Pa |
-| rhod | dry air density | air_density | Pa |
-| rhods | near-surface dry air density | air_density | Pa |
-| rhos | near-surface air density | air_density | Pa |
-| rhow | water vapor density | air_density | Pa |
-| rhows | near-surface water vapor density | air_density | Pa |
+| rho | air density | air_density | kg.m<sup>-3</sup> |
+| rhod | dry air density | air_density | kg.m<sup>-3</sup> |
+| rhods | near-surface dry air density | air_density | kg.m<sup>-3</sup> |
+| rhos | near-surface air density | air_density | kg.m<sup>-3</sup> |
+| rhow | water vapor density | air_density | kg.m<sup>-3</sup> |
+| rhows | near-surface water vapor density | air_density | kg.m<sup>-3</sup> |
 | station_lat | station latitude | latitude | degree North |
 | station_lon | station longitude | longitude | degree East |
 | station_time | station time | time | days since -4713-11-24 12:00 UTC |
