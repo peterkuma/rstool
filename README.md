@@ -437,7 +437,6 @@ have to be called with explicitly specified keyword arguments. They cannot be
 called with positional arguments. This is to prevent accidental mistakes in
 specifying the arguments.**
 
-
 **calc_bvf**(\*, *theta_v*, *zg*, *p*, *g*, *res*=400)
 
 Calculate Brunt-Väisälä fequency from air temperature *ta* (K),
