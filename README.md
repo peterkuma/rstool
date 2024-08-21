@@ -525,8 +525,8 @@ Calculate northward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
 direction *wdd* (degree).
 
 **calc_w**(\*,\
-    [option 1] *p*=`None`, *e*=`None`,\
-    [option 2] *hus*=`None`,\
+    [option 1] *p*=`None`, *e*=`None`\
+    [option 2] *hus*=`None`\
     [option 3] *hur*=`None`, *wsat*=`None`\
 )
 
@@ -551,7 +551,7 @@ Calculate saturation humidity mixing ratio (1) from air pressure *p*
 (Pa) and air temperature *ta* (K).
 
 **calc_z**(\*,\
-    [option 1] *zg*=`None`, *g*=`None`,\
+    [option 1] *zg*=`None`, *g*=`None`\
     [option 2] *p1*=`None`, *p*=`None`, *z*=`None`\
 )
 
@@ -561,7 +561,7 @@ air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
 altitude at all levels *z* (m).
 
 **calc_zg**(\*,\
-    [option 1] *z*=`None`, *g*=`None`,\
+    [option 1] *z*=`None`, *g*=`None`\
     [option 2] *p1*=`None`, *p*=`None`, *zg*=`None`\
 )
 

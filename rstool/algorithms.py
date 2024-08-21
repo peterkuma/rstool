@@ -197,8 +197,8 @@ def calc_w(*,
 ):
 	'''
 	**calc_w**(\*,\\
-	    [option 1] *p*=`None`, *e*=`None`,\\
-	    [option 2] *hus*=`None`,\\
+	    [option 1] *p*=`None`, *e*=`None`\\
+	    [option 2] *hus*=`None`\\
 	    [option 3] *hur*=`None`, *wsat*=`None`\\
 	)
 
@@ -250,7 +250,7 @@ def calc_z(*,
 ):
 	'''
 	**calc_z**(\*,\\
-	    [option 1] *zg*=`None`, *g*=`None`,\\
+	    [option 1] *zg*=`None`, *g*=`None`\\
 	    [option 2] *p1*=`None`, *p*=`None`, *z*=`None`\\
 	)
 
@@ -272,7 +272,7 @@ def calc_zg(*,
 ):
 	'''
 	**calc_zg**(\*,\\
-	    [option 1] *z*=`None`, *g*=`None`,\\
+	    [option 1] *z*=`None`, *g*=`None`\\
 	    [option 2] *p1*=`None`, *p*=`None`, *zg*=`None`\\
 	)
 
