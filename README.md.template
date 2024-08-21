@@ -297,15 +297,15 @@ standard set of variables.
 | --- | --- | --- | --- |
 | hur | relative humidity | relative_humidity | % |
 | hurs | near-surface relative humidity | relative_humidity | % |
-| lat | latitude | latitude | degree North |
-| lon | longitude | longitude | degree East |
+| lat | latitude | latitude | degree north |
+| lon | longitude | longitude | degree east |
 | p | air pressure | air_pressure | Pa |
 | ps | surface air pressure | surface_air_pressure | Pa |
 | ta | air temperature | air_temperature | K |
 | tas | near-surface air temperature | air_temperature | K |
 | time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) |
-| station_lat | station latitude | latitude | degree North |
-| station_lon | station longitude | longitude | degree East |
+| station_lat | station latitude | latitude | degree north |
+| station_lon | station longitude | longitude | degree east |
 | station_z | station altitude | height_above_reference_ellipsoid | m |
 | station_time | station time | time | days since -4713-11-24 12:00 UTC |
 | uas | eastward near-surface wind | eastward_wind | m.s<sup>-1</sup> |
@@ -336,8 +336,8 @@ in some other way) across these intervals when plotting.
 | gamma_sat | air temperature saturation lapse rate | air_temperature_lapse_rate | K.m</sup>-1</sup> |
 | hur | relative humidity | relative_humiidty | % |
 | hurs | near-surface relative humidity | relative_humidity | % |
-| lat | latitude | latitude | degree North |
-| lon | longitude | longitude | degree East |
+| lat | latitude | latitude | degree north |
+| lon | longitude | longitude | degree east |
 | p | air pressure | air_pressure | Pa |
 | p_bvf | air pressure of bvf | air_pressure | Pa |
 | pc | condensation pressure | air_pressure | Pa |
@@ -348,8 +348,8 @@ in some other way) across these intervals when plotting.
 | rhos | near-surface air density | air_density | kg.m<sup>-3</sup> |
 | rhow | water vapor density | air_density | kg.m<sup>-3</sup> |
 | rhows | near-surface water vapor density | air_density | kg.m<sup>-3</sup> |
-| station_lat | station latitude | latitude | degree North |
-| station_lon | station longitude | longitude | degree East |
+| station_lat | station latitude | latitude | degree north |
+| station_lon | station longitude | longitude | degree east |
 | station_time | station time | time | days since -4713-11-24 12:00 UTC |
 | station_z | station altitude | height_above_reference_ellipsoid | m |
 | ta | air temperature | air_temperature | K |
@@ -423,13 +423,13 @@ converted to NetCDF by reading input `.dat` and `.flt` files.
 | freq | frequency | | Hz |
 | hum | relative humidity | relative_humidity | % |
 | hurs | near-surface relative humidity | relative_humidity | % |
-| lat | latitude | latitude | degree North |
-| long | longitude | longitude | degree East |
+| lat | latitude | latitude | degree north |
+| long | longitude | longitude | degree east |
 | press | air pressure | air_pressure | Pa |
 | ps | surface air pressure | surface_air_pressure | Pa |
 | sample | sample number | | 1 |
-| station_lat | station latitude | station_latitude | degree North |
-| station_lon | station longitude | station longitude | degree East |
+| station_lat | station latitude | station_latitude | degree north |
+| station_lon | station longitude | station longitude | degree east |
 | station_z | station altitude | height_above_reference_ellipsoid | m |
 | tair | air temperature | air_temperature | K |
 | tas | near-surface air temperature | air_temperature | K |
@@ -464,8 +464,8 @@ converted to NetCDF by reading an input `.sounding` file.
 | id | sond ID | | 1 |
 | install | install | | |
 | label | label | | |
-| lat | latitude | latitude | degree North |
-| lon | longitude | longitude | degree East |
+| lat | latitude | latitude | degree north |
+| lon | longitude | longitude | degree east |
 | lux | light | | lux |
 | mcnt | message counter | | 1 |
 | md | mode | | 1 | 0: init, 1: ready for launch, 2: rising, 3: falling, 4: on ground, silent, 5: on ground, beeping, 6: on ground, sometimes beeping, 7: cutting down |
