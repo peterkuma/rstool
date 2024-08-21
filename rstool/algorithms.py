@@ -196,11 +196,11 @@ def calc_w(*,
 	hur=None, wsat=None, # option 3
 ):
 	'''
-	**calc_w(\*,
-	    *p*=`None`, *e*=`None`, # option 1
-	    *hus*=`None`, # option 2
-	    *hur*=`None`, *wsat*=`None` # option 3
-	):
+	**calc_w**(\*,\
+	    *p*=`None`, *e*=`None`, # option 1\
+	    *hus*=`None`, # option 2\
+	    *hur*=`None`, *wsat*=`None` # option 3\
+	)
 
 	Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
 	water vapor partial pressure *e* (Pa), [option 2] specific humidity *hus*
@@ -218,7 +218,7 @@ def calc_w(*,
 
 def calc_wdd(*, ua, va):
 	'''
-	**calc_wdd(\*, *ua*, *va*)
+	**calc_wdd**(\*, *ua*, *va*)
 
 	Calculate wind direction (degree) from eastward wind *ua* (m.s-1) and
 	northward wind *va* (m.s-1).
@@ -249,9 +249,9 @@ def calc_z(*,
 	p1=None, p=None, z=None, # option 2
 ):
 	'''
-	**calc_z**(\*,
-	    *zg*=`None`, *g*=`None`, # option 1
-	    *p1*=`None`, *p*=`None`, *z*=`None` # option 2
+	**calc_z**(\*,\
+	    *zg*=`None`, *g*=`None`, # option 1\
+	    *p1*=`None`, *p*=`None`, *z*=`None` # option 2\
 	)
 
 	Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
@@ -271,9 +271,9 @@ def calc_zg(*,
 	p1=None, p=None, zg=None, # option 2
 ):
 	'''
-	**calc_zg**(\*,
-	    *z*=`None`, *g*=`None`, # option 1
-	    *p1*=`None`, *p*=`None`, *zg*=`None` # option 2
+	**calc_zg**(\*,\
+	    *z*=`None`, *g*=`None`, # option 1\
+	    *p1*=`None`, *p*=`None`, *zg*=`None` # option 2\
 	)
 
 	Calculate geopotential height (m) from [option 1] altitude *z* (m) and

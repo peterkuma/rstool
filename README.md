@@ -524,18 +524,14 @@ direction *wdd* (degree).
 Calculate northward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
 direction *wdd* (degree).
 
-**calc_w(\*,
-    *p*=`None`, *e*=`None`, # option 1
-    *hus*=`None`, # option 2
-    *hur*=`None`, *wsat*=`None` # option 3
-):
+**calc_w**(\*,	    *p*=`None`, *e*=`None`, # option 1	    *hus*=`None`, # option 2	    *hur*=`None`, *wsat*=`None` # option 3	)
 
 Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
 water vapor partial pressure *e* (Pa), [option 2] specific humidity *hus*
 (1), or [option 3] relative humidity *hur* (%) and saturation humidity
 mixing ratio *wsat* (1).
 
-**calc_wdd(\*, *ua*, *va*)
+**calc_wdd**(\*, *ua*, *va*)
 
 Calculate wind direction (degree) from eastward wind *ua* (m.s-1) and
 northward wind *va* (m.s-1).
@@ -550,20 +546,14 @@ northward wind *va* (m.s-1).
 Calculate saturation humidity mixing ratio (1) from air pressure *p*
 (Pa) and air temperature *ta* (K).
 
-**calc_z**(\*,
-    *zg*=`None`, *g*=`None`, # option 1
-    *p1*=`None`, *p*=`None`, *z*=`None` # option 2
-)
+**calc_z**(\*,	    *zg*=`None`, *g*=`None`, # option 1	    *p1*=`None`, *p*=`None`, *z*=`None` # option 2	)
 
 Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
 grativational acceleration *g* (m.s-2), [option 2] by interpolation from
 air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
 altitude at all levels *z* (m).
 
-**calc_zg**(\*,
-    *z*=`None`, *g*=`None`, # option 1
-    *p1*=`None`, *p*=`None`, *zg*=`None` # option 2
-)
+**calc_zg**(\*,	    *z*=`None`, *g*=`None`, # option 1	    *p1*=`None`, *p*=`None`, *zg*=`None` # option 2	)
 
 Calculate geopotential height (m) from [option 1] altitude *z* (m) and
 gravitational acceleration *g* (m.s-2), [option 2] by interpolation from
