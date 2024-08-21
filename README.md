@@ -437,6 +437,7 @@ have to be called with explicitly specified keyword arguments. They cannot be
 called with positional arguments. This is to prevent accidental mistakes in
 specifying the arguments.**
 
+
 **calc_bvf**(\*, *theta_v*, *zg*, *p*, *g*, *res*=400)
 
 Calculate Brunt-Väisälä fequency from air temperature *ta* (K),
@@ -524,9 +525,9 @@ Calculate northward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
 direction *wdd* (degree).
 
 **calc_w**(\*,\
-    *p*=`None`, *e*=`None`, # option 1\
-    *hus*=`None`, # option 2\
-    *hur*=`None`, *wsat*=`None` # option 3\
+    [option 1] *p*=`None`, *e*=`None`,\
+    [option 2] *hus*=`None`,\
+    [option 3] *hur*=`None`, *wsat*=`None`\
 )
 
 Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
@@ -550,8 +551,8 @@ Calculate saturation humidity mixing ratio (1) from air pressure *p*
 (Pa) and air temperature *ta* (K).
 
 **calc_z**(\*,\
-    *zg*=`None`, *g*=`None`, # option 1\
-    *p1*=`None`, *p*=`None`, *z*=`None` # option 2\
+    [option 1] *zg*=`None`, *g*=`None`,\
+    [option 2] *p1*=`None`, *p*=`None`, *z*=`None`\
 )
 
 Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
@@ -560,8 +561,8 @@ air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
 altitude at all levels *z* (m).
 
 **calc_zg**(\*,\
-    *z*=`None`, *g*=`None`, # option 1\
-    *p1*=`None`, *p*=`None`, *zg*=`None` # option 2\
+    [option 1] *z*=`None`, *g*=`None`,\
+    [option 2] *p1*=`None`, *p*=`None`, *zg*=`None`\
 )
 
 Calculate geopotential height (m) from [option 1] altitude *z* (m) and
