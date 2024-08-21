@@ -199,7 +199,7 @@ def calc_w(*,
 	**calc_w**(\*,\\
 	    [option 1] *p*, *e*\\
 	    [option 2] *hus*\\
-	    [option 3] *hur*, *wsat*`\\
+	    [option 3] *hur*, *wsat*\\
 	)
 
 	Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
@@ -272,7 +272,7 @@ def calc_zg(*,
 ):
 	'''
 	**calc_zg**(\*,\\
-	    [option 1] *z*, *g*`\\
+	    [option 1] *z*, *g*\\
 	    [option 2] *p1*, *p*, *zg*\\
 	)
 
