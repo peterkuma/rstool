@@ -133,14 +133,15 @@ def calc_tv(*, ta, w):
 	'''
 	return ta*(1 + w/eps)/(1 + w)
 
-def calc_theta(*, p, ps, ta):
+def calc_theta(*, p, ta, p0=1e5):
 	'''
-	**calc_theta**(\*, *p*, *ps*, *ta*)
+	**calc_theta**(\*, *p*, *ps*, *ta*, *p0*=1e5)
 
-	Calculate air potential temperature (K) from air pressure *p* (Pa),
-	surface air pressure *ps* (Pa) and air temperature *ta* (K).
+	Calculate air potential temperature (K) from air pressure *p* (Pa), surface
+	air pressure *ps* (Pa) and air temperature *ta* (K). Assume standard
+	pressure *p0*.
 	'''
-	return ta*(ps/p)**kappa
+	return ta*(p0/p)**kappa
 
 @np.vectorize
 def calc_td(*, e):

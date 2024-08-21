@@ -575,10 +575,11 @@ dense enough for accurate integration.
 Calculate virtual temperature (K) from air temperature *ta* (K) and
 humidity mixing ratio *w* (1).
 
-**calc_theta**(\*, *p*, *ps*, *ta*)
+**calc_theta**(\*, *p*, *ps*, *ta*, *p0*=1e5)
 
-Calculate air potential temperature (K) from air pressure *p* (Pa),
-surface air pressure *ps* (Pa) and air temperature *ta* (K).
+Calculate air potential temperature (K) from air pressure *p* (Pa), surface
+air pressure *ps* (Pa) and air temperature *ta* (K). Assume standard
+pressure *p0*.
 
 **calc_td**(\*, *e*)
 

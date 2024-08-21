@@ -26,7 +26,7 @@ DEPS = [
 	['tds', 'es', calc_td, 'e'],
 	['tv', ['ta', 'w'], calc_tv],
 	['tvs', ['tas', 'ws'], calc_tv, ['ta', 'w']],
-	['theta', ['p', 'ps', 'ta'], calc_theta],
+	['theta', ['p', 'ta'], calc_theta],
 	['theta_v', ['theta', 'w'], calc_tv, ['ta', 'w']],
 	['ua', ['wds', 'wdd'], calc_ua],
 	['uas', ['wdss', 'wdds'], calc_ua, ['wds', 'wdd']],
