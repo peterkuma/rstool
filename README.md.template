@@ -79,41 +79,41 @@ is `imet` or `ws`:
 
 ## Examples
 
-Convert a Windsond sounding `2000-01-01_0000.sounding` to the profile format:
+Convert a Windsond sounding `2000-01-01T0000.sounding` to the profile format:
 
 ```sh
-rstool ws prof 2000-01-01_0000.sounding 2000-01-01_0000.prof.nc
+rstool ws prof 2000-01-01T0000.sounding 2000-01-01T0000_prof.nc
 ```
 
-Convert an iMet sounding in a directory `2000-01-01_0000` to the profile format:
+Convert an iMet sounding in a directory `2000-01-01T0000` to the profile format:
 
 ```sh
-rstool imet prof 2000-01-01_0000 2000-01-01_0000.prof.nc
+rstool imet prof 2000-01-01T0000 2000-01-01T0000_prof.nc
 ```
 
-Convert a Windond sounding `2000-01-01_0000.sounding` to the Windsond
+Convert a Windond sounding `2000-01T01_0000.sounding` to the Windsond
 intermediate format:
 
 ```sh
-rstool ws im 2000-01-01_0000.sounding 2000-01-01_0000.im.nc
+rstool ws im 2000-01-01T0000.sounding 2000-01-01T0000_im.nc
 ```
 
-Convert an iMet sounding in a directory `2000-01-01_0000` to the points format:
+Convert an iMet sounding in a directory `2000-01-01T0000` to the points format:
 
 ```sh
-rstool imet pts 2000-01-01_0000 2000-01-01_0000.pts.nc
+rstool imet pts 2000-01-01T0000 2000-01-01T0000_pts.nc
 ```
 
 Convert the Windsond intermediate format to the points format:
 
 ```sh
-rstool im:ws pts 2000-01-01_0000.im.nc 2000-01-01_0000.pts.nc
+rstool im:ws pts 2000-01-01T0000_im.nc 2000-01-01T0000_pts.nc
 ```
 
 Convert the points format to the profile format:
 
 ```sh
-rstool pts prof 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
+rstool pts prof 2000-01-01T0000_pts.nc 2000-01-01T0000_prof.nc
 ```
 
 Calculate derived physical quantities from source physical quantities in the
