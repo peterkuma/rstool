@@ -153,7 +153,10 @@ def calc_td(*, e):
 	def f(ta):
 		esat = calc_esat(ta=ta)
 		return np.abs(esat - e)
-	return fmin(f, n0, disp=False)[0]
+	if np.isfinite(e):
+		return fmin(f, n0, disp=False)[0]
+	else:
+		return np.nan
 
 @np.vectorize
 def calc_p_lcl(*, ps, ws, tas):
@@ -168,7 +171,10 @@ def calc_p_lcl(*, ps, ws, tas):
 		ta = calc_ta_par(p=p, ps=ps, tas=tas)
 		wsat = calc_wsat(p=p, ta=ta)
 		return np.abs(wsat - ws)
-	return fmin(f, 1e5, disp=False)[0]
+	if np.isfinite(ps) and np.isfinite(ws) and np.isfinite(tas):
+		return fmin(f, 1e5, disp=False)[0]
+	else:
+		return np.nan
 
 def calc_p_ll(*, ps, ts, p, theta):
 	return min(ps, np.interp(ts, theta, p))
