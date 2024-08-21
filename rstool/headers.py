@@ -31,7 +31,7 @@ HEADER_PTS = {x[0]: header(x) for x in HEADER_PTS}
 
 HEADER_PROF = [
 	('bvf', 'brunt vaisala frequency in air', 'brunt_vaisala_frequency_in_air',
-		's-1', ['p2']),
+		's-1', ['p_bvf']),
 	('e', 'water vapor partial pressure in air',
 		'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
 	('es', 'near-surface water vapor partial pressure in air',
@@ -40,18 +40,25 @@ HEADER_PROF = [
 		'water_vapor_partial_pressure_in_air', 'Pa', ['p']),
 	('esats', 'near-surface saturation water vapor partial pressure in air',
 		'water_vapor_partial_pressure_in_air', 'Pa', []),
-	('g', 'gravitational acceleration', None, 'm s-2', []),
+	('g', 'gravitational acceleration', None, 'm s-2', [],
+		{'comment': 'at mean sea level, ignoring height dependence'}),
 	('gamma', 'air temperature lapse rate', 'air_temperature_lapse_rate',
-		'K m-1', [], {'units_metadata': 'temperature: difference'}),
-	('gamma_sat', 'air temperature saturation lapse rate', 'air_temperature_lapse_rate',
-		'K m-1', ['p'], {'units_metadata': 'temperature: difference'}),
+		'K m-1', [], {
+			'comment': 'assuming dry adiabatic process',
+			'units_metadata': 'temperature: difference'
+		}),
+	('gamma_sat', 'air temperature saturation lapse rate',
+		'air_temperature_lapse_rate', 'K m-1', ['p'], {
+			'comment': 'assuming moist adiabatic process',
+			'units_metadata': 'temperature: difference'
+		}),
 	('hur', 'relative humidity', 'relative_humidity', '%', ['p']),
 	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', []),
 	('hus', 'specific humidity', 'specific_humidity', '1', ['p']),
 	('lat', 'latitude', 'latitude', 'degree_north', ['p']),
 	('lon', 'longitude', 'longitude', 'degree_east', ['p']),
 	('p', 'pressure', 'air_pressure', 'Pa', ['p']),
-	('p2', 'pressure 2', 'air_pressure', 'Pa', ['p2']),
+	('p_bvf', 'pressure of bvf', 'air_pressure', 'Pa', ['p_bvf']),
 	('p_lcl', 'atmosphere lifting condensation level pressure', 'air_pressure',
 		'Pa', []),
 	('ps', 'surface air pressure', 'surface_air_pressure', 'Pa', []),
@@ -87,7 +94,7 @@ HEADER_PROF = [
 	('uas', 'eastward near-surface wind', 'eastward_wind', 'm s-1', []),
 	('va', 'northward wind', 'northward_wind', 'm s-1', ['p']),
 	('vas', 'northward near-surface wind', 'northward_wind', 'm s-1', []),
-	('w', 'humidity mixing ratio', None, '1', ['1']),
+	('w', 'humidity mixing ratio', None, '1', ['p']),
 	('wdd', 'wind from direction', 'wind_from_direction', 'degree', ['p']),
 	('wdds', 'near-surface wind from direction', 'wind_from_direction',
 		'degree', []),
@@ -99,7 +106,10 @@ HEADER_PROF = [
 		'1', []),
 	('z', 'altitude', 'height_above_reference_ellipsoid', 'm', ['p']),
 	('zg', 'geopotential height', 'geopotential_height', 'm', ['p']),
+	('zg_bvf', 'geopotential height of bvf', 'geopotential_height', 'm', ['p_bvf']),
 	('zg_lcl', 'lifting condensation level geopotential height',
-		'geopotential_height', 'm', []),
+		'geopotential_height', 'm', [], {
+			'comment': 'calculated from the measured pressure and geopotential height profile'
+		}),
 ]
 HEADER_PROF = {x[0]: header(x) for x in HEADER_PROF}

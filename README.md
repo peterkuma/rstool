@@ -255,7 +255,7 @@ in some other way) across these intervals when plotting.
 | lat | latitude | latitude | degree North |
 | lon | longitude | longitude | degree East |
 | p | air pressure | air_pressure | Pa |
-| p2 | air pressure | air_pressure | Pa |
+| p_bvf | air pressure of bvf | air_pressure | Pa |
 | p_lcl | atmosphere lifting condensation level pressure | air_pressure | Pa |
 | ps | surface air pressure | surface_air_presssure | Pa |
 | station_lat | station latitude | latitude | degree North |
@@ -290,6 +290,7 @@ in some other way) across these intervals when plotting.
 | wsats | near-surface saturation humidity mixing ratio | humidity_mixing_ratio | 1 |
 | z | altitude | height_above_reference_ellipsoid | m |
 | zg | geopotential height | geopotential_height | m |
+| zg_bvf | geopotential height of bvf | geopotential_height | m |
 | zg_lcl | lifting condensation level geopotential height | geopotential_height | m |
 
 ### Surface (surf)
@@ -424,6 +425,151 @@ datasets depending on the instrument:
 | balloon | balloon information |
 | sonde | sonde information |
 | operator | operator name |
+
+## API
+
+rstool provides functions implementing algorithms for calculating various
+physical quantities. The functions are available in the Python module
+`rstool.algorithms`.
+
+**All of the functions below use keyword-only arguments, which means that they
+have to be called with explicitly specified keyword arguments. They cannot be
+called with positional arguments. This is to prevent accidental mistakes in
+specifying the arguments.**
+
+
+**calc_bvf**(\*, *theta_v*, *zg*, *p*, *g*, *res*=400)
+
+Calculate Brunt-Väisälä fequency from air temperature *ta* (K),
+geopotential height *zg* (m), air pressure *p* (Pa) and gravitational
+acceleration *g* (m.s-2). *res* is vertical resolution in geopotential
+height (m).
+
+**calc_e**(\*, *p*, *w*)
+
+Calculate water vapor partial pressure in air (Pa) from humidity
+mixing ratio *w* (1) and air pressure *p* (Pa).
+
+**calc_esat**(\*, *ta*)
+
+Calculate saturation water vapor partial pressure (Pa) from air
+temperature *ta* (K).
+
+**calc_g**(\*, *lat*=45)
+
+Calculate gravitational acceleration (m.s-2) from latitude *lat*
+(degree). Height dependence is ignored.
+
+**calc_gamma**(\*, *g*)
+
+Calculate air temperature lapse rate (K.m-1) at gravitational
+acceleration *g* (m.s-2).
+
+**calc_gamma_sat**(\*, *p*, *ta*, *gamma*)
+
+Calculate saturation air temperature lapse rate (K.m-1) from pressure
+*p* (Pa), temperature *ta* (K) and air temperature lapse rate *gamma*
+(K.m-1).
+
+**calc_hur**(\*, *w*, *wsat*)
+
+Calculate relative humidity (%) from humidity mixing ratio *w* (1) and
+saturation water vapor mixing ratio in air *wsat* (1).
+
+**calc_hus**(\*, *w*)
+
+Calculate specific humidity (1) from humidity mixing ratio *w* (1).
+
+**calc_ta_par**(\*, *p*, *ps*, *tas*)
+
+Calculate dry adiabatic air parcel temperature at air pressure *p* (Pa),
+assuming surface air pressure *ps* and near-surface air temperature *tas*
+(K).
+
+**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gamma*)
+
+Calculate saturation air parcel temperature at pressure *p* (Pa),
+assuming near-surface air temperature *tas* (K), near-surface humidity
+mixing ratio *ws* (1), gravitational acceleration *g* (m.s-2) and air
+temperature lapse rate *gamma* (K.m-1). *p* has to be an array dense enough
+for acurrate integration.
+
+**calc_tv**(\*, *ta*, *w*)
+
+Calculate virtual temperature (K) from air temperature *ta* (K) and
+humidity mixing ration *w* (1).
+
+**calc_theta**(\*, *p*, *ps*, *ta*)
+
+Calculate air potential temperature (K) from air pressure *p* (Pa),
+surface air pressure *ps* (Pa) and air temperature *ta* (K).
+
+**calc_td**(\*, *e*, *hur*, *ta*)
+
+Calculate dew point temperature (K) from water vapor pressure *e* (Pa).
+
+**calc_p_lcl**(\*, *ps*, *ws*, *tas*)
+
+Calculate lifting condensation level pressure (Pa) from surface air
+pressure *ps* (Pa), near-surface humidity mixing ratio *ws* (Pa) and
+near-surface air temperature *tas* (K).
+
+**calc_ua**(\*, *wds*, *wdd*)
+
+Calculate eastward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
+direction *wdd* (degree).
+
+**calc_va**(\*, *wds*, *wdd*)
+
+Calculate northward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
+direction *wdd* (degree).
+
+**calc_w(\*,
+    *p*=`None`, *e*=`None`, # option 1
+    *hus*=`None`, # option 2
+    *hur*=`None`, *wsat*=`None` # option 3
+):
+
+Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
+water vapor partial pressure *e* (Pa), [option 2] specific humidity *hus*
+(1), or [option 3] relative humidity *hur* (%) and saturation humidity
+mixing ratio *wsat* (1).
+
+**calc_wdd(\*, *ua*, *va*)
+
+Calculate wind direction (degree) from eastward wind *ua* (m.s-1) and
+northward wind *va* (m.s-1).
+
+**calc_wds**(\*, *ua*, *va*)
+
+Calculate wind speed (m.s-1) from eastward wind *ua* (m.s-1) and
+northward wind *va* (m.s-1).
+
+**calc_wsat**(\*, *p*, *ta*)
+
+Calculate saturation humidity mixing ratio (1) from air pressure *p*
+(Pa) and air temperature *ta* (K).
+
+**calc_z**(\*,
+    *zg*=`None`, *g*=`None`, # option 1
+    *p1*=`None`, *p*=`None`, *z*=`None` # option 2
+)
+
+Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
+grativational acceleration *g* (m.s-2), [option 2] by interpolation from
+air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
+altitude at all levels *z* (m).
+
+**calc_zg**(\*,
+    *z*=`None`, *g*=`None`, # option 1
+    *p1*=`None`, *p*=`None`, *zg*=`None` # option 2
+)
+
+Calculate geopotential height (m) from [option 1] altitude *z* (m) and
+gravitational acceleration *g* (m.s-2), [option 2] by interpolation from
+air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
+geopotential height at all levels *zg* (m).
+
 
 ## License
 

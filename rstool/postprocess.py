@@ -1,9 +1,11 @@
 from rstool.algorithms import *
 
 DEPS = [
-	[['p2', 'bvf'], ['theta_v', 'zg', 'p', 'g'], calc_bvf],
-	['e', ['w', 'p'], calc_e],
-	['es', ['ws', 'ps'], calc_e, ['w', 'p']],
+	[['p_bvf', 'zg_bvf', 'bvf'], ['theta_v', 'zg', 'p', 'g'], calc_bvf],
+	['e', ['p', 'w'], calc_e],
+	['e', 'td', calc_esat, 'ta'],
+	['es', ['ps', 'ws'], calc_e, ['p', 'w']],
+	['es', 'tds', calc_esat, 'ta'],
 	['esat', 'ta', calc_esat],
 	['esats', 'tas', calc_esat, 'ta'],
 	['g', 'station_lat', calc_g, 'lat'],
@@ -14,7 +16,7 @@ DEPS = [
 	['hus', 'w', calc_hus],
 	['huss', 'ws', calc_hus, 'w'],
 	['p_lcl', ['ps', 'ws', 'tas'], calc_p_lcl],
-	['p_ll', ['ts', 'p', 'theta'], calc_p_ll],
+	['p_ll', ['ps', 'ts', 'p', 'theta'], calc_p_ll],
 	['ta_par', ['p', 'ps', 'tas'], calc_ta_par],
 	['ta_par_sat', ['p', 'tas', 'ws', 'g', 'gamma'], calc_ta_par_sat],
 	['ta_surf_par', ['p', 'ps', 'ts'], calc_ta_par, ['p', 'ps', 'tas']],
@@ -32,18 +34,20 @@ DEPS = [
 	['vas', ['wdss', 'wdds'], calc_va, ['wds', 'wdd']],
 	['w', 'hus', calc_w],
 	['w', ['hur', 'wsat'], calc_w],
+	['w', ['p', 'e'], calc_w],
 	['wdd', ['ua', 'va'], calc_wdd],
 	['wdds', ['uas', 'vas'], calc_wdd, ['ua', 'va']],
 	['wds', ['ua', 'va'], calc_wds],
 	['wdss', ['uas', 'vas'], calc_wds, ['ua', 'va']],
 	['ws', 'huss', calc_w, ['hus']],
 	['ws', ['hurs', 'wsats'], calc_w, ['hur', 'wsat']],
+	['ws', ['ps', 'es'], calc_w, ['p', 'e']],
 	['wsat', ['p', 'esat'], calc_w, ['p', 'e']],
 	['wsats', ['ps', 'esats'], calc_w, ['p', 'e']],
 	['z', ['zg', 'g'], calc_z],
 	['zg', ['z', 'g'], calc_zg],
-	['zg_lcl', ['p_lcl', 'p', 'zg'], calc_z, ['p1', 'p', 'z']],
-	['zg_ll', ['p_ll', 'p', 'zg'], calc_z, ['p1', 'p', 'z']],
+	['zg_lcl', ['p_lcl', 'p', 'zg'], calc_zg, ['p1', 'p', 'zg']],
+	['zg_ll', ['p_ll', 'p', 'zg'], calc_zg, ['p1', 'p', 'zg']],
 ]
 
 def postprocess_target(d, target, chain=[]):
