@@ -3,9 +3,9 @@ from scipy.optimize import fmin
 
 from rstool.const import *
 
-def calc_bvf(*, theta_v, zg, p, g, res=400):
+def calc_bvf(*, thetav, zg, p, g, res=400):
 	'''
-	**calc_bvf**(\*, *theta_v*, *zg*, *p*, *g*, *res*=400)
+	**calc_bvf**(\*, *thetav*, *zg*, *p*, *g*, *res*=400)
 
 	Calculate Brunt-Väisälä frequency from air temperature *ta* (K),
 	geopotential height *zg* (m), air pressure *p* (Pa) and gravitational
@@ -14,11 +14,11 @@ def calc_bvf(*, theta_v, zg, p, g, res=400):
 	'''
 	zg_half = np.arange(np.nanmin(zg), np.nanmax(zg) + res, res)
 	zg_full = (zg_half[1:] + zg_half[:-1])*0.5
-	theta_v_half = np.interp(zg_half, zg, theta_v)
-	theta_v_full = (theta_v_half[1:] + theta_v_half[:-1])*0.5
+	thetav_half = np.interp(zg_half, zg, thetav)
+	thetav_full = (thetav_half[1:] + thetav_half[:-1])*0.5
 	phalf = np.interp(zg_half, zg, p)
 	pfull = (phalf[1:] + phalf[:-1])*0.5
-	bvf2 = g*np.diff(theta_v_half)/np.diff(zg_half)/theta_v_full
+	bvf2 = g*np.diff(thetav_half)/np.diff(zg_half)/thetav_full
 	bvf = np.sqrt(np.abs(bvf2))*np.sign(bvf2)
 	return pfull, zg_full, bvf
 

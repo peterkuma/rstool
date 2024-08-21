@@ -217,7 +217,7 @@ Conversion of quantities is performed recursively from source to derived
 quantities through any number of steps required. Supported elementary quantity
 conversions are the following (*source quantities* 🠢 *derived quantities*):
 
-theta_v, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
+thetav, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
 p, w 🠢 e\
 td 🠢 e\
 ps, ws 🠢 es\
@@ -248,7 +248,7 @@ es 🠢 tds\
 ta, w 🠢 tv\
 tas, ws 🠢 tvs\
 p, ps, ta 🠢 theta\
-theta, w 🠢 theta_v\
+theta, w 🠢 thetav\
 wds, wdd 🠢 ua\
 wdss, wdds 🠢 uas\
 wds, wdd 🠢 va\
@@ -361,7 +361,7 @@ in some other way) across these intervals when plotting.
 | ta_surf_par_sat | saturation surface-temperature air parcel temperature | air_temperature | K |
 | tas | near-surface air temperature | air_temperature | K |
 | theta | air potential temperature | air_potential_temperature | K |
-| theta_v | virtual potential temperature | virtual_temperature | K |
+| thetav | virtual potential temperature | virtual_temperature | K |
 | time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) |
 | ts | surface temperature | surface_temperature | K |
 | ua | eastward wind | eastward_wind | m.s<sup>-1</sup> |
@@ -526,7 +526,7 @@ called with positional arguments. This is to prevent accidental mistakes in
 specifying the arguments.**
 
 
-**calc_bvf**(\*, *theta_v*, *zg*, *p*, *g*, *res*=400)
+**calc_bvf**(\*, *thetav*, *zg*, *p*, *g*, *res*=400)
 
 Calculate Brunt-Väisälä frequency from air temperature *ta* (K),
 geopotential height *zg* (m), air pressure *p* (Pa) and gravitational

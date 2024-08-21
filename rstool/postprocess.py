@@ -1,7 +1,7 @@
 from rstool.algorithms import *
 
 DEPS = [
-	[['p_bvf', 'zg_bvf', 'bvf'], ['theta_v', 'zg', 'p', 'g'], calc_bvf],
+	[['p_bvf', 'zg_bvf', 'bvf'], ['thetav', 'zg', 'p', 'g'], calc_bvf],
 	['e', ['p', 'w'], calc_e],
 	['e', 'td', calc_esat, 'ta'],
 	['es', ['ps', 'ws'], calc_e, ['p', 'w']],
@@ -33,7 +33,7 @@ DEPS = [
 	['tv', ['ta', 'w'], calc_tv],
 	['tvs', ['tas', 'ws'], calc_tv, ['ta', 'w']],
 	['theta', ['p', 'ta'], calc_theta],
-	['theta_v', ['theta', 'w'], calc_tv, ['ta', 'w']],
+	['thetav', ['theta', 'w'], calc_tv, ['ta', 'w']],
 	['ua', ['wds', 'wdd'], calc_ua],
 	['uas', ['wdss', 'wdds'], calc_ua, ['wds', 'wdd']],
 	['va', ['wds', 'wdd'], calc_va],
