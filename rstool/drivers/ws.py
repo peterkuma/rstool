@@ -27,18 +27,18 @@ PARAMS = [
 	(b'burn', 'burn string', None, '1', 'int', {0: 'at cut down'}),
 	(b'crc', 'cyclic redundancy check (CRC)', None, '1', 'int'),
 	(b'cutalt', 'cut dow altitude', 'height_above_reference_ellipsoid', 'm', 'int'),
-	(b'extra', 'extra information', None, '', 'string'),
+	(b'extra', 'extra information', None, None, 'string'),
 	(b'fwver', 'firmware version', None, '1', 'float'),
 	(b'galt', 'altitude', 'height_above_reference_ellipsoid', 'm', 'int'),
 	(b'gpa', 'ground pressure', 'surface_air_pressure', 'Pa', 'int'),
 	(b'h', 'hour', None, 'hour', 'int'),
-	(b'hdop', 'GPS horizontal dilution of precision (HDOP)', None, '', 'float'),
+	(b'hdop', 'GPS horizontal dilution of precision (HDOP)', None, None, 'float'),
 	(b'hu', 'relative humidity', 'relative_humidity', '%', 'float'),
 	(b'hu\d', 'relative humidity (old)', 'relative_humidity', '%', 'float'),
 	(b'hw', 'hw', None, '1', 'int'),
 	(b'id', 'sond ID', None, '1', 'int'),
-	(b'install', 'install', None, '', 'string'),
-	(b'label', 'label', None, '', 'string'),
+	(b'install', 'install', None, None, 'string'),
+	(b'label', 'label', None, None, 'string'),
 	(b'lat', 'latitude', 'latitude', 'degree', 'float'),
 	(b'latd', 'latitude', None, 'decimal part of minute', 'int'),
 	(b'latm', 'latitude', None, 'minute', 'float'),
@@ -67,9 +67,9 @@ PARAMS = [
 	(b's', 'second', None, 's', 'int'),
 	(b'sats', 'number of GPS satellites', None, '1', 'int'),
 	(b'seq', 'sequence number', None, '1', 'int'),
-	(b'session_start', 'session start', None, '', 'string'),
+	(b'session_start', 'session start', None, None, 'string'),
 	(b'sid', 'session ID', None, '1', 'int'),
-	(b'software', 'software version', None, '', 'string'),
+	(b'software', 'software version', None, None, 'string'),
 	(b'spd', 'wind speed', 'wind_speed', 'm s-1', 'float'),
 	(b'spd\d', 'wind speed (old)', 'wind_speed', 'm s-1', 'float'),
 	(b'su', 'power supply', None, 'V', 'float'),
@@ -82,23 +82,21 @@ PARAMS = [
 	(b'version', 'version', None, '1', 'int'),
 ]
 
-META = {p[0]: {
-	'.dims': ['seq'],
-	'long_name': p[1],
-	'standard_name': p[2],
-	'units': p[3],
-	'flag_values': list(p[5].keys()) if len(p) > 5 else None,
-	'flag_meanings': ' '.join([x.replace(' ', '_') for x in p[5].values()]) \
-		if len(p) > 5 else None,
-} for p in PARAMS}
+def header(x):
+	out = {}
+	for i, h in enumerate(['long_name', 'standard_name', 'units']):
+		if x[i+1] is not None:
+			out[h] = x[i+1]
+	out['.dims'] = ['seq']
+	if len(x) > 5:
+		out['flag_values'] = list(x[5].keys())
+		out['flag_meanings'] = ' '.join([
+			y.replace(' ', '_')
+			for y in x[5].values()
+		])
+	return out
 
-for k, v in META.items():
-	if v['units'] == '':
-		del v['units']
-	if v['flag_values'] is None:
-		del v['flag_values']
-	if v['flag_meanings'] is None:
-		del v['flag_meanings']
+META = {x[0]: header(x) for x in PARAMS}
 
 def param(key):
 	for p in PARAMS:
@@ -169,8 +167,8 @@ def stage1(d):
 		key, value = pair.split(b'=')
 		d[key] = value
 		p = param(key)
-		if p is not None and len(p) > 3:
-			type_ = p[3][0] if type(p[3]) is tuple else p[3]
+		if p is not None and len(p) > 4:
+			type_ = p[4][0] if type(p[4]) is tuple else p[4]
 			if type_ == 'int':
 				d[key] = int(d[key])
 			elif type_ == 'float':
@@ -258,7 +256,7 @@ def read(filename):
 		p = param(k)
 		if p is None:
 			continue
-		type_ = p[3][1] if type(p[3]) is tuple else p[3]
+		type_ = p[4][1] if type(p[4]) is tuple else p[4]
 		na = NA[type_]
 		ku = k.decode('utf-8')
 		if type_ == 'float':
@@ -276,8 +274,8 @@ def read(filename):
 		if p is None:
 			continue
 		ku = k.decode('utf-8')
-		if len(p) > 3:
-			type_ = p[3]
+		if len(p) > 4:
+			type_ = p[4]
 			if type_ == 'int':
 				d0[ku] = int(v)
 			elif type_ == 'float':

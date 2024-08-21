@@ -71,6 +71,7 @@ def prof(d, pres=5e2, desc=False):
 		'vas',
 		'station_lat',
 		'station_lon',
+		'station_time',
 		'station_z'
 	]:
 		prof[var] = d[var] if var in d else np.nan

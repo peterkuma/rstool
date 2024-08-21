@@ -90,7 +90,8 @@ def postprocess_target(d, target, chain=[]):
 def postprocess(d):
 	'''Postprocess profile (prof) dataset d by calculating derived
 	variables.'''
-	tmp_station_lat = 'station_lat' not in d
+	rm_station_lat = 'station_lat' not in d
+	tmp_station_lat = 'station_lat' not in d or np.isnan(d['station_lat'])
 	if tmp_station_lat:
 		# Use a temporary latitude of 45 degrees for g calculation, but remove
 		# the variable when done.
@@ -101,5 +102,7 @@ def postprocess(d):
 			target = [target]
 		for t in target:
 			postprocess_target(d, t)
-	if tmp_station_lat:
+	if rm_station_lat:
 		del d['station_lat']
+	elif tmp_station_lat:
+		d['station_lat'] = np.nan

@@ -33,12 +33,15 @@ PARAMS = [
 	('vas', 'northward near-surface wind speed', 'northward_wind', 'm s-1', 'float', []),
 ]
 
-META = {p[0]: {
-	'.dims': p[5] if len(p) > 5 else ['seq'],
-	'long_name': p[1],
-	'standard_name': p[2],
-	'units': p[3],
-} for p in PARAMS}
+def header(x):
+	out = {}
+	for i, h in enumerate(['long_name', 'standard_name', 'units']):
+		if x[i+1] is not None:
+			out[h] = x[i+1]
+	out['.dims'] = x[5] if len(x) > 5 else ['seq']
+	return out
+
+META = {x[0]: header(x) for x in PARAMS}
 
 def find(dirname, pattern):
 	for l in os.listdir(dirname):
