@@ -237,8 +237,8 @@ p, ps, tas 🠢 ta_par\
 p, tas, ws, g, gamma 🠢 ta_par_sat\
 p, ps, ts 🠢 ta_surf_par\
 p, ts, ws, g, gamma 🠢 ta_surf_par_sat\
-e, hur, ta 🠢 td\
-es, hurs, tas 🠢 tds\
+e 🠢 td\
+es 🠢 tds\
 ta, w 🠢 tv\
 tas, ws 🠢 tvs\
 p, ps, ta 🠢 theta\
