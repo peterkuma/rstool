@@ -233,12 +233,12 @@ w 🠢 hus\
 ws 🠢 huss\
 ps, ws, tas 🠢 pc\
 ps, ts, p, theta 🠢 p_ll\
-rhod, rhow -> rho
-p, e, ta -> rhod
-ps, es, tas -> rhods
-rhods, rhows -> rhos
-p, e, ta -> rhow
-ps, es, tas -> rhows
+rhod, rhow -> rho\
+p, e, ta -> rhod\
+ps, es, tas -> rhods\
+rhods, rhows -> rhos\
+p, e, ta -> rhow\
+ps, es, tas -> rhows\
 p, ps, tas 🠢 ta_par\
 p, tas, ws, g, gamma 🠢 ta_par_sat\
 p, ps, ts 🠢 ta_surf_par\
