@@ -59,8 +59,7 @@ HEADER_PROF = [
 	('lon', 'longitude', 'longitude', 'degree_east', ['p']),
 	('p', 'pressure', 'air_pressure', 'Pa', ['p']),
 	('p_bvf', 'pressure of bvf', 'air_pressure', 'Pa', ['p_bvf']),
-	('p_lcl', 'atmosphere lifting condensation level pressure', 'air_pressure',
-		'Pa', []),
+	('pc', 'condensation pressure', 'air_pressure', 'Pa', []),
 	('ps', 'surface air pressure', 'surface_air_pressure', 'Pa', []),
 	('station_lat', 'station latitude', 'latitude', 'degree_north', []),
 	('station_lon', 'station longitude', 'longitude', 'degree_east', []),
@@ -108,9 +107,8 @@ HEADER_PROF = [
 	('z', 'altitude', 'height_above_reference_ellipsoid', 'm', ['p']),
 	('zg', 'geopotential height', 'geopotential_height', 'm', ['p']),
 	('zg_bvf', 'geopotential height of bvf', 'geopotential_height', 'm', ['p_bvf']),
-	('zg_lcl', 'lifting condensation level geopotential height',
-		'geopotential_height', 'm', [], {
-			'comment': 'calculated from the measured pressure and geopotential height profile'
-		}),
+	('lcl', 'lifting condensation level', 'geopotential_height', 'm', [], {
+		'comment': 'calculated from the measured pressure and geopotential height profile'
+	}),
 ]
 HEADER_PROF = {x[0]: header(x) for x in HEADER_PROF}

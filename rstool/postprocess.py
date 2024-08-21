@@ -15,7 +15,7 @@ DEPS = [
 	['hurs', ['ws', 'wsats'], calc_hur, ['w', 'wsat']],
 	['hus', 'w', calc_hus],
 	['huss', 'ws', calc_hus, 'w'],
-	['p_lcl', ['ps', 'ws', 'tas'], calc_p_lcl],
+	['pc', ['ps', 'ws', 'tas'], calc_pc],
 	['p_ll', ['ps', 'ts', 'p', 'theta'], calc_p_ll],
 	['ta_par', ['p', 'ps', 'tas'], calc_ta_par],
 	['ta_par_sat', ['p', 'tas', 'ws', 'g', 'gamma'], calc_ta_par_sat],
@@ -46,7 +46,7 @@ DEPS = [
 	['wsats', ['ps', 'esats'], calc_w, ['p', 'e']],
 	['z', ['zg', 'g'], calc_z],
 	['zg', ['z', 'g'], calc_zg],
-	['zg_lcl', ['p_lcl', 'p', 'zg'], calc_zg, ['p1', 'p', 'zg']],
+	['lcl', ['pc', 'p', 'zg'], calc_zg, ['p1', 'p', 'zg']],
 	['zg_ll', ['p_ll', 'p', 'zg'], calc_zg, ['p1', 'p', 'zg']],
 ]
 

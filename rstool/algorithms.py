@@ -159,13 +159,13 @@ def calc_td(*, e):
 		return np.nan
 
 @np.vectorize
-def calc_p_lcl(*, ps, ws, tas):
+def calc_pc(*, ps, ws, tas):
 	'''
-	**calc_p_lcl**(\*, *ps*, *ws*, *tas*)
+	**calc_pc**(\*, *ps*, *ws*, *tas*)
 
-	Calculate lifting condensation level pressure (Pa) from surface air
-	pressure *ps* (Pa), near-surface humidity mixing ratio *ws* (Pa) and
-	near-surface air temperature *tas* (K).
+	Calculate condensation pressure (Pa) from surface air pressure *ps* (Pa),
+	near-surface humidity mixing ratio *ws* (Pa) and near-surface air
+	temperature *tas* (K).
 	'''
 	def f(p):
 		ta = calc_ta_par(p=p, ps=ps, tas=tas)

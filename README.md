@@ -231,7 +231,7 @@ w, wsat 🠢 hur\
 ws, wsats 🠢 hurs\
 w 🠢 hus\
 ws 🠢 huss\
-ps, ws, tas 🠢 p_lcl\
+ps, ws, tas 🠢 pc\
 ps, ts, p, theta 🠢 p_ll\
 p, ps, tas 🠢 ta_par\
 p, tas, ws, g, gamma 🠢 ta_par_sat\
@@ -261,7 +261,7 @@ p, esat 🠢 wsat\
 ps, esats 🠢 wsats\
 zg, g 🠢 z\
 z, g 🠢 zg\
-p_lcl, p, zg 🠢 zg_lcl\
+pc, p, zg 🠢 lcl\
 p_ll, p, zg 🠢 zg_ll
 
 ## Format description
@@ -332,7 +332,7 @@ in some other way) across these intervals when plotting.
 | lon | longitude | longitude | degree East |
 | p | air pressure | air_pressure | Pa |
 | p_bvf | air pressure of bvf | air_pressure | Pa |
-| p_lcl | atmosphere lifting condensation level pressure | air_pressure | Pa |
+| pc | condensation pressure | air_pressure | Pa |
 | ps | surface air pressure | surface_air_presssure | Pa |
 | station_lat | station latitude | latitude | degree North |
 | station_lon | station longitude | longitude | degree East |
@@ -367,7 +367,7 @@ in some other way) across these intervals when plotting.
 | z | altitude | height_above_reference_ellipsoid | m |
 | zg | geopotential height | geopotential_height | m |
 | zg_bvf | geopotential height of bvf | geopotential_height | m |
-| zg_lcl | lifting condensation level geopotential height | geopotential_height | m |
+| lcl | lifting condensation level | geopotential_height | m |
 
 ### Surface (surf)
 
@@ -585,11 +585,11 @@ pressure *p0*.
 
 Calculate dew point temperature (K) from water vapor pressure *e* (Pa).
 
-**calc_p_lcl**(\*, *ps*, *ws*, *tas*)
+**calc_pc**(\*, *ps*, *ws*, *tas*)
 
-Calculate lifting condensation level pressure (Pa) from surface air
-pressure *ps* (Pa), near-surface humidity mixing ratio *ws* (Pa) and
-near-surface air temperature *tas* (K).
+Calculate condensation pressure (Pa) from surface air pressure *ps* (Pa),
+near-surface humidity mixing ratio *ws* (Pa) and near-surface air
+temperature *tas* (K).
 
 **calc_ua**(\*, *wds*, *wdd*)
 
