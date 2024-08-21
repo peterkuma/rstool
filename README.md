@@ -212,56 +212,57 @@ pressure, mixing ratio, specific humidity, relative humidity and dew point
 temperature), potential temperature, lifting condensation level, eastward and
 northward wind. This is done when converting from a native instrument format,
 the instrument-dependent intermediate (`im`) format, the points (`pts`) format,
-or the profile (`prof`) format to the profile (`prof`) format. Supported
-quantity conversions are the following (*source quantities* 🠢 *derived
-quantities*):
+or the profile (`prof`) format to the profile (`prof`) format. Conversion of
+quantities is performed recursively from source to derived quantities through
+any number of steps required. Supported elementary quantity conversions are the
+following (*source quantities* 🠢 *derived quantities*):
 
-theta_v, zg, p, g 🠢 p_bvf, zg_bvf, bvf
-p, w 🠢 e
-td 🠢 e
-ps, ws 🠢 es
-tds 🠢 es
-ta 🠢 esat
-tas 🠢 esats
-station_lat 🠢 g
-g 🠢 gamma
-p, ta, gamma 🠢 gamma_sat
-w, wsat 🠢 hur
-ws, wsats 🠢 hurs
-w 🠢 hus
-ws 🠢 huss
-ps, ws, tas 🠢 p_lcl
-ps, ts, p, theta 🠢 p_ll
-p, ps, tas 🠢 ta_par
-p, tas, ws, g, gamma 🠢 ta_par_sat
-p, ps, ts 🠢 ta_surf_par
-p, ts, ws, g, gamma 🠢 ta_surf_par_sat
-e, hur, ta 🠢 td
-es, hurs, tas 🠢 tds
-ta, w 🠢 tv
-tas, ws 🠢 tvs
-p, ps, ta 🠢 theta
-theta, w 🠢 theta_v
-wds, wdd 🠢 ua
-wdss, wdds 🠢 uas
-wds, wdd 🠢 va
-wdss, wdds 🠢 vas
-hus 🠢 w
-hur, wsat 🠢 w
-p, e 🠢 w
-ua, va 🠢 wdd
-uas, vas 🠢 wdds
-ua, va 🠢 wds
-uas, vas 🠢 wdss
-huss 🠢 ws
-hurs, wsats 🠢 ws
-ps, es 🠢 ws
-p, esat 🠢 wsat
-ps, esats 🠢 wsats
-zg, g 🠢 z
-z, g 🠢 zg
-p_lcl, p, zg 🠢 zg_lcl
-p_ll, p, zg 🠢 zg_ll
+theta_v, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
+p, w 🠢 e\
+td 🠢 e\
+ps, ws 🠢 es\
+tds 🠢 es\
+ta 🠢 esat\
+tas 🠢 esats\
+station_lat 🠢 g\
+g 🠢 gamma\
+p, ta, gamma 🠢 gamma_sat\
+w, wsat 🠢 hur\
+ws, wsats 🠢 hurs\
+w 🠢 hus\
+ws 🠢 huss\
+ps, ws, tas 🠢 p_lcl\
+ps, ts, p, theta 🠢 p_ll\
+p, ps, tas 🠢 ta_par\
+p, tas, ws, g, gamma 🠢 ta_par_sat\
+p, ps, ts 🠢 ta_surf_par\
+p, ts, ws, g, gamma 🠢 ta_surf_par_sat\
+e, hur, ta 🠢 td\
+es, hurs, tas 🠢 tds\
+ta, w 🠢 tv\
+tas, ws 🠢 tvs\
+p, ps, ta 🠢 theta\
+theta, w 🠢 theta_v\
+wds, wdd 🠢 ua\
+wdss, wdds 🠢 uas\
+wds, wdd 🠢 va\
+wdss, wdds 🠢 vas\
+hus 🠢 w\
+hur, wsat 🠢 w\
+p, e 🠢 w\
+ua, va 🠢 wdd\
+uas, vas 🠢 wdds\
+ua, va 🠢 wds\
+uas, vas 🠢 wdss\
+huss 🠢 ws\
+hurs, wsats 🠢 ws\
+ps, es 🠢 ws\
+p, esat 🠢 wsat\
+ps, esats 🠢 wsats\
+zg, g 🠢 z\
+z, g 🠢 zg\
+p_lcl, p, zg 🠢 zg_lcl\
+p_ll, p, zg 🠢 zg_ll\
 
 ## Format description
 
@@ -335,7 +336,7 @@ in some other way) across these intervals when plotting.
 | ps | surface air pressure | surface_air_presssure | Pa |
 | station_lat | station latitude | latitude | degree North |
 | station_lon | station longitude | longitude | degree East |
-| station_time | station time | time | days since -4713-11-24 12:00 UTC | 
+| station_time | station time | time | days since -4713-11-24 12:00 UTC |
 | station_z | station altitude | height_above_reference_ellipsoid | m |
 | ta | air temperature | air_temperature | K |
 | td | dew point temperature | dew_point_temperature | K |
@@ -381,7 +382,7 @@ surface input is ignored.  Either (`uas`, `vas`) or (`wdds`, `wdss`) can be
 defined.  Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
 
 | Variable | Long name | Standard name | Units |
-| --- | --- | --- | --- | 
+| --- | --- | --- | --- |
 | time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) |
 | hurs | near-surface relative humidity | relative_humidity | % |
 | ps | surface air pressure | surface_air_pressure | Pa |
