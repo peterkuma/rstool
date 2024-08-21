@@ -247,8 +247,10 @@ e 🠢 td\
 es 🠢 tds\
 ta, w 🠢 tv\
 tas, ws 🠢 tvs\
-p, ps, ta 🠢 theta\
+p, ta 🠢 theta\
+ps, tas 🠢 thetas\
 theta, w 🠢 thetav\
+thetas, ws 🠢 thetavs\
 wds, wdd 🠢 ua\
 wdss, wdds 🠢 uas\
 wds, wdd 🠢 va\
@@ -361,7 +363,9 @@ in some other way) across these intervals when plotting.
 | ta_surf_par_sat | saturation surface-temperature air parcel temperature | air_temperature | K |
 | tas | near-surface air temperature | air_temperature | K |
 | theta | air potential temperature | air_potential_temperature | K |
+| thetas | near-surface air potential temperature | air_potential_temperature | K |
 | thetav | virtual potential temperature | virtual_temperature | K |
+| thetavs | near-surface virtual potential temperature | virtual_temperature | K |
 | time | time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) |
 | ts | surface temperature | surface_temperature | K |
 | ua | eastward wind | eastward_wind | m.s<sup>-1</sup> |

@@ -91,8 +91,16 @@ HEADER_PROF = [
 		[]),
 	('theta', 'air potential temperature', 'air_potential_temperature', 'K',
 		['p'], {'comment': 'assumed standard pressure 1000 hPa'}),
+	('thetas', 'near-surface air potential temperature',
+		'air_potential_temperature', 'K', [], {
+			'comment': 'assumed standard pressure 1000 hPa'
+		}),
 	('thetav', 'virtual potential temperature', 'virtual_temperature', 'K',
 		['p'], {'comment': 'assumed standard pressure 1000 hPa'}),
+	('thetavs', 'near-surface virtual potential temperature',
+		'virtual_temperature', 'K', [], {
+			'comment': 'assumed standard pressure 1000 hPa'
+		}),
 	('time', 'time', 'time', 'days since -4713-11-24 12:00 UTC', ['p'],
 		{'calendar': 'proleptic_gregorian'}),
 	('ts', 'surface temperature', 'surface_temperature', 'K', []),
