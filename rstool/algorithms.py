@@ -197,9 +197,9 @@ def calc_w(*,
 ):
 	'''
 	**calc_w**(\*,\\
-	    [option 1] *p*=`None`, *e*=`None`\\
-	    [option 2] *hus*=`None`\\
-	    [option 3] *hur*=`None`, *wsat*=`None`\\
+	    [option 1] *p*, *e*\\
+	    [option 2] *hus*\\
+	    [option 3] *hur*, *wsat*`\\
 	)
 
 	Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
@@ -250,8 +250,8 @@ def calc_z(*,
 ):
 	'''
 	**calc_z**(\*,\\
-	    [option 1] *zg*=`None`, *g*=`None`\\
-	    [option 2] *p1*=`None`, *p*=`None`, *z*=`None`\\
+	    [option 1] *zg*, *g*\\
+	    [option 2] *p1*, *p*, *z*\\
 	)
 
 	Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
@@ -272,8 +272,8 @@ def calc_zg(*,
 ):
 	'''
 	**calc_zg**(\*,\\
-	    [option 1] *z*=`None`, *g*=`None`\\
-	    [option 2] *p1*=`None`, *p*=`None`, *zg*=`None`\\
+	    [option 1] *z*, *g*`\\
+	    [option 2] *p1*, *p*, *zg*\\
 	)
 
 	Calculate geopotential height (m) from [option 1] altitude *z* (m) and
