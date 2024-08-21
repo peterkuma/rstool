@@ -2,7 +2,7 @@
 
 rstool is an open source command-line program for converting radiosonde
 measurement data to NetCDF and calculation of derived physical quantities. It
-can also be used for the calculation of derived quantities from a basic set of
+can also be used for the calculation of derived quantities from source
 quantities, such as exporting variables along a vertical profile from a model
 and letting rstool calculate the derived quantities (`rstool prof prof` *input*
 *output*).
@@ -75,7 +75,7 @@ is `imet` or `ws`:
 - `pts prof`: The points format to the profile format.
 - `pts prof:desc`: The points format to the descending profile format.
 - `prof prof`: The profile format to the profile format. This can be used to
-  calculate derived physical quantities from a basic set of quantities.
+  calculate derived physical quantities from a set source quantities.
 
 ## Examples
 
@@ -114,6 +114,13 @@ Convert the points format to the profile format:
 
 ```sh
 rstool pts prof 2000-01-01_0000.pts.nc 2000-01-01_0000.prof.nc
+```
+
+Calculate derived physical quantities from source physical quantities in the
+input (profile format):
+
+```sh
+rstool prof prof input.nc output.nc
 ```
 
 ## Installation
@@ -196,6 +203,65 @@ To uninstall:
 ```sh
 pip uninstall rstool
 ```
+
+## Calculation of derived physial quantities
+
+rstool calculates a number of physical quantities from a set of source physical
+quantities, such as different humidity quantities (water vapor partial
+pressure, mixing ratio, specific humidity, relative humidity and dew point
+temperature), potential temperature, lifting condensation level, eastward and
+northward wind. This is done when converting from a native instrument format,
+the instrument-dependent intermediate (`im`) format, the points (`pts`) format,
+or the profile (`prof`) format to the profile (`prof`) format. Supported
+quantity conversions are the following (*source quantities* 🠢 *derived
+quantities*):
+
+theta_v, zg, p, g 🠢 p_bvf, zg_bvf, bvf
+p, w 🠢 e
+td 🠢 e
+ps, ws 🠢 es
+tds 🠢 es
+ta 🠢 esat
+tas 🠢 esats
+station_lat 🠢 g
+g 🠢 gamma
+p, ta, gamma 🠢 gamma_sat
+w, wsat 🠢 hur
+ws, wsats 🠢 hurs
+w 🠢 hus
+ws 🠢 huss
+ps, ws, tas 🠢 p_lcl
+ps, ts, p, theta 🠢 p_ll
+p, ps, tas 🠢 ta_par
+p, tas, ws, g, gamma 🠢 ta_par_sat
+p, ps, ts 🠢 ta_surf_par
+p, ts, ws, g, gamma 🠢 ta_surf_par_sat
+e, hur, ta 🠢 td
+es, hurs, tas 🠢 tds
+ta, w 🠢 tv
+tas, ws 🠢 tvs
+p, ps, ta 🠢 theta
+theta, w 🠢 theta_v
+wds, wdd 🠢 ua
+wdss, wdds 🠢 uas
+wds, wdd 🠢 va
+wdss, wdds 🠢 vas
+hus 🠢 w
+hur, wsat 🠢 w
+p, e 🠢 w
+ua, va 🠢 wdd
+uas, vas 🠢 wdds
+ua, va 🠢 wds
+uas, vas 🠢 wdss
+huss 🠢 ws
+hurs, wsats 🠢 ws
+ps, es 🠢 ws
+p, esat 🠢 wsat
+ps, esats 🠢 wsats
+zg, g 🠢 z
+z, g 🠢 zg
+p_lcl, p, zg 🠢 zg_lcl
+p_ll, p, zg 🠢 zg_ll
 
 ## Format description
 
