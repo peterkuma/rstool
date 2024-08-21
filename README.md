@@ -580,7 +580,7 @@ humidity mixing ratio *w* (1).
 Calculate air potential temperature (K) from air pressure *p* (Pa),
 surface air pressure *ps* (Pa) and air temperature *ta* (K).
 
-**calc_td**(\*, *e*, *hur*, *ta*)
+**calc_td**(\*, *e*)
 
 Calculate dew point temperature (K) from water vapor pressure *e* (Pa).
 

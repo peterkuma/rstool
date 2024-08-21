@@ -145,7 +145,7 @@ def calc_theta(*, p, ps, ta):
 @np.vectorize
 def calc_td(*, e):
 	'''
-	**calc_td**(\*, *e*, *hur*, *ta*)
+	**calc_td**(\*, *e*)
 
 	Calculate dew point temperature (K) from water vapor pressure *e* (Pa).
 	'''
