@@ -4,7 +4,8 @@ rstool is an open source command-line program for converting radiosonde
 measurement data to NetCDF and calculation of derived physical quantities. It
 can also be used for the calculation of derived quantities from a basic set of
 quantities, such as exporting variables along a vertical profile from a model
-and letting rstool calculate the derived quantities.
+and letting rstool calculate the derived quantities (`rstool prof prof` *input*
+*output*).
 
 Supported instruments:
 
@@ -19,18 +20,18 @@ template in `rstoollib/drivers/template.py`).
 
 ## Usage
 
-**rstool** *INPUT_TYPE* *OUTPUT_TYPE* *INPUT* [*SURFACE*] *OUTPUT*
+**rstool** *input_type* *output_type* *input* [*surface*] *output*
 
 rstool converts radiosonde measurement data to NetCDF raw, points (`pts`) and
 profile (`prof`) datasets and calculates derived physical quantities.
 
 Arguments:
 
-- *INPUT_TYPE*: See Input types below.
-- *OUTPUT_TYPE*: See Output types below.
-- *INPUT*: Input file or directory.
-- *SURFACE*: Near-surface variables (NetCDF).
-- *OUTPUT*: Output file (NetCDF).
+- *input_type*: See Input types below.
+- *output_type*: See Output types below.
+- *input*: Input file or directory.
+- *surface*: Near-surface variables (NetCDF).
+- *output*: Output file (NetCDF).
 
 Input types:
 
@@ -425,7 +426,7 @@ datasets depending on the instrument:
 | sonde | sonde information |
 | operator | operator name |
 
-## API
+## Python API
 
 rstool provides functions implementing algorithms for calculating various
 physical quantities. The functions are available in the Python module
