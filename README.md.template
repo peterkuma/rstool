@@ -208,14 +208,14 @@ pip uninstall rstool
 
 rstool calculates a number of physical quantities from a set of source physical
 quantities, such as different humidity quantities (water vapor partial
-pressure, mixing ratio, specific humidity, relative humidity and dew point
-temperature), potential temperature, lifting condensation level, eastward and
-northward wind. This is done when converting from a native instrument format,
-the instrument-dependent intermediate (`im`) format, the points (`pts`) format,
-or the profile (`prof`) format to the profile (`prof`) format. Conversion of
-quantities is performed recursively from source to derived quantities through
-any number of steps required. Supported elementary quantity conversions are the
-following (*source quantities* 🠢 *derived quantities*):
+pressure, mixing ratio, specific humidity, relative humidity, and dew point
+temperature), potential temperature, lifting condensation level, and eastward
+and northward wind. This is done when converting from a native instrument
+format, the instrument-dependent intermediate (`im`) format, the points (`pts`)
+format, or the profile (`prof`) format to the profile (`prof`) format.
+Conversion of quantities is performed recursively from source to derived
+quantities through any number of steps required. Supported elementary quantity
+conversions are the following (*source quantities* 🠢 *derived quantities*):
 
 theta_v, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
 p, w 🠢 e\
@@ -262,7 +262,7 @@ ps, esats 🠢 wsats\
 zg, g 🠢 z\
 z, g 🠢 zg\
 p_lcl, p, zg 🠢 zg_lcl\
-p_ll, p, zg 🠢 zg_ll\
+p_ll, p, zg 🠢 zg_ll
 
 ## Format description
 
