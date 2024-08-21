@@ -16,8 +16,8 @@ Supported instruments:
   software (`.sounding`).
 
 Support for other instruments can be added by writing a Python module in
-`rstoollib/drivers` to read the data files produced by the radiosonde (see the
-template in `rstoollib/drivers/template.py`).
+`rstool/drivers` to read the data files produced by the radiosonde (see the
+template in `rstool/drivers/template.py`).
 
 ## Usage
 
