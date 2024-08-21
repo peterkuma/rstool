@@ -9,9 +9,9 @@ and letting rstool calculate the derived quantities (`rstool prof prof` *input*
 
 Supported instruments:
 
-- [InterMet Systems](https://www.intermetsystems.com) (iMet) radiosondes such
+- [InterMet Systems](https://www.intermetsystems.com) (iMet) radiosondes, such
   as iMet-1-ABxn, data files produced by the iMetOS-II software (a directory
-  with `.dat` and `.flt` files).
+  containing `.dat` and `.flt` files).
 - [Windsond](http://windsond.com/), data files produced by the Windsond
   software (`.sounding`).
 
@@ -22,7 +22,7 @@ template in `rstool/drivers/template.py`).
 ## Usage
 
 rstool converts radiosonde measurement data to NetCDF intrument-dependent
-intermediate (`im`), points (`pts`) and profile (`prof`) datasets and
+intermediate (`im`), points (`pts`), and profile (`prof`) datasets and
 calculates derived physical quantities.
 
 Usage: **rstool** *input_type* *output_type* *input* [*surface*] *output*
@@ -164,7 +164,7 @@ Make sure that `/Users/<user>/Library/Python/<version>/bin` is included in the
 `PATH` environment variable if not already, where `<user>` is your system
 user name and `<version>` is the Python version. This path should be printed
 by the above command. This can be done by adding this line to the file
-`.zprofile` in your home directory and restart the Terminal:
+`.zprofile` in your home directory and restarting the Terminal:
 
 ```sh
 PATH="$PATH:/Users/<user>/Library/Python/<version>/bin"
@@ -205,7 +205,7 @@ Julian date (fractional number of days since -4712-01-01 12:00 UTC, or
 converted to UNIX time (number of non-leap seconds since 1 January 1970 00:00
 UTC) with the forumula `(time - 2440587.5)*86400`.
 
-The formats can be converted in the order intrument-depedent intermediate
+The formats can be converted in the order from intrument-depedent intermediate
 (`im:`*instrument*) to points (`pts`) to profile (`prof`).
 
 All variables are stored either as 64-bit floating point (float64) or 64-bit
@@ -242,9 +242,9 @@ standard set of variables.
 prof is an instrument-independent format containing standard variables
 interpolated as a function of height. Profiles are calculated by averaging
 points (`pts`) on a regular vertical pressure grid. For calculation of an
-ascending profile (default), only strictly increasing subset of points is
+ascending profile (default), only strictly increasing subsets of points are
 considered. For a descending profile (`prof:desc`), only strictly decreasing
-subset of points is considered. Vertical intervals with no points are filled
+subsets of points are considered. Vertical intervals with no points are filled
 with missing values. It is therefore possible to identify vertical intervals
 where no radiosonde data were received, and optionally interpolate (linearly or
 in some other way) across these intervals when plotting.
@@ -304,15 +304,15 @@ in some other way) across these intervals when plotting.
 
 ### Surface (surf)
 
-surf dataset specifies near-surface variables which can be used as an optional
+surf dataset specifies near-surface variables, which can be used as an optional
 input to rstool. These can come from a co-located automatic weather station
-(AWS). Some native radiosonde data can already contain same of these variables
-(iMet). Near-surface variables are needed to calculate some derived profile
-variables such as the lifting condensation level. All variables must have a
-single dimension `time`. The point nearest to the radiosonde launch time is
-picked. If no points are within 1 hour of the radiosonde launch, the surface
-input is ignored.  Either (`uas`, `vas`) or (`wdds`, `wdss`) can be defined.
-Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
+(AWS). Some native radiosonde data can already contain the same of these
+variables (iMet). Near-surface variables are needed to calculate some derived
+profile variables, such as the lifting condensation level. All variables must
+have a single dimension of `time`. The point nearest to the radiosonde launch
+time is picked. If no points are within 1 hour of the radiosonde launch, the
+surface input is ignored.  Either (`uas`, `vas`) or (`wdds`, `wdss`) can be
+defined.  Either `hurs` or (`ps`, `tas`, `tds`) can be defined.
 
 | Variable | Long name | Standard name | Units |
 | --- | --- | --- | --- | 
@@ -418,7 +418,7 @@ converted to NetCDF by reading an input `.sounding` file.
 ### Attributes
 
 rstool writes the following attributes in the intrument-dependent intermediate
-(`im:`*instrument*), points (`pts`) and profile (`prof`) NetCDF files.
+(`im:`*instrument*), points (`pts`), and profile (`prof`) NetCDF files.
 
 | Attribute | Description | Comment |
 | --- | --- | --- |
@@ -426,7 +426,7 @@ rstool writes the following attributes in the intrument-dependent intermediate
 | software | software identification | rstool x.y.z (https://github.com/peterkuma/rstool)
 
 In addition, the following attributes may be available in instrument-depedent
-intermediate, pts and prof datasets depending on the instrument:
+intermediate, pts, and prof datasets depending on the instrument:
 
 | Attribute | Description |
 | --- | --- |
@@ -450,7 +450,7 @@ specifying the arguments.**
 
 ## License
 
-This software can be used, modified and distributed freely under the terms of
+This software can be used, modified, and distributed freely under the terms of
 the MIT license (see [LICENSE.md](LICENSE.md)).
 
 ## Releases
@@ -460,8 +460,8 @@ the MIT license (see [LICENSE.md](LICENSE.md)).
 - Fixed a bool type error due to a removal of the type from the numpy package.
 - Improvements in the processing of surface variables.
 - Latitude-dependent gravitational acceleration calculation.
-- Destination variables are now only set if not existing already in prof to prof
-  conversion.
+- Destination variables are now only set if they do not already exist in prof
+  to prof conversion.
 - More accurate calculation of relative humidity from specific humidity.
 - Fixed missing calendar attribute in the time variable of prof output.
 - Fixes and improvements in the documentation.

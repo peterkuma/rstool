@@ -7,7 +7,7 @@ def calc_bvf(*, theta_v, zg, p, g, res=400):
 	'''
 	**calc_bvf**(\*, *theta_v*, *zg*, *p*, *g*, *res*=400)
 
-	Calculate Brunt-Väisälä fequency from air temperature *ta* (K),
+	Calculate Brunt-Väisälä frequency from air temperature *ta* (K),
 	geopotential height *zg* (m), air pressure *p* (Pa) and gravitational
 	acceleration *g* (m.s<sup>-2</sup>). *res* is vertical resolution in
 	geopotential height (m).
@@ -108,7 +108,7 @@ def calc_ta_par_sat(*, p, tas, ws, g, gamma):
 	near-surface air temperature *tas* (K), near-surface humidity mixing ratio
 	*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and air
 	temperature lapse rate *gamma* (K.m<sup>-1</sup>). *p* has to be an array
-	dense enough for acurrate integration.
+	dense enough for accurate integration.
 	'''
 	n = len(p)
 	ta_par_sat = np.full(n, np.nan, np.float64)
@@ -129,7 +129,7 @@ def calc_tv(*, ta, w):
 	**calc_tv**(\*, *ta*, *w*)
 
 	Calculate virtual temperature (K) from air temperature *ta* (K) and
-	humidity mixing ration *w* (1).
+	humidity mixing ratio *w* (1).
 	'''
 	return ta*(1 + w/eps)/(1 + w)
 
@@ -255,7 +255,7 @@ def calc_z(*,
 	)
 
 	Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
-	grativational acceleration *g* (m.s<sup>-2</sup>), [option 2] by
+	gravitational acceleration *g* (m.s<sup>-2</sup>), [option 2] by
 	interpolation from air pressure level *p1* (Pa), air pressure at all levels
 	*p* (Pa) and altitude at all levels *z* (m).
 	'''

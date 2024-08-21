@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''rstool converts radiosonde measurement data to NetCDF intrument-dependent intermediate (im), points (pts) and profile (prof) datasets and calculates derived physical quantities.
+'''rstool converts radiosonde measurement data to NetCDF intrument-dependent intermediate (im), points (pts), and profile (prof) datasets and calculates derived physical quantities.
 
 Usage: rstool INPUT_TYPE OUTPUT_TYPE INPUT [SURFACE] OUTPUT
 
