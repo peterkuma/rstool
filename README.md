@@ -442,8 +442,8 @@ specifying the arguments.**
 
 Calculate Brunt-Väisälä fequency from air temperature *ta* (K),
 geopotential height *zg* (m), air pressure *p* (Pa) and gravitational
-acceleration *g* (m.s-2). *res* is vertical resolution in geopotential
-height (m).
+acceleration *g* (m.s<sup>-2</sup>). *res* is vertical resolution in
+geopotential height (m).
 
 **calc_e**(\*, *p*, *w*)
 
@@ -457,19 +457,19 @@ temperature *ta* (K).
 
 **calc_g**(\*, *lat*=45)
 
-Calculate gravitational acceleration (m.s-2) from latitude *lat*
+Calculate gravitational acceleration (m.s<sup>-2</sup>) from latitude *lat*
 (degree). Height dependence is ignored.
 
 **calc_gamma**(\*, *g*)
 
-Calculate air temperature lapse rate (K.m-1) at gravitational
-acceleration *g* (m.s-2).
+Calculate air temperature lapse rate (K.m<sup>-1</sup>) at gravitational
+acceleration *g* (m.s<sup>-2</sup>).
 
 **calc_gamma_sat**(\*, *p*, *ta*, *gamma*)
 
-Calculate saturation air temperature lapse rate (K.m-1) from pressure
-*p* (Pa), temperature *ta* (K) and air temperature lapse rate *gamma*
-(K.m-1).
+Calculate saturation air temperature lapse rate (K.m<sup>-1</sup>) from
+pressure *p* (Pa), temperature *ta* (K) and air temperature lapse rate
+*gamma* (K.m<sup>-1</sup>).
 
 **calc_hur**(\*, *w*, *wsat*)
 
@@ -488,11 +488,11 @@ assuming surface air pressure *ps* and near-surface air temperature *tas*
 
 **calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gamma*)
 
-Calculate saturation air parcel temperature at pressure *p* (Pa),
-assuming near-surface air temperature *tas* (K), near-surface humidity
-mixing ratio *ws* (1), gravitational acceleration *g* (m.s-2) and air
-temperature lapse rate *gamma* (K.m-1). *p* has to be an array dense enough
-for acurrate integration.
+Calculate saturation air parcel temperature at pressure *p* (Pa), assuming
+near-surface air temperature *tas* (K), near-surface humidity mixing ratio
+*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and air
+temperature lapse rate *gamma* (K.m<sup>-1</sup>). *p* has to be an array
+dense enough for acurrate integration.
 
 **calc_tv**(\*, *ta*, *w*)
 
@@ -516,13 +516,13 @@ near-surface air temperature *tas* (K).
 
 **calc_ua**(\*, *wds*, *wdd*)
 
-Calculate eastward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
-direction *wdd* (degree).
+Calculate eastward wind (m.s<sup>-1</sup>) from wind speed *wds*
+(m.s<sup>-1</sup>) and wind direction *wdd* (degree).
 
 **calc_va**(\*, *wds*, *wdd*)
 
-Calculate northward wind (m.s-1) from wind speed *wds* (m.s-1) and wind
-direction *wdd* (degree).
+Calculate northward wind (m.s<sup>-1</sup>) from wind speed *wds*
+(m.s<sup>-1</sup>) and wind direction *wdd* (degree).
 
 **calc_w**(\*,\
     [option 1] *p*, *e*\
@@ -537,13 +537,13 @@ mixing ratio *wsat* (1).
 
 **calc_wdd**(\*, *ua*, *va*)
 
-Calculate wind direction (degree) from eastward wind *ua* (m.s-1) and
-northward wind *va* (m.s-1).
+Calculate wind direction (degree) from eastward wind *ua*
+(m.s<sup>-1</sup>) and northward wind *va* (m.s<sup>-1</sup>).
 
 **calc_wds**(\*, *ua*, *va*)
 
-Calculate wind speed (m.s-1) from eastward wind *ua* (m.s-1) and
-northward wind *va* (m.s-1).
+Calculate wind speed (m.s<sup>-1</sup>) from eastward wind *ua*
+(m.s<sup>-1</sup>) and northward wind *va* (m.s<sup>-1</sup>).
 
 **calc_wsat**(\*, *p*, *ta*)
 
@@ -556,9 +556,9 @@ Calculate saturation humidity mixing ratio (1) from air pressure *p*
 )
 
 Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
-grativational acceleration *g* (m.s-2), [option 2] by interpolation from
-air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
-altitude at all levels *z* (m).
+grativational acceleration *g* (m.s<sup>-2</sup>), [option 2] by
+interpolation from air pressure level *p1* (Pa), air pressure at all levels
+*p* (Pa) and altitude at all levels *z* (m).
 
 **calc_zg**(\*,\
     [option 1] *z*, *g*\
@@ -566,9 +566,9 @@ altitude at all levels *z* (m).
 )
 
 Calculate geopotential height (m) from [option 1] altitude *z* (m) and
-gravitational acceleration *g* (m.s-2), [option 2] by interpolation from
-air pressure level *p1* (Pa), air pressure at all levels *p* (Pa) and
-geopotential height at all levels *zg* (m).
+gravitational acceleration *g* (m.s<sup>-2</sup>), [option 2] by
+interpolation from air pressure level *p1* (Pa), air pressure at all levels
+*p* (Pa) and geopotential height at all levels *zg* (m).
 
 
 ## License
