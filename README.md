@@ -233,6 +233,12 @@ w 🠢 hus\
 ws 🠢 huss\
 ps, ws, tas 🠢 pc\
 ps, ts, p, theta 🠢 p_ll\
+rhod, rhow -> rho
+p, e, ta -> rhod
+ps, es, tas -> rhods
+rhods, rhows -> rhos
+p, e, ta -> rhow
+ps, es, tas -> rhows
 p, ps, tas 🠢 ta_par\
 p, tas, ws, g, gamma 🠢 ta_par_sat\
 p, ps, ts 🠢 ta_surf_par\
@@ -334,6 +340,12 @@ in some other way) across these intervals when plotting.
 | p_bvf | air pressure of bvf | air_pressure | Pa |
 | pc | condensation pressure | air_pressure | Pa |
 | ps | surface air pressure | surface_air_presssure | Pa |
+| rho | air density | air_density | Pa |
+| rhod | dry air density | air_density | Pa |
+| rhods | near-surface dry air density | air_density | Pa |
+| rhos | near-surface air density | air_density | Pa |
+| rhow | water vapor density | air_density | Pa |
+| rhows | near-surface water vapor density | air_density | Pa |
 | station_lat | station latitude | latitude | degree North |
 | station_lon | station longitude | longitude | degree East |
 | station_time | station time | time | days since -4713-11-24 12:00 UTC |
@@ -555,6 +567,22 @@ saturation water vapor mixing ratio in air *wsat* (1).
 **calc_hus**(\*, *w*)
 
 Calculate specific humidity (1) from humidity mixing ratio *w* (1).
+
+**calc_rho**(\*, *rhod*, *rhow*)
+
+Calculate density of air (kg.m<sup>-3</sup>) from density of dry air
+*rho_d* (kg.m<sup>-3</sup>) and density of water vapor *rho_w*
+(kg.m<sup>-3</sup>).
+
+**calc_rho_d**(\*, *p*, *e*, *ta*)
+
+Calculate density of dry air (kg.m<sup>-3</sup>) from air pressure *p*,
+water vapor partial pressure *e* (Pa), and air temperature *ta* (K).
+
+**calc_rhow**(\*, *p*, *e*, *ta*)
+
+Calculate density of water vapor (kg.m<sup>-3</sup>) from air pressure *p*,
+water vapor partial pressure *e* (Pa), and air temperature *ta* (K).
 
 **calc_ta_par**(\*, *p*, *ps*, *tas*)
 

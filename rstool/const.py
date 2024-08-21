@@ -6,4 +6,5 @@ lv = 2.501e6 # Latent heat of vaporization at 0 C (J.kg-1).
 n0 = 273.15 # Loschmidt constant (K).
 p0 = 1e5 # Standard pressure (Pa).
 rd = 287.058 # Gas constant for dry air (J.kg-1.K-1).
+rw = rd/eps # Gas constant for water vapor (J.kg-1.K-1).
 kappa = rd/cp # Poisson constant for dry air at temperature 273 K (1).
