@@ -230,8 +230,8 @@ tds 🠢 es\
 ta 🠢 esat\
 tas 🠢 esats\
 station_lat 🠢 g\
-g 🠢 gamma\
-p, ta, gamma 🠢 gamma_sat\
+g 🠢 gammad\
+p, ta, gammad 🠢 gammam\
 w, wsat 🠢 hur\
 ws, wsats 🠢 hurs\
 w 🠢 hus\
@@ -246,9 +246,9 @@ rhods, rhows 🠢 rhos\
 p, e, ta 🠢-rhow\
 ps, es, tas 🠢 rhows\
 p, ps, tas 🠢 ta_par\
-p, tas, ws, g, gamma 🠢 ta_par_sat\
+p, tas, ws, g, gammad 🠢 ta_par_sat\
 p, ps, ts 🠢 ta_surf_par\
-p, ts, ws, g, gamma 🠢 ta_surf_par_sat\
+p, ts, ws, g, gammad 🠢 ta_surf_par_sat\
 e 🠢 td\
 es 🠢 tds\
 ta, w 🠢 tv\
@@ -338,16 +338,19 @@ in some other way) across these intervals when plotting.
 | esat | saturation vapor pressure | water_vapor_partial_pressure_in_air | Pa |
 | esats | near-surface saturation vapor pressure | water_vapor_partial_pressure_in_air | Pa |
 | g | gravitational acceleration | | m.s<sup>-2</sup> |
-| gamma | air temperature lapse rate | air_temperature_lapse_rate | K.m<sup>-1</sup> |
-| gamma_sat | air temperature saturation lapse rate | air_temperature_lapse_rate | K.m</sup>-1</sup> |
+| gammad | dry adiabatic air temperature lapse rate | air_temperature_lapse_rate | K.m<sup>-1</sup> |
+| gammam | moist adiabatic air temperature saturation lapse rate | air_temperature_lapse_rate | K.m</sup>-1</sup> |
 | hur | relative humidity | relative_humiidty | % |
 | hurs | near-surface relative humidity | relative_humidity | % |
 | lat | latitude | latitude | degree north |
+| lcl | lifting condensation level | geopotential_height | m |
+| lcls | lifting condensation level from surface temperature | geopotential_height | m |
 | lon | longitude | longitude | degree east |
 | lts | lower tropospheric stability | | K |
 | p | air pressure | air_pressure | Pa |
 | p_bvf | air pressure of bvf | air_pressure | Pa |
 | pc | condensation pressure | air_pressure | Pa |
+| pcs | condensation pressure from surface temperature | air_pressure | Pa |
 | ps | surface air pressure | surface_air_presssure | Pa |
 | rho | air density | air_density | kg.m<sup>-3</sup> |
 | rhod | dry air density | air_density | kg.m<sup>-3</sup> |
@@ -390,7 +393,6 @@ in some other way) across these intervals when plotting.
 | z | altitude | height_above_reference_ellipsoid | m |
 | zg | geopotential height | geopotential_height | m |
 | zg_bvf | geopotential height of bvf | geopotential_height | m |
-| lcl | lifting condensation level | geopotential_height | m |
 
 ### Surface (surf)
 
@@ -559,16 +561,16 @@ temperature *ta* (K).
 Calculate gravitational acceleration (m.s<sup>-2</sup>) from latitude *lat*
 (degree). Height dependence is ignored.
 
-**calc_gamma**(\*, *g*)
+**calc_gammad**(\*, *g*)
 
-Calculate air temperature lapse rate (K.m<sup>-1</sup>) at gravitational
-acceleration *g* (m.s<sup>-2</sup>).
+Calculate dry adiabatic air temperature lapse rate (K.m<sup>-1</sup>) at
+gravitational acceleration *g* (m.s<sup>-2</sup>).
 
-**calc_gamma_sat**(\*, *p*, *ta*, *gamma*)
+**calc_gammam**(\*, *p*, *ta*, *gamma*)
 
-Calculate saturation air temperature lapse rate (K.m<sup>-1</sup>) from
-pressure *p* (Pa), temperature *ta* (K) and air temperature lapse rate
-*gamma* (K.m<sup>-1</sup>).
+Calculate moist adiabatic air temperature lapse rate (K.m<sup>-1</sup>)
+from pressure *p* (Pa), temperature *ta* (K) and dry adiabatic air
+temperature lapse rate *gammad* (K.m<sup>-1</sup>).
 
 **calc_hur**(\*, *w*, *wsat*)
 
@@ -607,13 +609,13 @@ Calculate dry adiabatic air parcel temperature at air pressure *p* (Pa),
 assuming surface air pressure *ps* and near-surface air temperature *tas*
 (K).
 
-**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gamma*)
+**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gammad*)
 
 Calculate saturation air parcel temperature at pressure *p* (Pa), assuming
 near-surface air temperature *tas* (K), near-surface humidity mixing ratio
-*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and air
-temperature lapse rate *gamma* (K.m<sup>-1</sup>). *p* has to be an array
-dense enough for accurate integration.
+*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and dry
+adiabatic air temperature lapse rate *gammad* (K.m<sup>-1</sup>). *p* has
+to be an array dense enough for accurate integration.
 
 **calc_tv**(\*, *ta*, *w*)
 

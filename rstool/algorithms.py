@@ -53,22 +53,22 @@ def calc_g(*, lat=45):
 		0.0000058*np.sin(2*lat/180*np.pi)**2
 	)
 
-def calc_gamma(*, g):
+def calc_gammad(*, g):
 	'''
-	**calc_gamma**(\*, *g*)
+	**calc_gammad**(\*, *g*)
 
-	Calculate air temperature lapse rate (K.m<sup>-1</sup>) at gravitational
-	acceleration *g* (m.s<sup>-2</sup>).
+	Calculate dry adiabatic air temperature lapse rate (K.m<sup>-1</sup>) at
+	gravitational acceleration *g* (m.s<sup>-2</sup>).
 	'''
 	return g/cp
 
-def calc_gamma_sat(*, p, ta, gamma):
+def calc_gammam(*, p, ta, gammad):
 	'''
-	**calc_gamma_sat**(\*, *p*, *ta*, *gamma*)
+	**calc_gammam**(\*, *p*, *ta*, *gamma*)
 
-	Calculate saturation air temperature lapse rate (K.m<sup>-1</sup>) from
-	pressure *p* (Pa), temperature *ta* (K) and air temperature lapse rate
-	*gamma* (K.m<sup>-1</sup>).
+	Calculate moist adiabatic air temperature lapse rate (K.m<sup>-1</sup>)
+	from pressure *p* (Pa), temperature *ta* (K) and dry adiabatic air
+	temperature lapse rate *gammad* (K.m<sup>-1</sup>).
 	'''
 	wsat = calc_wsat(p=p, ta=ta)
 	return gamma*(1 + lv*wsat/(rd*ta))/(1 + lv**2*wsat*eps/(rd*cp*ta**2))
@@ -139,15 +139,15 @@ def calc_ta_par(*, p, ps, tas):
 	'''
 	return tas*(p/ps)**kappa
 
-def calc_ta_par_sat(*, p, tas, ws, g, gamma):
+def calc_ta_par_sat(*, p, tas, ws, g, gammad):
 	'''
-	**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gamma*)
+	**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gammad*)
 
 	Calculate saturation air parcel temperature at pressure *p* (Pa), assuming
 	near-surface air temperature *tas* (K), near-surface humidity mixing ratio
-	*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and air
-	temperature lapse rate *gamma* (K.m<sup>-1</sup>). *p* has to be an array
-	dense enough for accurate integration.
+	*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and dry
+	adiabatic air temperature lapse rate *gammad* (K.m<sup>-1</sup>). *p* has
+	to be an array dense enough for accurate integration.
 	'''
 	n = len(p)
 	ta_par_sat = np.full(n, np.nan, np.float64)
@@ -155,10 +155,10 @@ def calc_ta_par_sat(*, p, tas, ws, g, gamma):
 	for i in range(1, n):
 		wsat = calc_wsat(p=p[i-1], ta=ta_par_sat[i-1])
 		if ws < wsat:
-			gamma1 = gamma
+			gamma = gammad
 		else:
-			gamma1 = calc_gamma_sat(p=p[i], ta=ta_par_sat[i-1], gamma=gamma)
-		dta_dp = rd*ta_par_sat[i-1]/(p[i]*g)*gamma1
+			gamma = calc_gammam(p=p[i], ta=ta_par_sat[i-1], gammad=gammad)
+		dta_dp = rd*ta_par_sat[i-1]/(p[i]*g)*gamma
 		dp = p[i] - p[i-1]
 		ta_par_sat[i] = ta_par_sat[i-1] + dta_dp*dp
 	return ta_par_sat
@@ -214,9 +214,6 @@ def calc_pc(*, ps, ws, tas):
 		return fmin(f, 1e5, disp=False)[0]
 	else:
 		return np.nan
-
-def calc_p_ll(*, ps, ts, p, theta):
-	return min(ps, np.interp(ts, theta, p))
 
 def calc_ua(*, wds, wdd):
 	'''

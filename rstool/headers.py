@@ -42,26 +42,34 @@ HEADER_PROF = [
 		'water_vapor_partial_pressure_in_air', 'Pa', []),
 	('g', 'gravitational acceleration', None, 'm s-2', [],
 		{'comment': 'at mean sea level, ignoring height dependence'}),
-	('gamma', 'air temperature lapse rate', 'air_temperature_lapse_rate',
+	('gammad', 'dry adiabatic air temperature lapse rate', 'air_temperature_lapse_rate',
 		'K m-1', [], {
-			'comment': 'assuming dry adiabatic process',
 			'units_metadata': 'temperature: difference'
 		}),
-	('gamma_sat', 'air temperature saturation lapse rate',
+	('gammam', 'moist adiabatic air temperature lapse rate',
 		'air_temperature_lapse_rate', 'K m-1', ['p'], {
-			'comment': 'assuming moist adiabatic process',
 			'units_metadata': 'temperature: difference'
 		}),
 	('hur', 'relative humidity', 'relative_humidity', '%', ['p']),
 	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', []),
 	('hus', 'specific humidity', 'specific_humidity', '1', ['p']),
 	('lat', 'latitude', 'latitude', 'degree_north', ['p']),
+	('lcl', 'lifting condensation level', 'geopotential_height', 'm', [], {
+		'comment': 'calculated from the measured environmental pressure and geopotential height'
+	}),
+	('lclp', 'lifting condensation level from surface temperature', 'geopotential_height', 'm', [], {
+		'comment': 'same as lcl but uses ts instead of tas'
+	}),
 	('lon', 'longitude', 'longitude', 'degree_east', ['p']),
 	('lts', 'lower tropospheric stability', None, 'K', [],
 		{'units_metadata': 'temperature: difference'}),
 	('p', 'pressure', 'air_pressure', 'Pa', ['p']),
 	('p_bvf', 'pressure of bvf', 'air_pressure', 'Pa', ['p_bvf']),
 	('pc', 'condensation pressure', 'air_pressure', 'Pa', []),
+	('pcs', 'condensation pressure from surface temperature',
+		'air_pressure', 'Pa', [], {
+			'comment': 'same as pc but uses ts instead of tas'
+		}),
 	('ps', 'surface air pressure', 'surface_air_pressure', 'Pa', []),
 	('rho', 'air density', 'air_density', 'kg m-3', ['p']),
 	('rhod', 'dry air density', 'air_density', 'kg m-3', ['p']),
@@ -102,7 +110,7 @@ HEADER_PROF = [
 	('thetavs', 'near-surface virtual potential temperature',
 		'virtual_temperature', 'K', [], {
 			'comment': 'assumed standard pressure 1000 hPa'
-		}),
+	}),
 	('time', 'time', 'time', 'days since -4713-11-24 12:00 UTC', ['p'],
 		{'calendar': 'proleptic_gregorian'}),
 	('ts', 'surface temperature', 'surface_temperature', 'K', []),
@@ -123,8 +131,5 @@ HEADER_PROF = [
 	('z', 'altitude', 'height_above_reference_ellipsoid', 'm', ['p']),
 	('zg', 'geopotential height', 'geopotential_height', 'm', ['p']),
 	('zg_bvf', 'geopotential height of bvf', 'geopotential_height', 'm', ['p_bvf']),
-	('lcl', 'lifting condensation level', 'geopotential_height', 'm', [], {
-		'comment': 'calculated from the measured pressure and geopotential height profile'
-	}),
 ]
 HEADER_PROF = {x[0]: header(x) for x in HEADER_PROF}
