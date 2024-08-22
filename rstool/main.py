@@ -28,16 +28,16 @@ Output types:
 
 The following input/output type combinations are possible, where INSTRUMENT is "imet" or "ws":
 
-  INSTRUMENT im           An instrument native format to instrument-dependent intermediate format (NetCDF).
-  INSTRUMENT pts          An instrument native format to the points format (NetCDF).
-  INSTRUMENT prof         An instrument native format to the profile format (NetCDF).
-  INSTRUMENT prof:desc    An instrument native format to a descending profile format.
-  im:INSTRUMENT pts       An instrument-dependent intermediate format (NetCDF) to the points format (NetCDF).
-  im:INSTRUMENT prof      An instrument-dependent intermediate format (NetCDF) to the profile format (NetCDF).
-  im:INSTRUMENT prof:desc An instrument-dependent intermediate format (NetCDF) to the descending profile format (NetCDF).
-  pts prof                The points format (NetCDF) to the profile format (NetCDF).
-  pts prof:desc           The points format (NetCDF) to the descending profile format (NetCDF).
-  prof prof               The profile format (NetCDF) to the profile format (NetCDF). This can be used to calculate derived physical quantities from a set source quantities.
+  INSTRUMENT im            An instrument native format to instrument-dependent intermediate format (NetCDF).
+  INSTRUMENT pts           An instrument native format to the points format (NetCDF).
+  INSTRUMENT prof          An instrument native format to the profile format (NetCDF).
+  INSTRUMENT prof:desc     An instrument native format to a descending profile format.
+  im:INSTRUMENT pts        An instrument-dependent intermediate format (NetCDF) to the points format (NetCDF).
+  im:INSTRUMENT prof       An instrument-dependent intermediate format (NetCDF) to the profile format (NetCDF).
+  im:INSTRUMENT prof:desc  An instrument-dependent intermediate format (NetCDF) to the descending profile format (NetCDF).
+  pts prof                 The points format (NetCDF) to the profile format (NetCDF).
+  pts prof:desc            The points format (NetCDF) to the descending profile format (NetCDF).
+  prof prof                The profile format (NetCDF) to the profile format (NetCDF). This can be used to calculate derived physical quantities from a set source quantities.
 '''
 
 import sys
