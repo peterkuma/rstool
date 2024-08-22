@@ -3,13 +3,23 @@
 import os
 import copy
 from rstool import algorithms
+from rstool.postprocess import DEPS
 
 if __name__ == '__main__':
-	with open('README.md.template') as f:
-		doc = f.read()
 	api = ''
 	for name, obj in algorithms.__dict__.items():
 		if name.startswith('calc_') and obj.__doc__ is not None:
 			api += obj.__doc__.replace('\n\t', '\n')
+
+	deps = ''
+	for rec in DEPS:
+		target, source = rec[:2]
+		deps += '%s 🠢 %s\\\n' % (
+			', '.join(target) if isinstance(target, list) else target,
+			', '.join(source) if isinstance(source, list) else source,
+		)
+
+	with open('README.md.template') as f:
+		doc = f.read()
 	with open('README.md', 'w') as f:
-		f.write(doc.format(api=api))
+		f.write(doc.format(api=api, deps=deps))

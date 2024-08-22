@@ -129,39 +129,15 @@ def calc_rhow(*, p, e, ta):
 	'''
 	return e/rw/ta
 
-def calc_ta_par(*, p, ps, tas):
+def calc_tapar(*, p, ps, tas):
 	'''
-	**calc_ta_par**(\*, *p*, *ps*, *tas*)
+	**calc_tpar**(\*, *p*, *ps*, *tas*)
 
-	Calculate dry adiabatic air parcel temperature at air pressure *p* (Pa),
+	Calculate dry-moist adiabatic parcel temperature at air pressure *p* (Pa),
 	assuming surface air pressure *ps* and near-surface air temperature *tas*
 	(K).
 	'''
 	return tas*(p/ps)**kappa
-
-def calc_ta_par_sat(*, p, tas, ws, g, gammad):
-	'''
-	**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gammad*)
-
-	Calculate saturation air parcel temperature at pressure *p* (Pa), assuming
-	near-surface air temperature *tas* (K), near-surface humidity mixing ratio
-	*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and dry
-	adiabatic air temperature lapse rate *gammad* (K.m<sup>-1</sup>). *p* has
-	to be an array dense enough for accurate integration.
-	'''
-	n = len(p)
-	ta_par_sat = np.full(n, np.nan, np.float64)
-	ta_par_sat[0] = tas
-	for i in range(1, n):
-		wsat = calc_wsat(p=p[i-1], ta=ta_par_sat[i-1])
-		if ws < wsat:
-			gamma = gammad
-		else:
-			gamma = calc_gammam(p=p[i], ta=ta_par_sat[i-1], gammad=gammad)
-		dta_dp = rd*ta_par_sat[i-1]/(p[i]*g)*gamma
-		dp = p[i] - p[i-1]
-		ta_par_sat[i] = ta_par_sat[i-1] + dta_dp*dp
-	return ta_par_sat
 
 def calc_tv(*, ta, w):
 	'''
@@ -207,7 +183,7 @@ def calc_pc(*, ps, ws, tas):
 	temperature *tas* (K).
 	'''
 	def f(p):
-		ta = calc_ta_par(p=p, ps=ps, tas=tas)
+		ta = tas*(p/ps)**kappa
 		wsat = calc_wsat(p=p, ta=ta)
 		return np.abs(wsat - ws)
 	if np.isfinite(ps) and np.isfinite(ws) and np.isfinite(tas):

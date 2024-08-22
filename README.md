@@ -222,61 +222,58 @@ Conversion of quantities is performed recursively from source to derived
 quantities through any number of steps required. Supported elementary quantity
 conversions are the following (*source quantities* 🠢 *derived quantities*):
 
-thetav, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
-p, w 🠢 e\
-td 🠢 e\
-ps, ws 🠢 es\
-tds 🠢 es\
-ta 🠢 esat\
-tas 🠢 esats\
-station_lat 🠢 g\
-g 🠢 gammad\
-p, ta, gammad 🠢 gammam\
-w, wsat 🠢 hur\
-ws, wsats 🠢 hurs\
-w 🠢 hus\
-ws 🠢 huss\
-p, theta, thetas 🠢 lts\
-ps, ws, tas 🠢 pc\
-ps, ts, p, theta 🠢 p_ll\
-rhod, rhow 🠢 rho\
-p, e, ta 🠢 rhod\
-ps, es, tas 🠢 rhods\
-rhods, rhows 🠢 rhos\
-p, e, ta 🠢-rhow\
-ps, es, tas 🠢 rhows\
-p, ps, tas 🠢 ta_par\
-p, tas, ws, g, gammad 🠢 ta_par_sat\
-p, ps, ts 🠢 ta_surf_par\
-p, ts, ws, g, gammad 🠢 ta_surf_par_sat\
+p_bvf, zg_bvf, bvf 🠢 thetav, zg, p, g\
+e 🠢 p, w\
 e 🠢 td\
+es 🠢 ps, ws\
 es 🠢 tds\
-ta, w 🠢 tv\
-tas, ws 🠢 tvs\
-p, ta 🠢 theta\
-ps, tas 🠢 thetas\
-theta, w 🠢 thetav\
-thetas, ws 🠢 thetavs\
-wds, wdd 🠢 ua\
-wdss, wdds 🠢 uas\
-wds, wdd 🠢 va\
-wdss, wdds 🠢 vas\
+esat 🠢 ta\
+esats 🠢 tas\
+g 🠢 station_lat\
+gammad 🠢 g\
+gammam 🠢 p, ta, gammad\
+hur 🠢 w, wsat\
+hurs 🠢 ws, wsats\
 hus 🠢 w\
-hur, wsat 🠢 w\
-p, e 🠢 w\
-ua, va 🠢 wdd\
-uas, vas 🠢 wdds\
-ua, va 🠢 wds\
-uas, vas 🠢 wdss\
 huss 🠢 ws\
-hurs, wsats 🠢 ws\
-ps, es 🠢 ws\
-p, esat 🠢 wsat\
-ps, esats 🠢 wsats\
-zg, g 🠢 z\
-z, g 🠢 zg\
-pc, p, zg 🠢 lcl\
-p_ll, p, zg 🠢 zg_ll
+lcl 🠢 pc, p, zg\
+lcls 🠢 pcs, p, zg\
+lts 🠢 p, theta, thetas\
+pc 🠢 ps, ws, tas\
+pcs 🠢 ps, ws, ts\
+rho 🠢 rhod, rhow\
+rhod 🠢 p, e, ta\
+rhods 🠢 ps, es, tas\
+rhos 🠢 rhods, rhows\
+rhow 🠢 p, e, ta\
+rhows 🠢 ps, es, tas\
+td 🠢 e\
+tds 🠢 es\
+tv 🠢 ta, w\
+tvs 🠢 tas, ws\
+theta 🠢 p, ta\
+thetas 🠢 ps, tas\
+thetav 🠢 theta, w\
+thetavs 🠢 thetas, ws\
+ua 🠢 wds, wdd\
+uas 🠢 wdss, wdds\
+va 🠢 wds, wdd\
+vas 🠢 wdss, wdds\
+w 🠢 hus\
+w 🠢 hur, wsat\
+w 🠢 p, e\
+wdd 🠢 ua, va\
+wdds 🠢 uas, vas\
+wds 🠢 ua, va\
+wdss 🠢 uas, vas\
+ws 🠢 huss\
+ws 🠢 hurs, wsats\
+ws 🠢 ps, es\
+wsat 🠢 p, esat\
+wsats 🠢 ps, esats\
+z 🠢 zg, g\
+zg 🠢 z, g\
+
 
 ## Format description
 
@@ -367,10 +364,6 @@ in some other way) across these intervals when plotting.
 | tds | near-surface dew point temperature | dew_point_temperature | K |
 | tv | virtual temperature | virtual_temperature | K |
 | tvs | near-surface virtual temperature | virtual_temperature | K |
-| ta_par | dry air parcel temperature | air_temperature | K |
-| ta_par_sat | saturation air parcel temperature | air_temperature | K |
-| ta_surf_par | dry surface-temperature air parcel temperature | air_temperature | K |
-| ta_surf_par_sat | saturation surface-temperature air parcel temperature | air_temperature | K |
 | tas | near-surface air temperature | air_temperature | K |
 | theta | air potential temperature | air_potential_temperature | K |
 | thetas | near-surface air potential temperature | air_potential_temperature | K |
@@ -603,19 +596,11 @@ water vapor partial pressure *e* (Pa), and air temperature *ta* (K).
 Calculate density of water vapor (kg.m<sup>-3</sup>) from air pressure *p*,
 water vapor partial pressure *e* (Pa), and air temperature *ta* (K).
 
-**calc_ta_par**(\*, *p*, *ps*, *tas*)
+**calc_tpar**(\*, *p*, *ps*, *tas*)
 
-Calculate dry adiabatic air parcel temperature at air pressure *p* (Pa),
+Calculate dry-moist adiabatic parcel temperature at air pressure *p* (Pa),
 assuming surface air pressure *ps* and near-surface air temperature *tas*
 (K).
-
-**calc_ta_par_sat**(\*, *p*, *tas*, *ws*, *g*, *gammad*)
-
-Calculate saturation air parcel temperature at pressure *p* (Pa), assuming
-near-surface air temperature *tas* (K), near-surface humidity mixing ratio
-*ws* (1), gravitational acceleration *g* (m.s<sup>-2</sup>) and dry
-adiabatic air temperature lapse rate *gammad* (K.m<sup>-1</sup>). *p* has
-to be an array dense enough for accurate integration.
 
 **calc_tv**(\*, *ta*, *w*)
 
