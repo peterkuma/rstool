@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name='rstool',
-	version='2.0.0-dev',
+	version='2.0.0',
 	py_modules=['rstool'],
 	entry_points={
 		'console_scripts': ['rstool=rstool.main:main'],

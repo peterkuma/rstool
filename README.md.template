@@ -489,6 +489,25 @@ the MIT license (see [LICENSE.md](LICENSE.md)).
 
 ## Releases
 
+### 2.0.0 (2024-08-22)
+
+- Fixed pts to prof conversion.
+- Fixed ua and va calculation from wdd and wds. The sign was flipped.
+- Fixed an error in the formula for moist adiabatic lapse rate calculation.
+- Potential temperature is now calculated relative to standard pressure (1000
+  hPa) instead of surface pressure.
+- imet: Fixed surface pressure reading. The units were not converted to Pa from
+  hPa.
+- Refactored variable names and headers.
+- Removed parcel variables and lifting level variables.
+- More complex and recursive derivation of physical quantities.
+- New variables: virtual potential temperature, LCL, condensation pressure,
+  density, lower tropospheric stability.
+- Renamed raw format to intermediate format.
+- Python API for calculating physical quantities.
+- Refactored code.
+- Improved documentation.
+
 ### 1.1.0 (2023-11-17)
 
 - Fixed a bool type error due to a removal of the type from the numpy package.

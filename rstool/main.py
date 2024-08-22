@@ -44,7 +44,7 @@ import sys
 import signal
 signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
-__version__ = '2.0.0-dev'
+__version__ = '2.0.0'
 
 import datetime as dt
 import numpy as np
