@@ -12,11 +12,13 @@ if __name__ == '__main__':
 			api += obj.__doc__.replace('\n\t', '\n')
 
 	deps = ''
-	for rec in DEPS:
+	for i, rec in enumerate(DEPS):
 		target, source = rec[:2]
-		deps += '%s 🠢 %s\\\n' % (
+		newline = '' if i == len(DEPS) - 1 else '\\'
+		deps += '%s 🠢 %s%s\n' % (
 			', '.join(target) if isinstance(target, list) else target,
 			', '.join(source) if isinstance(source, list) else source,
+			newline,
 		)
 
 	with open('README.md.template') as f:

@@ -272,7 +272,7 @@ ws 🠢 ps, es\
 wsat 🠢 p, esat\
 wsats 🠢 ps, esats\
 z 🠢 zg, g\
-zg 🠢 z, g\
+zg 🠢 z, g
 
 
 ## Format description
