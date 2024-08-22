@@ -24,13 +24,3 @@ def pts(d):
 	pts = {}
 	pts['.'] = HEADER_PTS
 	return pts
-
-# Optional (alternative to implementing read and pts):
-
-def read_prof(filename):
-	# Read data from filename and return a ds dictionary with prof-formatted
-	# (instrument-dependent) data.
-	prof = {}
-	prof['.'] = HEADER_PROF
-	return prof
-
