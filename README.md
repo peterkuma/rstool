@@ -310,7 +310,7 @@ standard set of variables.
 | station_lat | station latitude | latitude | degree north |
 | station_lon | station longitude | longitude | degree east |
 | station_z | station altitude | height_above_reference_ellipsoid | m |
-| station_time | station time | time | days since -4713-11-24 12:00 UTC |
+| station_time | station time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) |
 | uas | eastward near-surface wind | eastward_wind | m.s<sup>-1</sup> |
 | vas | northward near-surface wind | northward_wind | m.s<sup>-1</sup> |
 | z | altitude | height_above_reference_ellipsoid | m |
@@ -357,7 +357,7 @@ in some other way) across these intervals when plotting.
 | rhows | near-surface water vapor density | air_density | kg.m<sup>-3</sup> |
 | station_lat | station latitude | latitude | degree north |
 | station_lon | station longitude | longitude | degree east |
-| station_time | station time | time | days since -4713-11-24 12:00 UTC |
+| station_time | station time | time | days since -4713-11-24 12:00 UTC (`proleptic_gregorian` calendar) |
 | station_z | station altitude | height_above_reference_ellipsoid | m |
 | ta | air temperature | air_temperature | K |
 | td | dew point temperature | dew_point_temperature | K |
