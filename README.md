@@ -566,7 +566,7 @@ Calculate gravitational acceleration (m.s<sup>-2</sup>) from latitude *lat*
 Calculate dry adiabatic air temperature lapse rate (K.m<sup>-1</sup>) at
 gravitational acceleration *g* (m.s<sup>-2</sup>).
 
-**calc_gammam**(\*, *p*, *ta*, *gamma*)
+**calc_gammam**(\*, *p*, *ta*, *gammad*)
 
 Calculate moist adiabatic air temperature lapse rate (K.m<sup>-1</sup>)
 from pressure *p* (Pa), temperature *ta* (K) and dry adiabatic air

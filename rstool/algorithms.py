@@ -64,14 +64,14 @@ def calc_gammad(*, g):
 
 def calc_gammam(*, p, ta, gammad):
 	'''
-	**calc_gammam**(\*, *p*, *ta*, *gamma*)
+	**calc_gammam**(\*, *p*, *ta*, *gammad*)
 
 	Calculate moist adiabatic air temperature lapse rate (K.m<sup>-1</sup>)
 	from pressure *p* (Pa), temperature *ta* (K) and dry adiabatic air
 	temperature lapse rate *gammad* (K.m<sup>-1</sup>).
 	'''
 	wsat = calc_wsat(p=p, ta=ta)
-	return gamma*(1 + lv*wsat/(rd*ta))/(1 + lv**2*wsat*eps/(rd*cp*ta**2))
+	return gammad*(1 + lv*wsat/(rd*ta))/(1 + lv**2*wsat*eps/(rd*cp*ta**2))
 
 def calc_hur(*, w, wsat):
 	'''
