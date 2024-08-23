@@ -106,14 +106,14 @@ def calc_rho(*, rhod, rhow):
 	**calc_rho**(\*, *rhod*, *rhow*)
 
 	Calculate density of air (kg.m<sup>-3</sup>) from density of dry air
-	*rho_d* (kg.m<sup>-3</sup>) and density of water vapor *rho_w*
+	*rhod* (kg.m<sup>-3</sup>) and density of water vapor *rho_w*
 	(kg.m<sup>-3</sup>).
 	'''
 	return rhod + rhow
 
 def calc_rhod(*, p, e, ta):
 	'''
-	**calc_rho_d**(\*, *p*, *e*, *ta*)
+	**calc_rhod**(\*, *p*, *e*, *ta*)
 
 	Calculate density of dry air (kg.m<sup>-3</sup>) from air pressure *p*,
 	water vapor partial pressure *e* (Pa), and air temperature *ta* (K).
