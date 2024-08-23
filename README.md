@@ -534,10 +534,13 @@ specifying the arguments.**
 
 **calc_bvf**(\*, *thetav*, *zg*, *p*, *g*, *res*=400)
 
-Calculate Brunt-Väisälä frequency from air temperature *ta* (K),
+Calculate Brunt-Väisälä frequency (Hz) from air temperature *ta* (K),
 geopotential height *zg* (m), air pressure *p* (Pa) and gravitational
 acceleration *g* (m.s<sup>-2</sup>). *res* is vertical resolution in
-geopotential height (m).
+geopotential height (m). Returns a tuple of *p_bvf* (Pa), *zg_bvf* (m)
+and *bvf* (Hz), where *p_bvf* are new air pressure coordinates, *zg_bvf* is
+geopotential height at *p_bvf*, and *bvf* is the Brunt-Väisälä frequency
+at *p_bvf*.
 
 **calc_e**(\*, *p*, *w*)
 
