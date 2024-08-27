@@ -16,8 +16,8 @@ if __name__ == '__main__':
 		target, source = rec[:2]
 		newline = '' if i == len(DEPS) - 1 else '\\'
 		deps += '%s 🠢 %s%s\n' % (
-			', '.join(target) if isinstance(target, list) else target,
 			', '.join(source) if isinstance(source, list) else source,
+			', '.join(target) if isinstance(target, list) else target,
 			newline,
 		)
 

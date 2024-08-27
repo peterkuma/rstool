@@ -222,57 +222,57 @@ Conversion of quantities is performed recursively from source to derived
 quantities through any number of steps required. Supported elementary quantity
 conversions are the following (*source quantities* 🠢 *derived quantities*):
 
-p_bvf, zg_bvf, bvf 🠢 thetav, zg, p, g\
-e 🠢 p, w\
-e 🠢 td\
-es 🠢 ps, ws\
-es 🠢 tds\
-esat 🠢 ta\
-esats 🠢 tas\
-g 🠢 station_lat\
-gammad 🠢 g\
-gammam 🠢 p, ta, gammad\
-hur 🠢 w, wsat\
-hurs 🠢 ws, wsats\
-hus 🠢 w\
-huss 🠢 ws\
-lcl 🠢 pc, p, zg\
-lcls 🠢 pcs, p, zg\
-lts 🠢 p, theta, thetas\
-pc 🠢 ps, ws, tas\
-pcs 🠢 ps, ws, ts\
-rho 🠢 rhod, rhow\
-rhod 🠢 p, e, ta\
-rhods 🠢 ps, es, tas\
-rhos 🠢 rhods, rhows\
-rhow 🠢 p, e, ta\
-rhows 🠢 ps, es, tas\
+thetav, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
+p, w 🠢 e\
 td 🠢 e\
+ps, ws 🠢 es\
 tds 🠢 es\
-tv 🠢 ta, w\
-tvs 🠢 tas, ws\
-theta 🠢 p, ta\
-thetas 🠢 ps, tas\
-thetav 🠢 theta, w\
-thetavs 🠢 thetas, ws\
-ua 🠢 wds, wdd\
-uas 🠢 wdss, wdds\
-va 🠢 wds, wdd\
-vas 🠢 wdss, wdds\
+ta 🠢 esat\
+tas 🠢 esats\
+station_lat 🠢 g\
+g 🠢 gammad\
+p, ta, gammad 🠢 gammam\
+w, wsat 🠢 hur\
+ws, wsats 🠢 hurs\
 w 🠢 hus\
-w 🠢 hur, wsat\
-w 🠢 p, e\
-wdd 🠢 ua, va\
-wdds 🠢 uas, vas\
-wds 🠢 ua, va\
-wdss 🠢 uas, vas\
 ws 🠢 huss\
-ws 🠢 hurs, wsats\
-ws 🠢 ps, es\
-wsat 🠢 p, esat\
-wsats 🠢 ps, esats\
-z 🠢 zg, g\
-zg 🠢 z, g
+pc, p, zg 🠢 lcl\
+pcs, p, zg 🠢 lcls\
+p, theta, thetas 🠢 lts\
+ps, ws, tas 🠢 pc\
+ps, ws, ts 🠢 pcs\
+rhod, rhow 🠢 rho\
+p, e, ta 🠢 rhod\
+ps, es, tas 🠢 rhods\
+rhods, rhows 🠢 rhos\
+p, e, ta 🠢 rhow\
+ps, es, tas 🠢 rhows\
+e 🠢 td\
+es 🠢 tds\
+ta, w 🠢 tv\
+tas, ws 🠢 tvs\
+p, ta 🠢 theta\
+ps, tas 🠢 thetas\
+theta, w 🠢 thetav\
+thetas, ws 🠢 thetavs\
+wds, wdd 🠢 ua\
+wdss, wdds 🠢 uas\
+wds, wdd 🠢 va\
+wdss, wdds 🠢 vas\
+hus 🠢 w\
+hur, wsat 🠢 w\
+p, e 🠢 w\
+ua, va 🠢 wdd\
+uas, vas 🠢 wdds\
+ua, va 🠢 wds\
+uas, vas 🠢 wdss\
+huss 🠢 ws\
+hurs, wsats 🠢 ws\
+ps, es 🠢 ws\
+p, esat 🠢 wsat\
+ps, esats 🠢 wsats\
+zg, g 🠢 z\
+z, g 🠢 zg
 
 
 ## Format description
