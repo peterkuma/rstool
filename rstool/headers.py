@@ -53,8 +53,12 @@ HEADER_PROF = [
 	('hur', 'relative humidity', 'relative_humidity', '%', ['p']),
 	('hurs', 'near-surface relative humidity', 'relative_humidity', '%', []),
 	('hus', 'specific humidity', 'specific_humidity', '1', ['p']),
+	('huss', 'near-surface specific humidity', 'specific_humidity', '1', ['p']),
 	('lat', 'latitude', 'latitude', 'degree_north', ['p']),
 	('lcl', 'lifting condensation level', 'geopotential_height', 'm', [], {
+		'comment': 'calculated from the measured environmental pressure and geopotential height'
+	}),
+	('lcls', 'lifting condensation level from surface temperature', 'geopotential_height', 'm', [], {
 		'comment': 'calculated from the measured environmental pressure and geopotential height'
 	}),
 	('lclp', 'lifting condensation level from surface temperature', 'geopotential_height', 'm', [], {
