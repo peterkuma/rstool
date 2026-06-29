@@ -4,7 +4,7 @@ from scipy.optimize import fmin
 from rstool.const import *
 
 def calc_bvf(*, thetav, zg, p, g, res=400):
-	'''
+	r'''
 	**calc_bvf**(\*, *thetav*, *zg*, *p*, *g*, *res*=400)
 
 	Calculate Brunt-Väisälä frequency (Hz) from air temperature *ta* (K),
@@ -26,7 +26,7 @@ def calc_bvf(*, thetav, zg, p, g, res=400):
 	return pfull, zg_full, bvf
 
 def calc_e(*, p, w):
-	'''
+	r'''
 	**calc_e**(\*, *p*, *w*)
 
 	Calculate water vapor partial pressure in air (Pa) from humidity
@@ -35,7 +35,7 @@ def calc_e(*, p, w):
 	return w*p/(eps + w)
 
 def calc_esat(*, ta):
-	'''
+	r'''
 	**calc_esat**(\*, *ta*)
 
 	Calculate saturation water vapor partial pressure (Pa) from air
@@ -44,7 +44,7 @@ def calc_esat(*, ta):
 	return 6.112*np.exp((17.67*(ta - n0))/(ta - n0 + 243.5))*1e2
 
 def calc_g(*, lat=45):
-	'''
+	r'''
 	**calc_g**(\*, *lat*=45)
 
 	Calculate gravitational acceleration (m.s<sup>-2</sup>) from latitude *lat*
@@ -57,7 +57,7 @@ def calc_g(*, lat=45):
 	)
 
 def calc_gammad(*, g):
-	'''
+	r'''
 	**calc_gammad**(\*, *g*)
 
 	Calculate dry adiabatic air temperature lapse rate (K.m<sup>-1</sup>) at
@@ -66,7 +66,7 @@ def calc_gammad(*, g):
 	return g/cp
 
 def calc_gammam(*, p, ta, gammad):
-	'''
+	r'''
 	**calc_gammam**(\*, *p*, *ta*, *gammad*)
 
 	Calculate moist adiabatic air temperature lapse rate (K.m<sup>-1</sup>)
@@ -77,7 +77,7 @@ def calc_gammam(*, p, ta, gammad):
 	return gammad*(1 + lv*wsat/(rd*ta))/(1 + lv**2*wsat*eps/(rd*cp*ta**2))
 
 def calc_hur(*, w, wsat):
-	'''
+	r'''
 	**calc_hur**(\*, *w*, *wsat*)
 
 	Calculate relative humidity (%) from humidity mixing ratio *w* (1) and
@@ -86,7 +86,7 @@ def calc_hur(*, w, wsat):
 	return 100*w/wsat
 
 def calc_hus(*, w):
-	'''
+	r'''
 	**calc_hus**(\*, *w*)
 
 	Calculate specific humidity (1) from humidity mixing ratio *w* (1).
@@ -94,7 +94,7 @@ def calc_hus(*, w):
 	return w/(1 + w)
 
 def calc_lts(*, p, theta, thetas):
-	'''
+	r'''
 	**calc_lts**(\*, *p*, *theta*, *thetas*):
 
 	Calculate lower tropospheric stability (K) from air pressure *p* (Pa), air
@@ -105,7 +105,7 @@ def calc_lts(*, p, theta, thetas):
 	return theta700 - thetas
 
 def calc_rho(*, rhod, rhow):
-	'''
+	r'''
 	**calc_rho**(\*, *rhod*, *rhow*)
 
 	Calculate density of air (kg.m<sup>-3</sup>) from density of dry air
@@ -115,7 +115,7 @@ def calc_rho(*, rhod, rhow):
 	return rhod + rhow
 
 def calc_rhod(*, p, e, ta):
-	'''
+	r'''
 	**calc_rhod**(\*, *p*, *e*, *ta*)
 
 	Calculate density of dry air (kg.m<sup>-3</sup>) from air pressure *p*,
@@ -124,7 +124,7 @@ def calc_rhod(*, p, e, ta):
 	return (p - e)/rd/ta
 
 def calc_rhow(*, p, e, ta):
-	'''
+	r'''
 	**calc_rhow**(\*, *p*, *e*, *ta*)
 
 	Calculate density of water vapor (kg.m<sup>-3</sup>) from air pressure *p*,
@@ -133,7 +133,7 @@ def calc_rhow(*, p, e, ta):
 	return e/rw/ta
 
 def calc_tapar(*, p, ps, tas):
-	'''
+	r'''
 	**calc_tpar**(\*, *p*, *ps*, *tas*)
 
 	Calculate dry-moist adiabatic parcel temperature at air pressure *p* (Pa),
@@ -143,7 +143,7 @@ def calc_tapar(*, p, ps, tas):
 	return tas*(p/ps)**kappa
 
 def calc_tv(*, ta, w):
-	'''
+	r'''
 	**calc_tv**(\*, *ta*, *w*)
 
 	Calculate virtual temperature (K) from air temperature *ta* (K) and
@@ -152,7 +152,7 @@ def calc_tv(*, ta, w):
 	return ta*(1 + w/eps)/(1 + w)
 
 def calc_theta(*, p, ta, p0=1e5):
-	'''
+	r'''
 	**calc_theta**(\*, *p*, *ps*, *ta*, *p0*=1e5)
 
 	Calculate air potential temperature (K) from air pressure *p* (Pa), surface
@@ -163,7 +163,7 @@ def calc_theta(*, p, ta, p0=1e5):
 
 @np.vectorize
 def calc_td(*, e):
-	'''
+	r'''
 	**calc_td**(\*, *e*)
 
 	Calculate dew point temperature (K) from water vapor pressure *e* (Pa).
@@ -178,7 +178,7 @@ def calc_td(*, e):
 
 @np.vectorize
 def calc_pc(*, ps, ws, tas):
-	'''
+	r'''
 	**calc_pc**(\*, *ps*, *ws*, *tas*)
 
 	Calculate condensation pressure (Pa) from surface air pressure *ps* (Pa),
@@ -195,7 +195,7 @@ def calc_pc(*, ps, ws, tas):
 		return np.nan
 
 def calc_ua(*, wds, wdd):
-	'''
+	r'''
 	**calc_ua**(\*, *wds*, *wdd*)
 
 	Calculate eastward wind (m.s<sup>-1</sup>) from wind speed *wds*
@@ -204,7 +204,7 @@ def calc_ua(*, wds, wdd):
 	return -np.sin(wdd/180*np.pi)*wds
 
 def calc_va(*, wds, wdd):
-	'''
+	r'''
 	**calc_va**(\*, *wds*, *wdd*)
 
 	Calculate northward wind (m.s<sup>-1</sup>) from wind speed *wds*
@@ -217,11 +217,11 @@ def calc_w(*,
 	hus=None, # option 2
 	hur=None, wsat=None, # option 3
 ):
-	'''
-	**calc_w**(\*,\\
-	    [option 1] *p*, *e*\\
-	    [option 2] *hus*\\
-	    [option 3] *hur*, *wsat*\\
+	r'''
+	**calc_w**(\*,\
+	    [option 1] *p*, *e*\
+	    [option 2] *hus*\
+	    [option 3] *hur*, *wsat*\
 	)
 
 	Calculate humidity mixing ratio from [option 1] pressure *p* (Pa) and
@@ -239,7 +239,7 @@ def calc_w(*,
 		raise TypeError('invalid arguments')
 
 def calc_wdd(*, ua, va):
-	'''
+	r'''
 	**calc_wdd**(\*, *ua*, *va*)
 
 	Calculate wind direction (degree) from eastward wind *ua*
@@ -248,7 +248,7 @@ def calc_wdd(*, ua, va):
 	return np.arctan2(-ua, -va)/np.pi*180 % 360
 
 def calc_wds(*, ua, va):
-	'''
+	r'''
 	**calc_wds**(\*, *ua*, *va*)
 
 	Calculate wind speed (m.s<sup>-1</sup>) from eastward wind *ua*
@@ -257,7 +257,7 @@ def calc_wds(*, ua, va):
 	return np.sqrt(ua**2 + va**2)
 
 def calc_wsat(*, p, ta):
-	'''
+	r'''
 	**calc_wsat**(\*, *p*, *ta*)
 
 	Calculate saturation humidity mixing ratio (1) from air pressure *p*
@@ -270,10 +270,10 @@ def calc_z(*,
 	zg=None, g=None, # option 1
 	p1=None, p=None, z=None, # option 2
 ):
-	'''
-	**calc_z**(\*,\\
-	    [option 1] *zg*, *g*\\
-	    [option 2] *p1*, *p*, *z*\\
+	r'''
+	**calc_z**(\*,\
+	    [option 1] *zg*, *g*\
+	    [option 2] *p1*, *p*, *z*\
 	)
 
 	Calculate altitude (m) from [option 1] geopotential height *zg* (m) and
@@ -292,10 +292,10 @@ def calc_zg(*,
 	z=None, g=None, # option 1
 	p1=None, p=None, zg=None, # option 2
 ):
-	'''
-	**calc_zg**(\*,\\
-	    [option 1] *z*, *g*\\
-	    [option 2] *p1*, *p*, *zg*\\
+	r'''
+	**calc_zg**(\*,\
+	    [option 1] *z*, *g*\
+	    [option 2] *p1*, *p*, *zg*\
 	)
 
 	Calculate geopotential height (m) from [option 1] altitude *z* (m) and

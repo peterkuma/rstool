@@ -15,7 +15,7 @@ if __name__ == '__main__':
 	for i, rec in enumerate(DEPS):
 		target, source = rec[:2]
 		newline = '' if i == len(DEPS) - 1 else '\\'
-		deps += '%s 🠢 %s%s\n' % (
+		deps += '%s &rarr; %s%s\n' % (
 			', '.join(source) if isinstance(source, list) else source,
 			', '.join(target) if isinstance(target, list) else target,
 			newline,

@@ -220,7 +220,7 @@ format, the instrument-dependent intermediate (`im`) format, the points (`pts`)
 format, or the profile (`prof`) format to the profile (`prof`) format.
 Conversion of quantities is performed recursively from source to derived
 quantities through any number of steps required. Supported elementary quantity
-conversions are the following (*source quantities* 🠢 *derived quantities*):
+conversions are the following (*source quantities* &rarr; *derived quantities*):
 
 {deps}
 
