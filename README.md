@@ -220,60 +220,59 @@ format, the instrument-dependent intermediate (`im`) format, the points (`pts`)
 format, or the profile (`prof`) format to the profile (`prof`) format.
 Conversion of quantities is performed recursively from source to derived
 quantities through any number of steps required. Supported elementary quantity
-conversions are the following (*source quantities* 🠢 *derived quantities*):
+conversions are the following (*source quantities* &rarr; *derived quantities*):
 
-thetav, zg, p, g 🠢 p_bvf, zg_bvf, bvf\
-p, w 🠢 e\
-td 🠢 e\
-ps, ws 🠢 es\
-tds 🠢 es\
-ta 🠢 esat\
-tas 🠢 esats\
-station_lat 🠢 g\
-g 🠢 gammad\
-p, ta, gammad 🠢 gammam\
-w, wsat 🠢 hur\
-ws, wsats 🠢 hurs\
-w 🠢 hus\
-ws 🠢 huss\
-pc, p, zg 🠢 lcl\
-pcs, p, zg 🠢 lcls\
-p, theta, thetas 🠢 lts\
-ps, ws, tas 🠢 pc\
-ps, ws, ts 🠢 pcs\
-rhod, rhow 🠢 rho\
-p, e, ta 🠢 rhod\
-ps, es, tas 🠢 rhods\
-rhods, rhows 🠢 rhos\
-p, e, ta 🠢 rhow\
-ps, es, tas 🠢 rhows\
-e 🠢 td\
-es 🠢 tds\
-ta, w 🠢 tv\
-tas, ws 🠢 tvs\
-p, ta 🠢 theta\
-ps, tas 🠢 thetas\
-theta, w 🠢 thetav\
-thetas, ws 🠢 thetavs\
-wds, wdd 🠢 ua\
-wdss, wdds 🠢 uas\
-wds, wdd 🠢 va\
-wdss, wdds 🠢 vas\
-hus 🠢 w\
-hur, wsat 🠢 w\
-p, e 🠢 w\
-ua, va 🠢 wdd\
-uas, vas 🠢 wdds\
-ua, va 🠢 wds\
-uas, vas 🠢 wdss\
-huss 🠢 ws\
-hurs, wsats 🠢 ws\
-ps, es 🠢 ws\
-p, esat 🠢 wsat\
-ps, esats 🠢 wsats\
-zg, g 🠢 z\
-z, g 🠢 zg
-
+thetav, zg, p, g &rarr; p_bvf, zg_bvf, bvf\
+p, w &rarr; e\
+td &rarr; e\
+ps, ws &rarr; es\
+tds &rarr; es\
+ta &rarr; esat\
+tas &rarr; esats\
+station_lat &rarr; g\
+g &rarr; gammad\
+p, ta, gammad &rarr; gammam\
+w, wsat &rarr; hur\
+ws, wsats &rarr; hurs\
+w &rarr; hus\
+ws &rarr; huss\
+pc, p, zg &rarr; lcl\
+pcs, p, zg &rarr; lcls\
+p, theta, thetas &rarr; lts\
+ps, ws, tas &rarr; pc\
+ps, ws, ts &rarr; pcs\
+rhod, rhow &rarr; rho\
+p, e, ta &rarr; rhod\
+ps, es, tas &rarr; rhods\
+rhods, rhows &rarr; rhos\
+p, e, ta &rarr; rhow\
+ps, es, tas &rarr; rhows\
+e &rarr; td\
+es &rarr; tds\
+ta, w &rarr; tv\
+tas, ws &rarr; tvs\
+p, ta &rarr; theta\
+ps, tas &rarr; thetas\
+theta, w &rarr; thetav\
+thetas, ws &rarr; thetavs\
+wds, wdd &rarr; ua\
+wdss, wdds &rarr; uas\
+wds, wdd &rarr; va\
+wdss, wdds &rarr; vas\
+hus &rarr; w\
+hur, wsat &rarr; w\
+p, e &rarr; w\
+ua, va &rarr; wdd\
+uas, vas &rarr; wdds\
+ua, va &rarr; wds\
+uas, vas &rarr; wdss\
+huss &rarr; ws\
+hurs, wsats &rarr; ws\
+ps, es &rarr; ws\
+p, esat &rarr; wsat\
+ps, esats &rarr; wsats\
+zg, g &rarr; z\
+z, g &rarr; zg
 
 ## Format description
 
